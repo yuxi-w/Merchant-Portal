@@ -1,8 +1,8 @@
 # Merchant-Portal
-An online portal for ordering items.
+This is a project of an online portal for ordering items.
 
-Hello! This is our project for the course CSI5112 - Software Engineering.
-We are a group of 5 master's students at uOttawa.
+Hello! This is our project for the course CSI5112 - Software Engineering, offered by the EECS.
+We are a group of 5 master's students from uOttawa.
 
 The project includes following topics initially:
 - portal for selecting and ordering items
@@ -14,5 +14,5 @@ Here are the members of our group:
 - Mohammadreza Davoudi
 - Alim Manjiyani
 - Zhiyi Dong
-- Alireza Montazer
+- Alireza Montazeralzohour
 - Yuxi Wang
