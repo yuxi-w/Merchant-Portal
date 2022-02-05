@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:merchant_app/widgets/centered_view/centered_view.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
 import 'package:merchant_app/widgets/navigation_drawer/navigation_drawer.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -17,6 +16,8 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) => Scaffold(
+
+          /// Creating Drawer Layout when screen shrinks
           drawer: sizingInformation.deviceScreenType == DeviceScreenType.mobile
               ? const NavigationDrawer()
               : null,
