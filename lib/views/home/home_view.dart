@@ -9,13 +9,51 @@ class HomeView extends StatefulWidget {
   _HomeViewState createState() => _HomeViewState();
 }
 
+// This is our Home Page
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: CenteredView(Column(
-          children: [MyNavigationBar()],
-        )));
+        // Main Page
+        body: Container(
+          // Main Column
+          child: Column(
+            children: [
+              // Contain Navigation Bar and List View
+              Container(
+                margin: EdgeInsets.all(16),
+                child: Column(
+                  children: [
+                    // Navigation Bar
+                    MyNavigationBar(),
+                    // Main List View
+                    Row(
+                      children: [
+                        Flexible(
+                          fit: FlexFit.tight,
+                          child: Container(
+                            child: Text("Hello List View"),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              // Bottom Navigation Bar
+              Expanded(
+                  child: Align(
+                alignment: FractionalOffset.bottomCenter,
+                child: Container(
+                  margin: EdgeInsets.all(16),
+                  child: Row(
+                    children: [Text("Bottom Nav Bar")],
+                  ),
+                ),
+              ))
+            ],
+          ),
+        ));
   }
 }
