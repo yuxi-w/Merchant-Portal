@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:merchant_app/widgets/home_page_list_view/home_page_list_view.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
 import 'package:merchant_app/widgets/navigation_drawer/navigation_drawer.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -27,40 +28,31 @@ class _HomeViewState extends State<HomeView> {
             // Main Column
             child: Column(
               children: [
-                /// Contain Navigation Bar and List View
+                /// Navigation Bar Container
                 Container(
-                  margin: EdgeInsets.all(16),
+                  margin: const EdgeInsets.all(16),
                   child: Column(
-                    children: [
+                    children: const [
                       /// Navigation Bar
                       MyNavigationBar(),
-
-                      /// Main List View
-                      Row(
-                        children: [
-                          Flexible(
-                            fit: FlexFit.tight,
-                            child: Container(
-                              child: Text("Hello List View"),
-                            ),
-                          )
-                        ],
-                      )
                     ],
                   ),
                 ),
 
+                /// Main List View
+                HomePageListView(),
+
                 /// Bottom Navigation Bar
-                Expanded(
-                    child: Align(
-                  alignment: FractionalOffset.bottomCenter,
-                  child: Container(
-                    margin: EdgeInsets.all(16),
-                    child: Row(
-                      children: [Text("Bottom Nav Bar")],
-                    ),
-                  ),
-                ))
+                // Expanded(
+                //     child: Align(
+                //   alignment: FractionalOffset.bottomCenter,
+                //   child: Container(
+                //     margin: EdgeInsets.all(16),
+                //     child: Row(
+                //       children: [Text("Bottom Nav Bar")],
+                //     ),
+                //   ),
+                // ))
               ],
             ),
           )),
