@@ -7,21 +7,24 @@ class NavigationDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 300,
-      decoration: const BoxDecoration(
-          color: Colors.white,
-          boxShadow: <BoxShadow>[
-            BoxShadow(color: Colors.black12, blurRadius: 16)
-          ]),
-      child: Column(
-        children: const [
-          NavigationDrawerHeader(),
-          DrawerItem("Home", Icons.home),
-          DrawerItem("Category", Icons.category),
-          DrawerItem("Shopping Cart", Icons.shopping_cart_sharp),
-          DrawerItem("My Info", Icons.person)
-        ],
+    return SingleChildScrollView(
+      child: Container(
+        height: 800,
+        width: 300,
+        decoration: const BoxDecoration(
+            color: Colors.white,
+            boxShadow: <BoxShadow>[
+              BoxShadow(color: Colors.black12, blurRadius: 16)
+            ]),
+        child: Column(
+          children: const [
+            NavigationDrawerHeader(),
+            DrawerItem("Home", Icons.home),
+            DrawerItem("Category", Icons.category),
+            DrawerItem("Shopping Cart", Icons.shopping_cart_sharp),
+            DrawerItem("My Info", Icons.person)
+          ],
+        ),
       ),
     );
   }

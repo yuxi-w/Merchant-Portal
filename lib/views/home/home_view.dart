@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:merchant_app/widgets/home_page_list_view/home_page_list_view.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
@@ -11,7 +12,7 @@ class HomeView extends StatefulWidget {
   _HomeViewState createState() => _HomeViewState();
 }
 
-// This is our Home Page
+/// This is our Home Page
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
@@ -23,37 +24,39 @@ class _HomeViewState extends State<HomeView> {
               ? const NavigationDrawer()
               : null,
           backgroundColor: Colors.white,
-          // Main Page
+
+          /// Main Page
           body: Container(
-            // Main Column
-            child: Column(
-              children: [
-                /// Navigation Bar Container
-                Container(
-                  margin: const EdgeInsets.all(16),
-                  child: Column(
-                    children: const [
-                      /// Navigation Bar
-                      MyNavigationBar(),
-                    ],
+            padding: const EdgeInsets.all(16),
+
+            /// Main Column
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  /// Navigation Bar Container
+                  Container(
+                    margin: const EdgeInsets.all(16),
+                    child: const MyNavigationBar(),
                   ),
-                ),
 
-                /// Main List View
-                HomePageListView(),
+                  /// Main List View
+                  HomePageListView(),
 
-                /// Bottom Navigation Bar
-                // Expanded(
-                //     child: Align(
-                //   alignment: FractionalOffset.bottomCenter,
-                //   child: Container(
-                //     margin: EdgeInsets.all(16),
-                //     child: Row(
-                //       children: [Text("Bottom Nav Bar")],
-                //     ),
-                //   ),
-                // ))
-              ],
+                  /// Bottom Navigation Bar
+                  SizedBox(
+                    height: 200,
+                    child: Row(
+                      children: [
+                        Flexible(
+                            child: Container(
+                          color: Colors.red,
+                        ))
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           )),
     );
