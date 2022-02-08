@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:merchant_app/views/home/home_view.dart';
+import 'package:merchant_app/locator.dart';
+import 'package:merchant_app/views/layout_holder/layout_holder.dart';
 
 void main() {
+  /// Setup Locator creates a singleton navigation service in order to navigate between pages
+  setupLocator();
   runApp(const MyApp());
 }
 
@@ -18,10 +21,6 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         title: 'Merchant App',
         theme: ThemeData(primarySwatch: Colors.blue),
-        home: Builder(
-          builder: (BuildContext context) {
-            return HomeView(context);
-          },
-        ));
+        home: const LayoutHolder());
   }
 }

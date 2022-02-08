@@ -10,6 +10,6 @@ class PersonalInfoView extends StatefulWidget {
 class _PersonalInfoViewState extends State<PersonalInfoView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(child: Text("Personal Page"));
   }
 }

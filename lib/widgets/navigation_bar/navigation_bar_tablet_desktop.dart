@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:merchant_app/routing/route_names.dart';
 
 import 'navbar_item.dart';
 import 'navbar_logo.dart';
@@ -8,7 +9,7 @@ class NavigationBarTabletDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 100,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -17,23 +18,23 @@ class NavigationBarTabletDesktop extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: const [
-              NavBarItem('Home'),
+              NavBarItem('Home', HomeRoute),
               SizedBox(
                 width: 60,
               ),
-              NavBarItem('Category'),
+              NavBarItem('Category', CategoryRoute),
               SizedBox(
                 width: 60,
               ),
-              NavBarItem('Shopping Cart'),
+              NavBarItem('Shopping Cart', ShoppingCartRoute),
               SizedBox(
                 width: 60,
               ),
-              NavBarItem('My Info'),
+              NavBarItem('My Info', PersonalInfoRoute),
               SizedBox(
                 width: 60,
               ),
-              NavBarItem('Login')
+              NavBarItem('Login', LoginRoute)
             ],
           )
         ],

@@ -10,6 +10,6 @@ class CategoryView extends StatefulWidget {
 class _CategoryViewState extends State<CategoryView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(child: Text("Category Page"));
   }
 }

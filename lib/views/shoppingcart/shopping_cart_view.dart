@@ -10,6 +10,6 @@ class ShoppingCartView extends StatefulWidget {
 class _ShoppingCartViewState extends State<ShoppingCartView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(child: Text("Shopping Page"));
   }
 }
