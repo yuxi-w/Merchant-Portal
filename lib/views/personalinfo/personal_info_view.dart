@@ -54,7 +54,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                   ),
                 ),
                 Container(
-                    constraints: BoxConstraints(minWidth: 300, maxWidth: 500),
+                    constraints: BoxConstraints(minWidth: 500, maxWidth: 800),
                     padding: EdgeInsets.all(10),
                     child: Column(children: [
                       Text(
