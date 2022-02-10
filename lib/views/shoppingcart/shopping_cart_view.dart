@@ -3,10 +3,9 @@ import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/shopping_cart_list_view/shopping_cart_list_view.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
 import 'package:merchant_app/widgets/navigation_drawer/navigation_drawer.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 class ShoppingCartView extends StatefulWidget {
-  const ShoppingCartView(BuildContext appContext, {Key? key}) : super(key: key);
+  const ShoppingCartView({Key? key}) : super(key: key);
 
   @override
   _ShoppingCartViewState createState() => _ShoppingCartViewState();
@@ -15,12 +14,9 @@ class ShoppingCartView extends StatefulWidget {
 class _ShoppingCartViewState extends State<ShoppingCartView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        
-        /// Main Page
-        body: SingleChildScrollView(
-          child: Container(
+    return ListView(
+          shrinkWrap: true,
+          children: <Widget>[Container(
             color: Colors.black12,
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -38,14 +34,14 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
                 margin: EdgeInsets.fromLTRB(70, 20, 10, 10),
                 child: Text(
                 "My Shopping Cart",
-                style: TextStyle(color: Colors.blue, fontSize: 50),
+                style: TextStyle(color: Colors.blue, fontSize: 40),
                 textAlign: TextAlign.right
                   ),
                 ),
 
                 /// Main List View
                 Container(
-                constraints: BoxConstraints(minWidth: 1000, maxWidth: 2000),
+                constraints: BoxConstraints(minWidth: 300, maxWidth: 1000),
                 // padding: EdgeInsets.fromLTRB(500, 10, 500, 10),
                 child: ShopCartListView(),
                 ),
@@ -56,7 +52,7 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
                 margin: EdgeInsets.fromLTRB(10, 20, 100, 10),
                 child: Text(
                 "Subtotal: \$200.00",
-                style: TextStyle(color: Colors.black, fontSize: 40),
+                style: TextStyle(color: Colors.black, fontSize: 30),
                 textAlign: TextAlign.right
                 ),
                 ),
@@ -64,10 +60,10 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
                 /// The Checkout Button
                 Container(
                 alignment: Alignment.centerRight,
-                margin: EdgeInsets.fromLTRB(10, 0, 150, 40),
+                margin: EdgeInsets.fromLTRB(10, 0, 140, 40),
                 child: TextButton(onPressed: (){}, child: const Text(
                 "Checkout!",
-                style: TextStyle(backgroundColor: Colors.orange, color: Colors.black, fontSize: 40),
+                style: TextStyle(backgroundColor: Colors.orange, color: Colors.black, fontSize: 30),
                 // textAlign: TextAlign.right
                     ),
                   ),
@@ -80,15 +76,8 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
               ],
             ),
           ),
-        ),
 
-        /// Chat Button
-        floatingActionButton: FloatingActionButton(
-            elevation: 10.0,
-            child: const Icon(Icons.chat),
-            backgroundColor: const Color(0xFF162A49),
-            onPressed: () {}),
+          ],
       );
-
   }
 }

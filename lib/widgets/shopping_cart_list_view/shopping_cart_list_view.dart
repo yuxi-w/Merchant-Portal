@@ -1,8 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:merchant_app/widgets/shopping_cart_list_view/shopping_cart_list_item1.dart';
-import 'package:merchant_app/widgets/shopping_cart_list_view/shopping_cart_list_item2.dart';
+import 'package:merchant_app/widgets/shopping_cart_list_view/shopping_cart_list_item.dart';
 
 class ShopCartListView extends StatefulWidget {
   const ShopCartListView({Key? key}) : super(key: key);
@@ -21,11 +20,13 @@ class _ShopCartListViewState extends State<ShopCartListView> {
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           children: [
-            ShopCartListItem1(
-                "The Dart Programming Language", '\$50.00', "ISBN-13: 978-0321927705", 2),
+            ShopCartListItem(
+                "The Dart Programming Language", '\$50.00', "ISBN-13: 978-0321927705", 2,
+                'https://m.media-amazon.com/images/I/51cH0WD2rRL._AC_UL480_FMwebp_QL65_.jpg'),
             
-            ShopCartListItem2(
-                "Deep Learning", '\$100.00', "ISBN-13: 978-0262035613", 1),
+            ShopCartListItem(
+                "Deep Learning", '\$100.00', "ISBN-13: 978-0262035613", 1,
+                'https://m.media-amazon.com/images/I/A1GbblX7rOL._AC_AA180_.jpg'),
             ],
         ),
       ),
