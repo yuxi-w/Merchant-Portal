@@ -15,14 +15,8 @@ class ShoppingCartView extends StatefulWidget {
 class _ShoppingCartViewState extends State<ShoppingCartView> {
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(
-      builder: (context, sizingInformation) => Scaffold(
-        /// Creating Drawer Layout when screen shrinks
-        drawer: sizingInformation.deviceScreenType == DeviceScreenType.mobile
-            ? const NavigationDrawer()
-            : null,
+    return Scaffold(
         backgroundColor: Colors.white,
-        
         
         /// Main Page
         body: SingleChildScrollView(
@@ -94,7 +88,7 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
             child: const Icon(Icons.chat),
             backgroundColor: const Color(0xFF162A49),
             onPressed: () {}),
-      ),
-    );
+      );
+
   }
 }
