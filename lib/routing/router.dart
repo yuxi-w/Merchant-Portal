@@ -6,6 +6,8 @@ import 'package:merchant_app/views/login/login_view.dart';
 import 'package:merchant_app/views/personalinfo/personal_info_view.dart';
 import 'package:merchant_app/views/shoppingcart/shopping_cart_view.dart';
 
+/// This is the dynamic top level function that is used in Layout Holder Page
+/// In order to generate routes
 Route<dynamic>? generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case HomeRoute:

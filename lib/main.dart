@@ -3,7 +3,8 @@ import 'package:merchant_app/locator.dart';
 import 'package:merchant_app/views/layout_holder/layout_holder.dart';
 
 void main() {
-  /// Setup Locator creates a singleton navigation service in order to navigate between pages
+  /// Setup Locator creates a singleton navigation service
+  /// in order to navigate between pages
   setupLocator();
   runApp(const MyApp());
 }

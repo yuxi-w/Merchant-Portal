@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Navigation service to switch between pages
 class NavigationService {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 

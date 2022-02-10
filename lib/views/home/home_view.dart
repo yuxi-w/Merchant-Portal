@@ -3,6 +3,7 @@ import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/home_page_list_view/home_page_list_item.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
 
+/// This is our Home Page
 class HomeView extends StatefulWidget {
   const HomeView({BuildContext? appContext, Key? key}) : super(key: key);
 
@@ -10,19 +11,18 @@ class HomeView extends StatefulWidget {
   _HomeViewState createState() => _HomeViewState();
 }
 
-/// This is our Home Page
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
         Container(
-          ///Top Navigation Bar
+          /// Top Navigation Bar
           margin: const EdgeInsets.fromLTRB(16, 16, 64, 16),
           child: const MyNavigationBar(),
         ),
 
-        ///Main Content is a GridView List which shows the products in Home Page
+        /// Main Content is a GridView List which shows the products in Home Page
         Container(
           margin: const EdgeInsets.all(16),
           child: Flexible(
@@ -55,7 +55,7 @@ class _HomeViewState extends State<HomeView> {
           ),
         ),
 
-        ///Page Footer
+        /// Page Footer
         const HomePageFooter()
       ],
     );

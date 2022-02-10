@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'category_page_list_item.dart';
 
-/// This class contains the product items in Category page
+///This class contains the product items in Category page
 class CategoryPageListView extends StatefulWidget {
   const CategoryPageListView({Key? key}) : super(key: key);
 

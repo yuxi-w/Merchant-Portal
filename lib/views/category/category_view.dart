@@ -22,7 +22,7 @@ class _CategoryViewState extends State<CategoryView> {
           child: const MyNavigationBar(),
         ),
 
-        /// Main Content
+        /// Main Content and products on category page
         const CategoryPageListView(),
 
         /// Page Footer

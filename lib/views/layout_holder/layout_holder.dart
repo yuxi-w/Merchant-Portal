@@ -6,6 +6,9 @@ import 'package:merchant_app/services/navigation_service.dart';
 import 'package:merchant_app/widgets/navigation_drawer/navigation_drawer.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+/// This page is a template page to switch between different pages.
+/// As you can see, the navigator is on this page,
+/// which is responsible for switching pages.
 class LayoutHolder extends StatelessWidget {
   const LayoutHolder({Key? key}) : super(key: key);
 
@@ -19,6 +22,7 @@ class LayoutHolder extends StatelessWidget {
             : null,
         backgroundColor: Colors.black12,
 
+        /// Navigator for switching pages
         body: Navigator(
           key: locator<NavigationService>().navigatorKey,
           onGenerateRoute: generateRoute,
