@@ -8,7 +8,7 @@ void main() {
   /// in order to navigate between pages
   setupLocator();
 
-  /// Responsive Layout Breakpoints
+  /// Responsive Layout Breakpoints for different screen sizes
   ResponsiveSizingConfig.instance.setCustomBreakpoints(
     const ScreenBreakpoints(desktop: 900, tablet: 900, watch: 200),
   );

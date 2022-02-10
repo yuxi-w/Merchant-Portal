@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:merchant_app/widgets/home_page_list_view/home_page_list_item.dart';
 
+/// Home Page Layout for desktop screen
 class HomeContentDesktop extends StatefulWidget {
   const HomeContentDesktop({Key? key}) : super(key: key);
 
