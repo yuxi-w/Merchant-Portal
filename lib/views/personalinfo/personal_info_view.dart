@@ -91,7 +91,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                           vertical: 10.0, horizontal: 25.0),
                       child: ListTile(
                         leading: Icon(
-                          Icons.email,
+                          Icons.mark_email_unread_rounded,
                           color: Color.fromARGB(255, 70, 70, 70),
                         ),
                         title: Text(
@@ -104,7 +104,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                       ),
                     ),
                     Text(
-                      'Address:',
+                      'Home Address:',
                       style: TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
@@ -115,7 +115,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                           vertical: 10.0, horizontal: 25.0),
                       child: ListTile(
                         leading: Icon(
-                          Icons.location_city_rounded,
+                          Icons.fmd_good_rounded,
                           color: Color.fromARGB(255, 70, 70, 70),
                         ),
                         title: Text(
@@ -128,7 +128,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                       ),
                     ),
                     Text(
-                      'ZipCode:',
+                      'Zip Code:',
                       style: TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
@@ -139,7 +139,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                           vertical: 10.0, horizontal: 25.0),
                       child: ListTile(
                         leading: Icon(
-                          Icons.mail_rounded,
+                          Icons.my_location_rounded,
                           color: Color.fromARGB(255, 70, 70, 70),
                         ),
                         title: Text(
@@ -158,17 +158,22 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 70, 70, 70)),
                     ),
-                    MaterialButton(
-                      padding: const EdgeInsets.fromLTRB(65, 20, 65, 20),
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                      color: Colors.blue,
-                      child: const Text(
-                        "Edit your personal information!",
-                        style: TextStyle(color: Colors.white, fontSize: 21),
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(25, 2, 25, 2),
+                      child: MaterialButton(
+                        minWidth: double.maxFinite,
+                        padding: const EdgeInsets.fromLTRB(65, 20, 65, 20),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0))),
+                        color: Colors.blue,
+                        child: const Text(
+                          "Edit your personal information!",
+                          style: TextStyle(color: Colors.white, fontSize: 21),
+                        ),
+                        onPressed: () {},
                       ),
-                      onPressed: () {},
-                    ),
+                    )
                   ]))
             ],
           ),
