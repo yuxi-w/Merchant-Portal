@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:merchant_app/locator.dart';
 import 'package:merchant_app/views/layout_holder/layout_holder.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 void main() {
   /// Setup Locator creates a singleton navigation service
   /// in order to navigate between pages
   setupLocator();
+
+  /// Responsive Layout Breakpoints
+  ResponsiveSizingConfig.instance.setCustomBreakpoints(
+    const ScreenBreakpoints(desktop: 900, tablet: 900, watch: 200),
+  );
   runApp(const MyApp());
 }
 
