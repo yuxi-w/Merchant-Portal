@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:merchant_app/constants/colors/app_colors.dart';
 
+/// This widget is for NavigationDrawer. When you shrink the screen
+/// horizontally, This navigation drawer will appear on the left top
+/// of the screen. Just like a mobile phone
 class NavigationDrawerHeader extends StatelessWidget {
   const NavigationDrawerHeader({Key? key}) : super(key: key);
 

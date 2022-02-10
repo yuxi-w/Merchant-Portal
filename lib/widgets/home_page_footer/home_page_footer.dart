@@ -3,6 +3,7 @@
 import 'package:footer/footer.dart';
 import 'package:flutter/material.dart';
 
+/// This class is for the pages footer
 class HomePageFooter extends StatefulWidget {
   const HomePageFooter({Key? key}) : super(key: key);
 

@@ -3,12 +3,16 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
+///This Class holds each item of the GridView in Home Page
 class HomePageListItem extends StatefulWidget {
   final String title;
   final String price;
   final String description;
+  final String pictureLink;
 
-  const HomePageListItem(this.title, this.price, this.description, {Key? key})
+  const HomePageListItem(
+      this.title, this.price, this.description, this.pictureLink,
+      {Key? key})
       : super(key: key);
 
   @override
@@ -25,7 +29,7 @@ class _HomePageListItemState extends State<HomePageListItem> {
           boxFit: BoxFit.fill,
           titlePosition: GFPosition.start,
           image: Image.asset(
-            'assets/sample.png',
+            widget.pictureLink,
             height: 180,
             width: 150,
             fit: BoxFit.cover,
