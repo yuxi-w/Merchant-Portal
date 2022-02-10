@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:merchant_app/widgets/home_page_list_view/home_page_list_view.dart';
 
@@ -150,6 +152,25 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                                 color: Color.fromARGB(255, 70, 70, 70)),
                           ),
                         ),
+                      ),
+                      Text(
+                        ' ',
+                        style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 70, 70, 70)),
+                      ),
+                      MaterialButton(
+                        padding: const EdgeInsets.fromLTRB(60, 20, 60, 20),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0))),
+                        color: Colors.blue,
+                        child: const Text(
+                          "Change your personal information!",
+                          style: TextStyle(color: Colors.white, fontSize: 21),
+                        ),
+                        onPressed: () {},
                       ),
                     ]))
               ],
