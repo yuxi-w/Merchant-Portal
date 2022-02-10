@@ -3,6 +3,7 @@ import 'package:merchant_app/locator.dart';
 import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/routing/router.dart';
 import 'package:merchant_app/services/navigation_service.dart';
+import 'package:merchant_app/views/personalinfo/personal_info_view.dart';
 import 'package:merchant_app/widgets/navigation_drawer/navigation_drawer.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -22,7 +23,7 @@ class LayoutHolder extends StatelessWidget {
         body: Navigator(
           key: locator<NavigationService>().navigatorKey,
           onGenerateRoute: generateRoute,
-          initialRoute: HomeRoute,
+          initialRoute: PersonalInfoRoute,
         ),
 
         /// Chat Floating Button

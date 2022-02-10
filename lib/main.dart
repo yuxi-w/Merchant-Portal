@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         title: 'Merchant App',
         theme: ThemeData(primarySwatch: Colors.blue),
-        home: const PersonalInfoView());
-    //home: const LayoutHolder());
+        // home: const PersonalInfoView());
+        home: const LayoutHolder());
   }
 }
