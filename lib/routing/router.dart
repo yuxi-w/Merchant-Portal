@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/views/category/category_view.dart';
+import 'package:merchant_app/views/editpersonalinfo/edit_personal_info_view.dart';
 import 'package:merchant_app/views/home/home_view.dart';
 import 'package:merchant_app/views/login/login_view.dart';
 import 'package:merchant_app/views/personalinfo/personal_info_view.dart';
@@ -16,6 +17,8 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
       return _getPageRoute(const ShoppingCartView());
     case PersonalInfoRoute:
       return _getPageRoute(const PersonalInfoView());
+    case EditPersonalInfoRoute:
+      return _getPageRoute(const EditPersonalInfoView());
     case LoginRoute:
       return _getPageRoute(const LoginView());
   }

@@ -1,6 +1,7 @@
 import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:merchant_app/views/editpersonalinfo/edit_personal_info_view.dart';
 import 'package:merchant_app/widgets/home_page_list_view/home_page_list_view.dart';
 
 class PersonalInfoView extends StatefulWidget {
@@ -171,7 +172,13 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                           "Edit your personal information!",
                           style: TextStyle(color: Colors.white, fontSize: 21),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EditPersonalInfoView()),
+                          );
+                        },
                       ),
                     )
                   ]))
