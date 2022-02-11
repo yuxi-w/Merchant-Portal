@@ -16,11 +16,12 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
   Widget build(BuildContext context) {
     return ListView(
           shrinkWrap: true,
-          children: <Widget>[Container(
+          children: <Widget>[
+            // A list so multiple widgets can be added here
+            Container(
             color: Colors.black12,
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 /// Top Navigation Bar
                 Container(
@@ -79,8 +80,6 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
                     ),
                 ),
 
-                /// IconButton(onPressed: (){}, icon: const Icon(Icons.text_snippet_rounded)),
-                
                 /// Home Page Footer
                 const HomePageFooter()
               ],
