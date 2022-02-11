@@ -49,6 +49,8 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                         maxLines: 1,
                         decoration: InputDecoration(
                             // errorText: errorPass,
+                            fillColor: Colors.white,
+                            filled: true,
                             hintText: "First Name - Last Name",
                             contentPadding:
                                 const EdgeInsets.fromLTRB(16, 8, 16, 8),
@@ -72,6 +74,8 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                         maxLines: 1,
                         decoration: InputDecoration(
                             // errorText: errorPass,
+                            fillColor: Colors.white,
+                            filled: true,
                             hintText: "+1 123 1231231",
                             contentPadding:
                                 const EdgeInsets.fromLTRB(16, 8, 16, 8),
@@ -95,6 +99,8 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                         maxLines: 1,
                         decoration: InputDecoration(
                             // errorText: errorPass,
+                            fillColor: Colors.white,
+                            filled: true,
                             hintText: "Merchant-user1@gmail.com",
                             contentPadding:
                                 const EdgeInsets.fromLTRB(16, 8, 16, 8),
@@ -118,6 +124,8 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                         maxLines: 1,
                         decoration: InputDecoration(
                             // errorText: errorPass,
+                            fillColor: Colors.white,
+                            filled: true,
                             hintText: "129 Ashburn, Ottawa, ON, CA",
                             contentPadding:
                                 const EdgeInsets.fromLTRB(16, 8, 16, 8),
@@ -134,6 +142,8 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                         maxLines: 1,
                         decoration: InputDecoration(
                             // errorText: errorPass,
+                            fillColor: Colors.white,
+                            filled: true,
                             hintText: "K2N 0A8",
                             contentPadding:
                                 const EdgeInsets.fromLTRB(16, 8, 16, 8),
@@ -143,7 +153,7 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                       ),
                     ),
                     Text(
-                      'Change Password:',
+                      'Change password:',
                       style: TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
@@ -158,6 +168,8 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                         maxLines: 1,
                         decoration: InputDecoration(
                             // errorText: errorPass,
+                            fillColor: Colors.white,
+                            filled: true,
                             hintText: "Enter new password",
                             contentPadding:
                                 const EdgeInsets.fromLTRB(16, 8, 16, 8),
@@ -174,6 +186,8 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            filled: true,
                             // errorText: errorPass,
                             hintText: "Reenter new password",
                             contentPadding:
