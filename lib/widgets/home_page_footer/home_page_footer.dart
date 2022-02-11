@@ -1,7 +1,8 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
-
 import 'package:footer/footer.dart';
 import 'package:flutter/material.dart';
+import 'package:merchant_app/locator.dart';
+import 'package:merchant_app/routing/route_names.dart';
+import 'package:merchant_app/services/navigation_service.dart';
 
 /// This class is for the pages footer
 class HomePageFooter extends StatefulWidget {
@@ -38,13 +39,17 @@ class _HomePageFooterState extends State<HomePageFooter> {
                                 borderRadius: BorderRadius.circular(
                                     25.0), // half of height and width of Image
                               ),
+
+                              /// Footer Home Button
                               child: IconButton(
                                 icon: const Icon(
                                   Icons.home,
                                   size: 20.0,
                                 ),
                                 color: const Color(0xFF162A49),
-                                onPressed: () {},
+                                onPressed: () {
+                                  goToHomePage();
+                                },
                               ),
                             ),
                           )),
@@ -58,13 +63,17 @@ class _HomePageFooterState extends State<HomePageFooter> {
                                 borderRadius: BorderRadius.circular(
                                     25.0), // half of height and width of Image
                               ),
+
+                              /// Personal Info Button
                               child: IconButton(
                                 icon: const Icon(
                                   Icons.fingerprint,
                                   size: 20.0,
                                 ),
                                 color: const Color(0xFF162A49),
-                                onPressed: () {},
+                                onPressed: () {
+                                  goToPersonalInfoPage();
+                                },
                               ),
                             ),
                           )),
@@ -78,6 +87,9 @@ class _HomePageFooterState extends State<HomePageFooter> {
                                 borderRadius: BorderRadius.circular(
                                     25.0), // half of height and width of Image
                               ),
+
+                              /// About Page Button
+                              // TODO: Implement About page
                               child: IconButton(
                                 icon: const Icon(
                                   Icons.call,
@@ -109,5 +121,13 @@ class _HomePageFooterState extends State<HomePageFooter> {
         ),
       ),
     );
+  }
+
+  void goToHomePage() {
+    locator<NavigationService>().navigateTo(HomeRoute);
+  }
+
+  void goToPersonalInfoPage() {
+    locator<NavigationService>().navigateTo(PersonalInfoRoute);
   }
 }

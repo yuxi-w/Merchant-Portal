@@ -67,6 +67,8 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                               ),
                             ),
                             const SizedBox(height: 24),
+
+                            /// Full Name Text Field
                             const TextField(
                               decoration: InputDecoration(
                                 label: Text("Full Name"),
@@ -92,12 +94,16 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                                 hintText: "ex 123 Nelson, Ottawa, ON, CA",
                               ),
                             ),
+
+                            /// Zip Code Text Field
                             const TextField(
                               decoration: InputDecoration(
-                                label: Text("Pin Code"),
+                                label: Text("Zip Code"),
                                 hintText: "ex. K1N 7N8",
                               ),
                             ),
+
+                            /// Password Text Field
                             const TextField(
                               obscureText: true,
                               decoration: InputDecoration(
@@ -105,6 +111,8 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                                 hintText: "Please write your password",
                               ),
                             ),
+
+                            /// Re enter Password Text Field
                             const TextField(
                               obscureText: true,
                               decoration: InputDecoration(
