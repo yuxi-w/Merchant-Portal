@@ -61,21 +61,17 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
                 margin: const EdgeInsets.fromLTRB(10, 0, 120, 40),
                 child: MaterialButton(
                   minWidth: 200,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(8.0),
-                          topRight: Radius.circular(8.0),
-                          bottomLeft: Radius.circular(8.0),
-                          bottomRight: Radius.circular(8.0))),
                   onPressed: () {},
-                  color: Colors.orange,
                   child: const Text(
                     "Checkout!",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                   ),
+                  height: 52,
+                  elevation: 24,
+                  color: Colors.amber.shade700,
+                  textColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(32)),
                 ),
               ),
 
