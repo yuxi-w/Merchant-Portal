@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:merchant_app/widgets/category_page_list_view/category_page_list_view.dart';
+import 'package:merchant_app/views/category/category_content_desktop.dart';
+import 'package:merchant_app/views/category/category_content_mobile.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 /// This is our Category Page
 class CategoryView extends StatefulWidget {
@@ -23,7 +25,10 @@ class _CategoryViewState extends State<CategoryView> {
         ),
 
         /// Main Content and products on category page
-        const CategoryPageListView(),
+        ScreenTypeLayout(
+          mobile: const CategoryContentMobile(),
+          desktop: const CategoryContentDesktop(),
+        ),
 
         /// Page Footer
         const HomePageFooter()
