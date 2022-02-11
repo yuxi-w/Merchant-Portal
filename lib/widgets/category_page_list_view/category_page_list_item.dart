@@ -1,8 +1,7 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
+/// This Class holds each item of the CategoryView page
 class CategoryPageListItem extends StatefulWidget {
   final String item;
   final String price;
@@ -27,6 +26,8 @@ class _CategoryPageListItemState extends State<CategoryPageListItem> {
           elevation: 4,
           boxFit: BoxFit.fill,
           titlePosition: GFPosition.start,
+
+          /// Image
           image: Image.asset(
             widget.pictureLink,
             height: 150,
@@ -34,12 +35,18 @@ class _CategoryPageListItemState extends State<CategoryPageListItem> {
             fit: BoxFit.cover,
           ),
           showImage: true,
+
+          /// Title
           title: GFListTile(
             titleText: widget.item,
             subTitleText: widget.price,
           ),
+
+          /// Description
           content: Text(widget.description),
-          buttonBar: GFButtonBar(
+
+          /// Buttons
+          buttonBar: const GFButtonBar(
             children: <Widget>[],
           ),
         ),

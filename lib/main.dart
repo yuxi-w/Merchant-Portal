@@ -10,7 +10,7 @@ void main() {
 
   /// Responsive Layout Breakpoints for different screen sizes
   ResponsiveSizingConfig.instance.setCustomBreakpoints(
-    const ScreenBreakpoints(desktop: 900, tablet: 900, watch: 200),
+    const ScreenBreakpoints(desktop: 1000, tablet: 1000, watch: 200),
   );
   runApp(const MyApp());
 }
