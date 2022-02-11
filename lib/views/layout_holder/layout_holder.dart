@@ -28,7 +28,7 @@ class LayoutHolder extends StatelessWidget {
         body: Navigator(
           key: locator<NavigationService>().navigatorKey,
           onGenerateRoute: generateRoute,
-          initialRoute: EditPersonalInfoRoute,
+          initialRoute: HomeRoute,
         ),
 
         /// Chat Floating Button

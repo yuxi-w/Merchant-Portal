@@ -8,7 +8,8 @@ class NavBarItem extends StatelessWidget {
   final String title;
   final String navigationPath;
 
-  const NavBarItem(this.title, this.navigationPath);
+  const NavBarItem(this.title, this.navigationPath, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
