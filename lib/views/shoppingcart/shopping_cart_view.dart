@@ -3,6 +3,7 @@ import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/shopping_cart_list_view/shopping_cart_list_view.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
 
+/// Shopping Cart Page
 class ShoppingCartView extends StatefulWidget {
   const ShoppingCartView({Key? key}) : super(key: key);
 
@@ -16,7 +17,7 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
     return ListView(
       shrinkWrap: true,
       children: <Widget>[
-        // A list so multiple widgets can be added here
+        /// A list so multiple widgets can be added here
         Container(
           color: Colors.black12,
           child: Column(
