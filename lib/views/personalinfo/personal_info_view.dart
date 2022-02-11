@@ -216,20 +216,20 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                         Container(
                           padding: const EdgeInsets.fromLTRB(25, 2, 25, 2),
                           child: MaterialButton(
-                            minWidth: double.maxFinite,
-                            padding: const EdgeInsets.fromLTRB(65, 20, 65, 20),
-                            shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8.0))),
-                            color: Colors.blue,
-                            child: const Text(
-                              "Edit your personal information!",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 21),
-                            ),
                             onPressed: () {
                               goToEditPersonalInfoPage();
                             },
+                            child: const Text(
+                              "Edit Information",
+                              style: TextStyle(fontSize: 18),
+                            ),
+                            minWidth: double.infinity,
+                            height: 52,
+                            elevation: 24,
+                            color: Colors.blue,
+                            textColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(32)),
                           ),
                         )
                       ]))

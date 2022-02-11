@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:merchant_app/locator.dart';
+import 'package:merchant_app/routing/route_names.dart';
+import 'package:merchant_app/services/navigation_service.dart';
 
 class LoginLeftView extends StatefulWidget {
   const LoginLeftView({Key? key}) : super(key: key);
@@ -69,13 +72,22 @@ class _LoginLeftViewState extends State<LoginLeftView> {
                   borderRadius: BorderRadius.circular(32)),
             ),
             const SizedBox(height: 32),
-            const Text(
-              "Don't have an account yet? Click here to Signup!",
-              style: TextStyle(fontSize: 12),
+            TextButton(
+              onPressed: () {
+                goToSignUpPage();
+              },
+              child: const Text(
+                "Don't have an account yet? Click here to Signup!",
+                style: TextStyle(fontSize: 12),
+              ),
             )
           ],
         ),
       ),
     ));
+  }
+
+  void goToSignUpPage() {
+    locator<NavigationService>().navigateTo(SignUpRoute);
   }
 }

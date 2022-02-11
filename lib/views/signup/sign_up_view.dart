@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:merchant_app/locator.dart';
+import 'package:merchant_app/routing/route_names.dart';
+import 'package:merchant_app/services/navigation_service.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
 
@@ -113,7 +116,7 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                             const SizedBox(height: 24),
                             MaterialButton(
                               onPressed: () {},
-                              child: Text("Signup"),
+                              child: const Text("Signup"),
                               minWidth: double.infinity,
                               height: 52,
                               elevation: 24,
@@ -123,9 +126,14 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                                   borderRadius: BorderRadius.circular(32)),
                             ),
                             const SizedBox(height: 32),
-                            const Text(
-                              "Already have an account? Click here to Login!",
-                              style: TextStyle(fontSize: 15),
+                            TextButton(
+                              onPressed: () {
+                                goToSignInPage();
+                              },
+                              child: const Text(
+                                "Already have an account? Click here to Login!",
+                                style: TextStyle(fontSize: 15),
+                              ),
                             )
                           ],
                         ),
@@ -140,5 +148,9 @@ class _SignUpPageViewState extends State<SignUpPageView> {
         const HomePageFooter()
       ],
     );
+  }
+
+  void goToSignInPage() {
+    locator<NavigationService>().navigateTo(LoginRoute);
   }
 }

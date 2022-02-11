@@ -5,3 +5,4 @@ const String ShoppingCartRoute = 'shoppingCart';
 const String PersonalInfoRoute = 'personalInfo';
 const String EditPersonalInfoRoute = 'editPersonalInfo';
 const String LoginRoute = 'login';
+const String SignUpRoute = 'signUp';
