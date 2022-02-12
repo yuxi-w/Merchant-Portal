@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:merchant_app/locator.dart';
 import 'package:merchant_app/views/layout_holder/layout_holder.dart';
+import 'package:merchant_app/views/productdetail/product_detail_view.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 void main() {
@@ -28,6 +29,6 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         title: 'Merchant App',
         theme: ThemeData(primarySwatch: Colors.blue),
-        home: const LayoutHolder());
+        home: const ProductDetailView());
   }
 }
