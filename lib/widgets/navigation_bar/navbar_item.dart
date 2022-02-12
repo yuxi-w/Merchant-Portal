@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:merchant_app/locator.dart';
-import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/services/navigation_service.dart';
 
 /// Top Navigation Bar Items
@@ -20,6 +19,7 @@ class NavBarItem extends StatelessWidget {
       child: Text(
         title,
         style: const TextStyle(
+          color: Color(0xFF162A49),
           fontSize: 20,
         ),
       ),

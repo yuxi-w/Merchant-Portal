@@ -71,9 +71,11 @@ flutter:
     - assets/sample.png
     - assets/book.jpeg
     - assets/clothes.jpeg
-    - assets/electronic.jpeg
+    - assets/electronics.png
     - assets/furniture.jpeg
     - assets/shopping_bags.jpg
+    - assets/cart.png
+    - assets/shopping.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

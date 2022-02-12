@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:merchant_app/locator.dart';
+import 'package:merchant_app/routing/route_names.dart';
+import 'package:merchant_app/services/navigation_service.dart';
 
 /// This Class holds each item of the CategoryView page
 class CategoryPageListItem extends StatefulWidget {
@@ -22,36 +25,43 @@ class _CategoryPageListItemState extends State<CategoryPageListItem> {
   Widget build(BuildContext context) {
     return Wrap(
       children: [
-        GFCard(
-          elevation: 4,
-          boxFit: BoxFit.fill,
-          titlePosition: GFPosition.start,
+        GestureDetector(
+          onTap: () => goToProductDetailPage(),
+          child: GFCard(
+            elevation: 4,
+            boxFit: BoxFit.fill,
+            titlePosition: GFPosition.start,
 
-          /// Image
-          image: Image.asset(
-            widget.pictureLink,
-            height: 150,
-            width: 150,
-            fit: BoxFit.cover,
-          ),
-          showImage: true,
+            /// Image
+            image: Image.asset(
+              widget.pictureLink,
+              height: 150,
+              width: 150,
+              fit: BoxFit.cover,
+            ),
+            showImage: true,
 
-          /// Title
-          title: GFListTile(
-            titleText: widget.item,
-            subTitleText: widget.price,
-          ),
+            /// Title
+            title: GFListTile(
+              titleText: widget.item,
+              subTitleText: widget.price,
+            ),
 
-          /// Description
-          content: Text(widget.description),
+            /// Description
+            content: Text(widget.description),
 
-          /// Buttons
-          buttonBar: const GFButtonBar(
-            children: <Widget>[],
+            /// Buttons
+            buttonBar: const GFButtonBar(
+              children: <Widget>[],
+            ),
           ),
         ),
       ],
     );
+  }
+
+  void goToProductDetailPage() {
+    locator<NavigationService>().navigateTo(ProductDetailRoute);
   }
 }
 

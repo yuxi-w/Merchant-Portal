@@ -5,6 +5,7 @@ import 'package:merchant_app/views/editpersonalinfo/edit_personal_info_view.dart
 import 'package:merchant_app/views/home/home_view.dart';
 import 'package:merchant_app/views/login/login_view.dart';
 import 'package:merchant_app/views/personalinfo/personal_info_view.dart';
+import 'package:merchant_app/views/productdetail/product_detail_view.dart';
 import 'package:merchant_app/views/shoppingcart/shopping_cart_view.dart';
 import 'package:merchant_app/views/signup/sign_up_view.dart';
 
@@ -32,6 +33,9 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
 
     case SignUpRoute:
       return _getPageRoute(const SignUpPageView());
+
+    case ProductDetailRoute:
+      return _getPageRoute(const ProductDetailView());
   }
 }
 

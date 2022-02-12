@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:merchant_app/locator.dart';
+import 'package:merchant_app/routing/route_names.dart';
+import 'package:merchant_app/services/navigation_service.dart';
 
 /// This Class holds each item of the GridView in Home Page
 class HomePageListItem extends StatefulWidget {
@@ -33,7 +36,7 @@ class _HomePageListItemState extends State<HomePageListItem> {
           image: Image.asset(
             widget.pictureLink,
             height: 180,
-            width: 150,
+            width: 200,
             fit: BoxFit.cover,
           ),
           showImage: true,
@@ -49,10 +52,20 @@ class _HomePageListItemState extends State<HomePageListItem> {
 
           /// Buttons
           buttonBar: GFButtonBar(
-            children: <Widget>[],
+            children: <Widget>[
+              TextButton(
+                  onPressed: () {
+                    goToProductDetailPage();
+                  },
+                  child: Text("More Info"))
+            ],
           ),
         ),
       ],
     );
+  }
+
+  void goToProductDetailPage() {
+    locator<NavigationService>().navigateTo(ProductDetailRoute);
   }
 }
