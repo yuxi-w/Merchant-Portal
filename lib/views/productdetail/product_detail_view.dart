@@ -39,25 +39,25 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                         CircleAvatar(
                           radius: 50.0,
                           backgroundImage:
-                              AssetImage('./assets/electronic.jpeg'),
+                              AssetImage('./assets/electronics.png'),
                         ),
 
                         /// top Picture1 section!
                         CircleAvatar(
                           radius: 50.0,
                           backgroundImage:
-                              AssetImage('./assets/electronic.jpeg'),
+                              AssetImage('./assets/electronics.png'),
                         ),
 
                         /// top Picture1 section!
                         CircleAvatar(
                           radius: 50.0,
                           backgroundImage:
-                              AssetImage('./assets/electronic.jpeg'),
+                              AssetImage('./assets/electronics.png'),
                         ),
                       ]),
 
-                  /// Devider!
+                  /// Divider!
                   const SizedBox(
                     width: 1350.0,
                     height: 20.0,
@@ -68,7 +68,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
 
                   ///  Product Name section!
                   Text(
-                    'Book 1',
+                    'Product 1',
                     style: TextStyle(
                         fontSize: 40.0,
                         fontWeight: FontWeight.bold,
@@ -77,7 +77,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
 
                   /// Product Category section!
                   Text(
-                    'book Category',
+                    'Product Category',
                     style: TextStyle(
                         fontSize: 20.0,
                         color: infoPageTextColor,
