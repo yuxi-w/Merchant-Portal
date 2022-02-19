@@ -201,7 +201,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                           ),
                         ),
 
-                        /// Button to add item to the shoping list!
+                        /// Button to add item to the shopping list!
                         Container(
                           padding: const EdgeInsets.fromLTRB(25, 2, 25, 2),
                           child: MaterialButton(
@@ -217,6 +217,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                             textColor: Colors.white,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(32)),
+                            key: const Key("AddToBagButton"),
                           ),
                         )
                       ]))

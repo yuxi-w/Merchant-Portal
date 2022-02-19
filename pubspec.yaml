@@ -37,7 +37,7 @@ dependencies:
   responsive_builder: ^0.4.1
   getwidget: ^2.0.4
   footer: ^0.0.4
-  get_it:
+  get_it: ^5.0.3
 
 
 dev_dependencies:

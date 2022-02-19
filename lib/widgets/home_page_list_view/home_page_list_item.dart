@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:merchant_app/locator.dart';
@@ -38,6 +39,7 @@ class _HomePageListItemState extends State<HomePageListItem> {
             height: 180,
             width: 200,
             fit: BoxFit.cover,
+            key: Key("image"),
           ),
           showImage: true,
 
@@ -45,10 +47,14 @@ class _HomePageListItemState extends State<HomePageListItem> {
           title: GFListTile(
             titleText: widget.title,
             subTitleText: widget.price,
+            key: Key("title"),
           ),
 
           /// Description
-          content: Text(widget.description),
+          content: Text(
+            widget.description,
+            key: Key("description"),
+          ),
 
           /// Buttons
           buttonBar: GFButtonBar(
@@ -57,7 +63,10 @@ class _HomePageListItemState extends State<HomePageListItem> {
                   onPressed: () {
                     goToProductDetailPage();
                   },
-                  child: Text("More Info"))
+                  child: Text(
+                    "More Info",
+                    key: Key("HomeMoreInfoButton"),
+                  ))
             ],
           ),
         ),
