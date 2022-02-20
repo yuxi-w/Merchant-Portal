@@ -26,6 +26,7 @@ class _CategoryPageListItemState extends State<CategoryPageListItem> {
     return Wrap(
       children: [
         GestureDetector(
+          key: const Key("categoryMainCard"),
           onTap: () => goToProductDetailPage(),
           child: GFCard(
             elevation: 4,
@@ -45,10 +46,14 @@ class _CategoryPageListItemState extends State<CategoryPageListItem> {
             title: GFListTile(
               titleText: widget.item,
               subTitleText: widget.price,
+              key: const Key("categoryItemTitle"),
             ),
 
             /// Description
-            content: Text(widget.description),
+            content: Text(
+              widget.description,
+              key: const Key("categoryItemDescription"),
+            ),
 
             /// Buttons
             buttonBar: const GFButtonBar(
