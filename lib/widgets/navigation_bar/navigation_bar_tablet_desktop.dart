@@ -9,10 +9,13 @@ class NavigationBarTabletDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      constraints: const BoxConstraints(
+          minWidth: 100, maxWidth: 300, minHeight: 100, maxHeight: 300),
       height: 100,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: ListView(
+        padding: const EdgeInsets.all(8),
+        scrollDirection: Axis.horizontal,
         children: [
           const NavBarLogo(),
           Row(
