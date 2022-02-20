@@ -50,6 +50,7 @@ class _HomePageFooterState extends State<HomePageFooter> {
                                 onPressed: () {
                                   goToHomePage();
                                 },
+                                key: const Key("footerHomeButton"),
                               ),
                             ),
                           )),
@@ -74,6 +75,7 @@ class _HomePageFooterState extends State<HomePageFooter> {
                                 onPressed: () {
                                   goToPersonalInfoPage();
                                 },
+                                key: const Key("footerPersonalInfoButton"),
                               ),
                             ),
                           )),
@@ -97,6 +99,7 @@ class _HomePageFooterState extends State<HomePageFooter> {
                                 ),
                                 color: const Color(0xFF162A49),
                                 onPressed: () {},
+                                key: const Key("footerAboutButton"),
                               ),
                             ),
                           )),
@@ -109,6 +112,7 @@ class _HomePageFooterState extends State<HomePageFooter> {
                       fontWeight: FontWeight.w300,
                       fontSize: 12.0,
                       color: Color(0xFF162A49)),
+                  key: Key("footerCopyrightText"),
                 ),
                 const Text(
                   'Powered by Group 6',
@@ -116,6 +120,7 @@ class _HomePageFooterState extends State<HomePageFooter> {
                       fontWeight: FontWeight.w300,
                       fontSize: 12.0,
                       color: Color(0xFF162A49)),
+                  key: Key("footerGroup6Text"),
                 ),
               ]),
         ),
