@@ -5,7 +5,7 @@ import 'package:merchant_app/locator.dart';
 import 'package:merchant_app/widgets/home_page_list_view/home_page_list_item.dart';
 
 void main() {
-  testWidgets('Home page items', (WidgetTester tester) async {
+  testWidgets('Home page items test', (WidgetTester tester) async {
     setupLocator();
 
     await tester.pumpWidget(const MaterialApp(

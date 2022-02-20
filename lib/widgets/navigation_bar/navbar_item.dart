@@ -23,6 +23,7 @@ class NavBarItem extends StatelessWidget {
           fontSize: 20,
         ),
       ),
+      key: const Key("navBarItem"),
     );
   }
 }
