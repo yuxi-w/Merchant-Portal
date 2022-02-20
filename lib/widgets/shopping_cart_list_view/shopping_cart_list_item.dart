@@ -27,6 +27,8 @@ class _ShopCartListItemState extends State<ShopCartListItem> {
           elevation: 2,
           boxFit: BoxFit.fill,
           titlePosition: GFPosition.start,
+
+          ///Product image
           image: Image.asset(
             widget.imageSrc,
             height: 180,
@@ -34,21 +36,45 @@ class _ShopCartListItemState extends State<ShopCartListItem> {
             fit: BoxFit.cover,
           ),
           showImage: true,
+
+          ///Title and price
           title: GFListTile(
             titleText: widget.title,
             subTitleText: widget.price,
+            key: const Key("shoppingItemTitle"),
           ),
           content: Column(
             children: <Widget>[
-              Text(widget.description),
-              Text("\nAmount: " + widget.amount.toString()),
+              Text(
+                widget.description,
+                key: const Key("shoppingItemDescription"),
+              ),
+              Text(
+                "\nAmount: " + widget.amount.toString(),
+                key: const Key("shoppingItemAmount"),
+              ),
             ],
           ),
+
+          ///Function buttons
           buttonBar: GFButtonBar(
             children: <Widget>[
-              IconButton(onPressed: () {}, icon: const Icon(Icons.add_sharp)),
               IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.cancel_sharp)),
+                onPressed: () {},
+                icon: const Icon(Icons.add_circle_outline),
+                key: const Key("shoppingItemAddButton"),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.remove_circle_outline),
+                key: const Key("shoppingItemRemoveButton"),
+              ),
+              IconButton(
+                color: Colors.red,
+                onPressed: () {},
+                icon: const Icon(Icons.cancel_sharp),
+                key: const Key("shoppingItemCancelButton"),
+              ),
             ],
           ),
         ),

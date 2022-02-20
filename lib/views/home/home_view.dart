@@ -24,6 +24,21 @@ class _HomeViewState extends State<HomeView> {
           child: const MyNavigationBar(),
         ),
 
+        /// The Text Showing "Home"
+        Container(
+          alignment: Alignment.centerLeft,
+          margin: const EdgeInsets.fromLTRB(70, 20, 10, 10),
+          child: const Text(
+            "Home",
+            textAlign: TextAlign.right,
+            key: Key("homeMainTitle"),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 17.0,
+            ),
+          ),
+        ),
+
         /// Main Content is a List which shows the products in Home Page
         ScreenTypeLayout(
           mobile: const HomeContentMobile(),

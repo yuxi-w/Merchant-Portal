@@ -24,6 +24,21 @@ class _CategoryViewState extends State<CategoryView> {
           child: const MyNavigationBar(),
         ),
 
+        /// The Text Showing "Category page"
+        Container(
+          alignment: Alignment.centerLeft,
+          margin: const EdgeInsets.fromLTRB(70, 20, 10, 10),
+          child: const Text(
+            "Category",
+            textAlign: TextAlign.right,
+            key: Key("categoryMainTitle"),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 17.0,
+            ),
+          ),
+        ),
+
         /// Main Content and products on category page
         ScreenTypeLayout(
           mobile: const CategoryContentMobile(),

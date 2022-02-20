@@ -15,6 +15,7 @@ class _ShopCartListViewState extends State<ShopCartListView> {
     return Container(
       margin: const EdgeInsets.all(16),
       child: ListView(
+        padding: const EdgeInsets.fromLTRB(100, 0, 100, 0),
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         children: const [

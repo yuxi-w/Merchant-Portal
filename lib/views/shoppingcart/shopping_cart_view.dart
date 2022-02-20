@@ -28,7 +28,7 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
           alignment: Alignment.centerLeft,
           margin: const EdgeInsets.fromLTRB(70, 20, 10, 10),
           child: const Text(
-            "My Shopping Cart",
+            "Shopping Cart",
             textAlign: TextAlign.right,
             key: Key("shoppingMainTitle"),
             style: TextStyle(

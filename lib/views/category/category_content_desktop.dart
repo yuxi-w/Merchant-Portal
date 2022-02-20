@@ -28,7 +28,7 @@ class _CategoryContentDesktopState extends State<CategoryContentDesktop> {
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5, mainAxisSpacing: 40, crossAxisSpacing: 20),
+                  crossAxisCount: 4, mainAxisSpacing: 10, crossAxisSpacing: 10),
               children: const [
                 CategoryPageListItem("book 1", "\$10", "Description of book 1",
                     "assets/book.jpeg"),
@@ -37,9 +37,7 @@ class _CategoryContentDesktopState extends State<CategoryContentDesktop> {
                 CategoryPageListItem("book 3", "\$30", "Description of book 3",
                     "assets/book.jpeg"),
                 CategoryPageListItem("book 4", "\$40", "Description of book 4",
-                    "assets/book.jpeg"),
-                CategoryPageListItem("book 5", "\$50", "Description of book 5",
-                    "assets/book.jpeg"),
+                    "assets/book.jpeg")
               ],
             ),
             const Padding(
@@ -51,7 +49,7 @@ class _CategoryContentDesktopState extends State<CategoryContentDesktop> {
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5, mainAxisSpacing: 40, crossAxisSpacing: 20),
+                  crossAxisCount: 4, mainAxisSpacing: 10, crossAxisSpacing: 10),
               children: const [
                 CategoryPageListItem("clothing 1", "\$10",
                     "Description of clothing 1", "assets/clothes.jpeg"),
@@ -60,9 +58,7 @@ class _CategoryContentDesktopState extends State<CategoryContentDesktop> {
                 CategoryPageListItem("clothing 3", "\$30",
                     "Description of clothing 3", "assets/clothes.jpeg"),
                 CategoryPageListItem("clothing 4", "\$40",
-                    "Description of clothing 4", "assets/clothes.jpeg"),
-                CategoryPageListItem("clothing 5", "\$50",
-                    "Description of clothing 5", "assets/clothes.jpeg"),
+                    "Description of clothing 4", "assets/clothes.jpeg")
               ],
             ),
             const Padding(
@@ -74,7 +70,7 @@ class _CategoryContentDesktopState extends State<CategoryContentDesktop> {
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5, mainAxisSpacing: 40, crossAxisSpacing: 20),
+                  crossAxisCount: 4, mainAxisSpacing: 10, crossAxisSpacing: 10),
               children: const [
                 CategoryPageListItem("furniture 1", "\$10",
                     "Description of furniture 1", "assets/furniture.jpeg"),
@@ -84,8 +80,6 @@ class _CategoryContentDesktopState extends State<CategoryContentDesktop> {
                     "Description of furniture 3", "assets/furniture.jpeg"),
                 CategoryPageListItem("furniture 4", "\$40",
                     "Description of furniture 4", "assets/furniture.jpeg"),
-                CategoryPageListItem("furniture 5", "\$50",
-                    "Description of furniture 5", "assets/furniture.jpeg"),
               ],
             ),
             const Padding(
@@ -97,7 +91,7 @@ class _CategoryContentDesktopState extends State<CategoryContentDesktop> {
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5, mainAxisSpacing: 40, crossAxisSpacing: 20),
+                  crossAxisCount: 4, mainAxisSpacing: 10, crossAxisSpacing: 10),
               children: const [
                 CategoryPageListItem("electronic 1", "\$10",
                     "Description of electronic 1", "assets/electronics.png"),
@@ -107,8 +101,6 @@ class _CategoryContentDesktopState extends State<CategoryContentDesktop> {
                     "Description of electronic 3", "assets/electronics.png"),
                 CategoryPageListItem("electronic 4", "\$40",
                     "Description of electronic 4", "assets/electronics.png"),
-                CategoryPageListItem("electronic 5", "\$50",
-                    "Description of electronic 5", "assets/electronics.png"),
               ],
             ),
           ],
