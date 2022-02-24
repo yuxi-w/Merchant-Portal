@@ -73,6 +73,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                         fontSize: 40.0,
                         fontWeight: FontWeight.bold,
                         color: infoPageTextColor),
+                    key: const Key("productDetailTitle"),
                   ),
 
                   /// Product Category section!
@@ -83,6 +84,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                         color: infoPageTextColor,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 2.5),
+                    key: const Key("productDetailCategory"),
                   ),
 
                   /// Smaller wrapper to keep everything in center and look nice and professional
@@ -111,6 +113,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                                       fontWeight: FontWeight.w400,
                                       fontSize: 20,
                                       height: 1.5),
+                                  key: Key("productDetailDescription"),
                                 )
                               ],
                             )),
@@ -133,10 +136,13 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                                   /// Product price section
                                   const Padding(
                                     padding: EdgeInsets.all(8.0),
-                                    child: Text(r"$95",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 18)),
+                                    child: Text(
+                                      r"$95",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 18),
+                                      key: Key("productDetailPrice"),
+                                    ),
                                   )
                                 ],
                               )),
@@ -162,7 +168,8 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                                     child: Text("Black",
                                         style: TextStyle(
                                             fontWeight: FontWeight.w400,
-                                            fontSize: 18)),
+                                            fontSize: 18),
+                                        key: Key("productDetailColor")),
                                   )
                                 ],
                               )),
@@ -170,35 +177,48 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Container(
-                              padding: const EdgeInsets.fromLTRB(20, 5, 0, 5),
-                              child: Row(children: [
-                                /// Product Quantity section
-                                Text(
-                                  'Quantity:',
-                                  style: TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.bold,
-                                      color: infoPageTextColor),
-                                ),
-                              ])),
-                        ),
-                        Container(
-                          constraints: const BoxConstraints(
-                              minWidth: 400, maxWidth: 700),
-                          margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-                          child: const TextField(
-                            textAlign: TextAlign.left,
-                            maxLines: 1,
-                            decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                hintText: "1",
-                                contentPadding:
-                                    EdgeInsets.fromLTRB(16, 8, 16, 8),
-                                border: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8)))),
-                          ),
+                              padding: const EdgeInsets.fromLTRB(20, 0, 0, 20),
+                              constraints: const BoxConstraints(
+                                  minWidth: 400, maxWidth: 700),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Quantity:',
+                                    style: TextStyle(
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: infoPageTextColor),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  const Text(
+                                    "1",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 18),
+                                    key: Key("productDetailQuantityText"),
+                                  ),
+                                  const SizedBox(width: 25),
+                                  Card(
+                                    child: IconButton(
+                                      iconSize: 25,
+                                      onPressed: () {},
+                                      icon:
+                                          const Icon(Icons.add_circle_outline),
+                                      key: const Key("productDetailAddButton"),
+                                    ),
+                                  ),
+                                  Card(
+                                    child: IconButton(
+                                      iconSize: 25,
+                                      onPressed: () {},
+                                      icon: const Icon(
+                                          Icons.remove_circle_outline),
+                                      key: const Key(
+                                          "productDetailRemoveButton"),
+                                    ),
+                                  ),
+                                ],
+                              )),
                         ),
 
                         /// Button to add item to the shopping list!
@@ -217,7 +237,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                             textColor: Colors.white,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(32)),
-                            key: const Key("AddToBagButton"),
+                            key: const Key("productDetailAddToBagButton"),
                           ),
                         )
                       ]))
