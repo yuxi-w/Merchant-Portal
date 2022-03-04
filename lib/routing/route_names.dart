@@ -7,3 +7,4 @@ const String EditPersonalInfoRoute = 'editPersonalInfo';
 const String LoginRoute = 'login';
 const String SignUpRoute = 'signUp';
 const String ProductDetailRoute = 'productDetailRoute';
+const String AboutRoute = 'aboutRoute';

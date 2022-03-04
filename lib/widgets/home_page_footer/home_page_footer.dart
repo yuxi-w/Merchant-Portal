@@ -91,14 +91,15 @@ class _HomePageFooterState extends State<HomePageFooter> {
                               ),
 
                               /// About Page Button
-                              // TODO: Implement About page
                               child: IconButton(
                                 icon: const Icon(
                                   Icons.call,
                                   size: 20.0,
                                 ),
                                 color: const Color(0xFF162A49),
-                                onPressed: () {},
+                                onPressed: () {
+                                  goToAboutPage();
+                                },
                                 key: const Key("footerAboutButton"),
                               ),
                             ),
@@ -134,5 +135,9 @@ class _HomePageFooterState extends State<HomePageFooter> {
 
   void goToPersonalInfoPage() {
     locator<NavigationService>().navigateTo(PersonalInfoRoute);
+  }
+
+  void goToAboutPage() {
+    locator<NavigationService>().navigateTo(AboutRoute);
   }
 }
