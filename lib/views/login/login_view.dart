@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:merchant_app/views/login/login_left_view.dart';
-import 'package:merchant_app/views/login/login_right_view.dart';
+import 'package:merchant_app/views/login/login_content.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
 
@@ -20,34 +19,41 @@ class _LoginViewState extends State<LoginView> {
           margin: const EdgeInsets.fromLTRB(16, 16, 64, 16),
           child: const MyNavigationBar(),
         ),
-        Container(
-          margin: const EdgeInsets.all(16),
-          child: Flexible(
-            child: Center(
-              child: SingleChildScrollView(
-                child: Container(
-                  height: 640,
-                  width: 1080,
-                  margin: const EdgeInsets.symmetric(horizontal: 24),
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24),
-                    color: Colors.white,
-                  ),
-                  child: Row(
-                    children: [
-                      const LoginLeftView(),
-                      if (MediaQuery.of(context).size.width > 900)
-                        const LoginRightView(),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
+        const LoginContent(),
         const HomePageFooter()
       ],
     );
   }
+
+  //Widget may be used in future
+  // Widget buildDiscussion(String title, String asd) => Padding(
+  //       padding: const EdgeInsets.all(10),
+  //       child: Card(
+  //         clipBehavior: Clip.antiAlias,
+  //         child: ExpandablePanel(
+  //           header: Text(
+  //             title,
+  //             style: const TextStyle(
+  //               fontSize: 24,
+  //               fontWeight: FontWeight.bold,
+  //             ),
+  //           ),
+  //           collapsed: Text(
+  //             asd,
+  //             style: const TextStyle(
+  //               fontSize: 18,
+  //             ),
+  //             softWrap: true,
+  //             maxLines: 3,
+  //             overflow: TextOverflow.ellipsis,
+  //           ),
+  //           expanded: Text(
+  //             asd,
+  //             style: const TextStyle(
+  //               fontSize: 18,
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //     );
 }

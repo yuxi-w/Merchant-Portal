@@ -4,6 +4,7 @@ import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/services/navigation_service.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
+import 'package:merchant_app/constants/methods/validation_methods.dart';
 
 /// This is the Sign Up page
 class SignUpPageView extends StatefulWidget {
@@ -14,6 +15,9 @@ class SignUpPageView extends StatefulWidget {
 }
 
 class _SignUpPageViewState extends State<SignUpPageView> {
+  final signupformkey = GlobalKey<FormState>();
+  final TextEditingController _pass = TextEditingController();
+  final TextEditingController _confirmPass = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -27,26 +31,27 @@ class _SignUpPageViewState extends State<SignUpPageView> {
         /// Main Content
         Container(
           margin: const EdgeInsets.all(16),
-          child: Flexible(
-            child: Center(
-              child: SingleChildScrollView(
-                child: Container(
-                    height: 800,
-                    width: 540,
-                    margin: const EdgeInsets.symmetric(horizontal: 24),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
-                      color: Colors.white,
-                    ),
-                    child: Center(
-                      child: Padding(
-                        //padding: const EdgeInsets.all(60.0),
-                        padding: const EdgeInsets.fromLTRB(120, 60, 120, 60),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+          child: Center(
+            child: SingleChildScrollView(
+              child: Container(
+                  height: 900,
+                  width: 540,
+                  margin: const EdgeInsets.symmetric(horizontal: 24),
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(24),
+                    color: Colors.white,
+                  ),
+                  child: Center(
+                    child: Padding(
+                      //padding: const EdgeInsets.all(60.0),
+                      padding: const EdgeInsets.fromLTRB(120, 60, 120, 60),
+                      child: Form(
+                        key: signupformkey,
+                        child: ListView(
+                          // mainAxisSize: MainAxisSize.max,
+                          // mainAxisAlignment: MainAxisAlignment.center,
+                          // crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Center(
                               child: Text(
@@ -69,61 +74,87 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                             const SizedBox(height: 24),
 
                             /// Full Name Text Field
-                            const TextField(
-                              decoration: InputDecoration(
+                            TextFormField(
+                              decoration: const InputDecoration(
                                 label: Text("Full Name"),
-                                //hintText: "abc@xyz.com",
                               ),
+                              validator: NameFieldValidator.validate,
                             ),
                             //const SizedBox(height: 24),
-                            const TextField(
-                              decoration: InputDecoration(
+
+                            // Email address Text Field
+                            TextFormField(
+                              decoration: const InputDecoration(
                                 label: Text("Email Address"),
                                 hintText: "abc@xyz.com",
                               ),
+                              validator: EmailFieldValidator.validate,
                             ),
-                            const TextField(
-                              decoration: InputDecoration(
+
+                            // Phone Number Text Field
+                            TextFormField(
+                              decoration: const InputDecoration(
                                 label: Text("Phone Number"),
                                 hintText: "10 digit phone number 1231231231",
                               ),
+                              validator: PhoneFieldValidator.validate,
                             ),
-                            const TextField(
-                              decoration: InputDecoration(
+
+                            //Address Text Field
+                            TextFormField(
+                              decoration: const InputDecoration(
                                 label: Text("Address"),
                                 hintText: "ex 123 Nelson, Ottawa, ON, CA",
                               ),
+                              validator: EmptyFieldValidator.validate,
                             ),
 
                             /// Zip Code Text Field
-                            const TextField(
-                              decoration: InputDecoration(
+                            TextFormField(
+                              decoration: const InputDecoration(
                                 label: Text("Zip Code"),
-                                hintText: "ex. K1N 7N8",
+                                hintText: "ex. K1N7N8",
                               ),
+                              validator: ZipcodeFieldValidator.validate,
                             ),
 
                             /// Password Text Field
-                            const TextField(
+                            TextFormField(
                               obscureText: true,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 label: Text("Password"),
                                 hintText: "Please write your password",
                               ),
+                              controller: _pass,
+                              validator: EmptyFieldValidator.validate,
                             ),
 
                             /// Re enter Password Text Field
-                            const TextField(
+                            TextFormField(
                               obscureText: true,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 label: Text("Reenter Password"),
                                 hintText: "Please reenter your password",
                               ),
+                              controller: _confirmPass,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "Please confirm your password";
+                                } else if (value != _pass.text) {
+                                  return "Password dosen't match";
+                                } else {
+                                  return null;
+                                }
+                              },
                             ),
 
                             const SizedBox(height: 24),
                             MaterialButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                if (signupformkey.currentState!.validate()) {
+                                  //onpress goes here
+                                }
+                              },
                               child: const Text("Signup"),
                               minWidth: double.infinity,
                               height: 52,
@@ -135,6 +166,7 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                             ),
                             const SizedBox(height: 32),
                             TextButton(
+                              key: const Key("login_redirect_button"),
                               onPressed: () {
                                 goToSignInPage();
                               },
@@ -146,8 +178,8 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                           ],
                         ),
                       ),
-                    )),
-              ),
+                    ),
+                  )),
             ),
           ),
         ),

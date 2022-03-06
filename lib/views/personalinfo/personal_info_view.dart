@@ -45,6 +45,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                   /// Customer first name and last name section!
                   Text(
                     'First Name - Last Name',
+                    key: const Key("personalinfo_customer_name"),
                     style: TextStyle(
                         fontSize: 40.0,
                         fontWeight: FontWeight.bold,
@@ -54,6 +55,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                   /// Customer status section!
                   Text(
                     'new custommer',
+                    key: const Key("personalinfo_customer_status"),
                     style: TextStyle(
                         fontSize: 20.0,
                         color: infoPageTextColor,
@@ -102,6 +104,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                             ),
                             title: Text(
                               '+1 123 1231231',
+                              key: const Key("personalinfo_customer_phone"),
                               // textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 20.0, color: infoPageTextColor),
@@ -135,6 +138,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                             ),
                             title: Text(
                               'Merchant-user1@gmail.com',
+                              key: const Key("personalinfo_customer_email"),
                               style: TextStyle(
                                   fontSize: 20.0, color: infoPageTextColor),
                             ),
@@ -167,6 +171,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                             ),
                             title: Text(
                               '129 Ashburn, Ottawa, ON, CA',
+                              key: const Key("personalinfo_customer_address"),
                               style: TextStyle(
                                   fontSize: 20.0, color: infoPageTextColor),
                             ),
@@ -199,6 +204,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                             ),
                             title: Text(
                               'K2N 0A8',
+                              key: const Key("personalinfo_customer_zip"),
                               style: TextStyle(
                                   fontSize: 20.0, color: infoPageTextColor),
                             ),
@@ -216,6 +222,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                         Container(
                           padding: const EdgeInsets.fromLTRB(25, 2, 25, 2),
                           child: MaterialButton(
+                            key: const Key("editinfo_redirect_button"),
                             onPressed: () {
                               goToEditPersonalInfoPage();
                             },
