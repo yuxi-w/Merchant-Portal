@@ -3,6 +3,7 @@ import 'package:merchant_app/locator.dart';
 import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/routing/router.dart';
 import 'package:merchant_app/services/navigation_service.dart';
+import 'package:merchant_app/views/discussion/discussion_view.dart';
 import 'package:merchant_app/views/personalinfo/personal_info_view.dart';
 import 'package:merchant_app/views/editpersonalinfo/edit_personal_info_view.dart';
 import 'package:merchant_app/widgets/navigation_drawer/navigation_drawer.dart';
@@ -41,7 +42,9 @@ class LayoutHolder extends StatelessWidget {
               elevation: 10.0,
               child: const Icon(Icons.chat),
               backgroundColor: const Color(0xFF162A49),
-              onPressed: () {}),
+              onPressed: () {
+                locator<NavigationService>().navigateTo(DiscussionRoute);
+              }),
         ),
       ),
     );
