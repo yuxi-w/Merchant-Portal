@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/views/aboutpage/about_page_view.dart';
 import 'package:merchant_app/views/category/category_view.dart';
@@ -16,37 +17,38 @@ import 'package:merchant_app/views/signup/sign_up_view.dart';
 Route<dynamic>? generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case HomeRoute:
-      return _getPageRoute(const HomeView());
+      return _getPageRoute(settings, const HomeView());
 
     case CategoryRoute:
-      return _getPageRoute(const CategoryView());
+      return _getPageRoute(settings, const CategoryView());
 
     case ShoppingCartRoute:
-      return _getPageRoute(const ShoppingCartView());
+      return _getPageRoute(settings, const ShoppingCartView());
 
     case PersonalInfoRoute:
-      return _getPageRoute(const PersonalInfoView());
+      return _getPageRoute(settings, const PersonalInfoView());
 
     case EditPersonalInfoRoute:
-      return _getPageRoute(const EditPersonalInfoView());
+      return _getPageRoute(settings, const EditPersonalInfoView());
 
     case LoginRoute:
-      return _getPageRoute(const LoginView());
+      return _getPageRoute(settings, const LoginView());
 
     case SignUpRoute:
-      return _getPageRoute(const SignUpPageView());
+      return _getPageRoute(settings, const SignUpPageView());
 
     case ProductDetailRoute:
-      return _getPageRoute(const ProductDetailView());
+      return _getPageRoute(settings,
+          ProductDetailView(settings: settings.arguments as ShoppingItem));
 
     case AboutRoute:
-      return _getPageRoute(const AboutView());
+      return _getPageRoute(settings, const AboutView());
 
     case DiscussionRoute:
-      return _getPageRoute(const DiscussionView());
+      return _getPageRoute(settings, const DiscussionView());
   }
 }
 
-PageRoute? _getPageRoute(Widget child) {
-  return MaterialPageRoute(builder: (context) => child);
+PageRoute? _getPageRoute(RouteSettings settings, Widget child) {
+  return MaterialPageRoute(settings: settings, builder: (context) => child);
 }

@@ -66,7 +66,7 @@ class _CategoryPageListItemState extends State<CategoryPageListItem> {
   }
 
   void goToProductDetailPage() {
-    locator<NavigationService>().navigateTo(ProductDetailRoute);
+    locator<NavigationService>().navigateTo(ProductDetailRoute, null);
   }
 }
 

@@ -18,6 +18,7 @@ class _SignUpPageViewState extends State<SignUpPageView> {
   final signupformkey = GlobalKey<FormState>();
   final TextEditingController _pass = TextEditingController();
   final TextEditingController _confirmPass = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -191,6 +192,6 @@ class _SignUpPageViewState extends State<SignUpPageView> {
   }
 
   void goToSignInPage() {
-    locator<NavigationService>().navigateTo(LoginRoute);
+    locator<NavigationService>().navigateTo(LoginRoute, null);
   }
 }

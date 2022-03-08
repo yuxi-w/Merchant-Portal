@@ -12,7 +12,7 @@ import 'package:merchant_app/services/navigation_service.dart';
 class HomePageListItem extends StatefulWidget {
   final ShoppingItem shoppingItem;
 
-  const HomePageListItem(this.shoppingItem);
+  const HomePageListItem(this.shoppingItem, {Key? key}) : super(key: key);
 
   @override
   _HomePageListItemState createState() => _HomePageListItemState();
@@ -70,6 +70,7 @@ class _HomePageListItemState extends State<HomePageListItem> {
   }
 
   void goToProductDetailPage() {
-    locator<NavigationService>().navigateTo(ProductDetailRoute);
+    locator<NavigationService>()
+        .navigateTo(ProductDetailRoute, widget.shoppingItem);
   }
 }

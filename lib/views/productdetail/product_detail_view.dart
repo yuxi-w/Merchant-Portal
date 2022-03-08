@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:merchant_app/constants/colors/app_colors.dart';
+import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
+import 'package:merchant_app/services/navigation_service.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
 
 class ProductDetailView extends StatefulWidget {
-  const ProductDetailView({Key? key}) : super(key: key);
+  final ShoppingItem? settings;
+
+  const ProductDetailView({Key? key, required this.settings}) : super(key: key);
 
   @override
   _ProductDetailViewState createState() => _ProductDetailViewState();
@@ -13,6 +17,7 @@ class ProductDetailView extends StatefulWidget {
 class _ProductDetailViewState extends State<ProductDetailView> {
   @override
   Widget build(BuildContext context) {
+    print("mydata: ${widget.settings?.name}");
     return ListView(
       children: [
         /// Top Navigation Bar

@@ -43,7 +43,7 @@ class LayoutHolder extends StatelessWidget {
               child: const Icon(Icons.chat),
               backgroundColor: const Color(0xFF162A49),
               onPressed: () {
-                locator<NavigationService>().navigateTo(DiscussionRoute);
+                locator<NavigationService>().navigateTo(DiscussionRoute, null);
               }),
         ),
       ),
