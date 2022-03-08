@@ -31,9 +31,6 @@ class ShoppingItem {
     for (Map<String, dynamic> d in json) {
       result.add(ShoppingItem.fromJson(d));
     }
-    for(ShoppingItem i in result){
-      print("myRes: ${i.name}");
-    }
     return result;
   }
 }
