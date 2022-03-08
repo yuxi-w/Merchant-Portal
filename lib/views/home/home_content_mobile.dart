@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/widgets/home_page_list_view/home_page_list_item.dart';
 
 /// Home Page Layout for mobile screens or when the screen shrinks
 class HomeContentMobile extends StatefulWidget {
-  const HomeContentMobile({Key? key}) : super(key: key);
+   const HomeContentMobile({Key? key, required this.futureShoppingItems})
+      : super(key: key);
+
+  final Future<List<ShoppingItem>> futureShoppingItems;
 
   @override
   _HomeContentMobileState createState() => _HomeContentMobileState();

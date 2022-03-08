@@ -1,9 +1,14 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/views/home/home_content_desktop.dart';
 import 'package:merchant_app/views/home/home_content_mobile.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:http/http.dart';
 
 /// This is our Home Page
 class HomeView extends StatefulWidget {
@@ -14,6 +19,8 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  late Future<List<ShoppingItem>> futureShoppingItems;
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -41,13 +48,34 @@ class _HomeViewState extends State<HomeView> {
 
         /// Main Content is a List which shows the products in Home Page
         ScreenTypeLayout(
-          mobile: const HomeContentMobile(),
-          desktop: const HomeContentDesktop(),
+          mobile: HomeContentMobile(futureShoppingItems: futureShoppingItems),
+          desktop: HomeContentDesktop(futureShoppingItems: futureShoppingItems),
         ),
 
         /// Page Footer
         const HomePageFooter()
       ],
     );
+  }
+
+  Future<List<ShoppingItem>> getShoppingItems() async {
+    final response =
+        await get(Uri.parse('https://merchant-api.azurewebsites.net/shopitem'));
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      return ShoppingItem.fromListJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load todo');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    futureShoppingItems = getShoppingItems();
   }
 }
