@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:merchant_app/routing/route_names.dart';
+import 'package:merchant_app/views/aboutpage/about_page_view.dart';
 import 'package:merchant_app/views/category/category_view.dart';
-import 'package:merchant_app/views/discussion/discussion_view.dart';
 import 'package:merchant_app/views/editpersonalinfo/edit_personal_info_view.dart';
 import 'package:merchant_app/views/home/home_view.dart';
 import 'package:merchant_app/views/login/login_view.dart';
@@ -38,8 +38,8 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
     case ProductDetailRoute:
       return _getPageRoute(const ProductDetailView());
 
-    case DiscussionRoute:
-      return _getPageRoute(const DiscussionView());
+    case AboutRoute:
+      return _getPageRoute(const AboutView());
   }
 }
 
