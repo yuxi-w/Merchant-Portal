@@ -17,26 +17,32 @@ class LayoutHolder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
-      builder: (context, sizingInformation) => Scaffold(
-        /// Creating Drawer Layout when screen shrinks
-        drawer: sizingInformation.deviceScreenType == DeviceScreenType.mobile
-            ? const NavigationDrawer()
-            : null,
-        backgroundColor: Colors.black12,
+      builder: (context, sizingInformation) => WillPopScope(
+        onWillPop: () async {
+          locator<NavigationService>().goBack();
+          return true;
+        },
+        child: Scaffold(
+          /// Creating Drawer Layout when screen shrinks
+          drawer: sizingInformation.deviceScreenType == DeviceScreenType.mobile
+              ? const NavigationDrawer()
+              : null,
+          backgroundColor: Colors.black12,
 
-        /// Navigator for switching pages
-        body: Navigator(
-          key: locator<NavigationService>().navigatorKey,
-          onGenerateRoute: generateRoute,
-          initialRoute: HomeRoute,
+          /// Navigator for switching pages
+          body: Navigator(
+            key: locator<NavigationService>().navigatorKey,
+            onGenerateRoute: generateRoute,
+            initialRoute: HomeRoute,
+          ),
+
+          /// Chat Floating Button
+          floatingActionButton: FloatingActionButton(
+              elevation: 10.0,
+              child: const Icon(Icons.chat),
+              backgroundColor: const Color(0xFF162A49),
+              onPressed: () {}),
         ),
-
-        /// Chat Floating Button
-        floatingActionButton: FloatingActionButton(
-            elevation: 10.0,
-            child: const Icon(Icons.chat),
-            backgroundColor: const Color(0xFF162A49),
-            onPressed: () {}),
       ),
     );
   }
