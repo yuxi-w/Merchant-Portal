@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:merchant_app/constants/colors/app_colors.dart';
+import 'package:merchant_app/constants/constants/AppConst.dart';
 import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/services/navigation_service.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
 
 class ProductDetailView extends StatefulWidget {
-  final ShoppingItem? settings;
+  final ShoppingItem? shoppingItem;
 
-  const ProductDetailView({Key? key, required this.settings}) : super(key: key);
+  const ProductDetailView({Key? key, required this.shoppingItem})
+      : super(key: key);
 
   @override
   _ProductDetailViewState createState() => _ProductDetailViewState();
@@ -17,7 +20,7 @@ class ProductDetailView extends StatefulWidget {
 class _ProductDetailViewState extends State<ProductDetailView> {
   @override
   Widget build(BuildContext context) {
-    print("mydata: ${widget.settings?.name}");
+    print("mydata: ${widget.shoppingItem?.name}");
     return ListView(
       children: [
         /// Top Navigation Bar
@@ -73,7 +76,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
 
                   ///  Product Name section!
                   Text(
-                    'Product 1',
+                    widget.shoppingItem!.name!,
                     style: TextStyle(
                         fontSize: 40.0,
                         fontWeight: FontWeight.bold,
@@ -83,7 +86,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
 
                   /// Product Category section!
                   Text(
-                    'Product Category',
+                    widget.shoppingItem!.category!,
                     style: TextStyle(
                         fontSize: 20.0,
                         color: infoPageTextColor,
@@ -102,23 +105,16 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 20),
                             child: Column(
-                              children: const [
+                              children: [
                                 /// Product information
                                 Text(
-                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In "
-                                  "rutrum at ex non eleifend. Aenean sed eros a purus "
-                                  "gravida scelerisque id in orci. Mauris elementum id "
-                                  "nibh et dapibus. Maecenas lacinia volutpat magna"
-                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In "
-                                  "rutrum at ex non eleifend. Aenean sed eros a purus "
-                                  "gravida scelerisque id in orci. Mauris elementum id "
-                                  "nibh et dapibus. Maecenas lacinia volutpat magna",
+                                  widget.shoppingItem!.description!,
                                   textAlign: TextAlign.justify,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 20,
                                       height: 1.5),
-                                  key: Key("productDetailDescription"),
+                                  key: const Key("productDetailDescription"),
                                 )
                               ],
                             )),
@@ -139,100 +135,102 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                                   ),
 
                                   /// Product price section
-                                  const Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      r"$95",
-                                      style: TextStyle(
+                                      widget.shoppingItem!.price!,
+                                      style: const TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 18),
-                                      key: Key("productDetailPrice"),
+                                      key: const Key("productDetailPrice"),
                                     ),
                                   )
                                 ],
                               )),
                         ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Container(
-                              padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                              child: Row(
-                                children: [
-                                  /// Product color section
-                                  Text(
-                                    'Product color:',
-                                    style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
-                                        color: infoPageTextColor),
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.all(8.0),
+                        // Align(
+                        //   alignment: Alignment.centerLeft,
+                        //   child: Container(
+                        //       padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        //       child: Row(
+                        //         children: [
+                        //           /// Product color section
+                        //           Text(
+                        //             'Product color:',
+                        //             style: TextStyle(
+                        //                 fontSize: 18.0,
+                        //                 fontWeight: FontWeight.bold,
+                        //                 color: infoPageTextColor),
+                        //           ),
+                        //           const Padding(
+                        //             padding: EdgeInsets.all(8.0),
+                        //
+                        //             /// Product color status section
+                        //             child: Text("Black",
+                        //                 style: TextStyle(
+                        //                     fontWeight: FontWeight.w400,
+                        //                     fontSize: 18),
+                        //                 key: Key("productDetailColor")),
+                        //           )
+                        //         ],
+                        //       )),
+                        // ),
+                        // Align(
+                        //   alignment: Alignment.centerLeft,
+                        //   child: Container(
+                        //       padding: const EdgeInsets.fromLTRB(20, 0, 0, 20),
+                        //       constraints: const BoxConstraints(
+                        //           minWidth: 400, maxWidth: 700),
+                        //       child: Row(
+                        //         children: [
+                        //           Text(
+                        //             'Quantity:',
+                        //             style: TextStyle(
+                        //                 fontSize: 18.0,
+                        //                 fontWeight: FontWeight.bold,
+                        //                 color: infoPageTextColor),
+                        //           ),
+                        //           const SizedBox(width: 8),
+                        //           const Text(
+                        //             "1",
+                        //             style: TextStyle(
+                        //                 fontWeight: FontWeight.w400,
+                        //                 fontSize: 18),
+                        //             key: Key("productDetailQuantityText"),
+                        //           ),
+                        //           const SizedBox(width: 25),
+                        //           Card(
+                        //             child: IconButton(
+                        //               iconSize: 25,
+                        //               onPressed: () {},
+                        //               icon:
+                        //                   const Icon(Icons.add_circle_outline),
+                        //               key: const Key("productDetailAddButton"),
+                        //             ),
+                        //           ),
+                        //           Card(
+                        //             child: IconButton(
+                        //               iconSize: 25,
+                        //               onPressed: () {},
+                        //               icon: const Icon(
+                        //                   Icons.remove_circle_outline),
+                        //               key: const Key(
+                        //                   "productDetailRemoveButton"),
+                        //             ),
+                        //           ),
+                        //         ],
+                        //       )),
+                        // ),
 
-                                    /// Product color status section
-                                    child: Text("Black",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 18),
-                                        key: Key("productDetailColor")),
-                                  )
-                                ],
-                              )),
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Container(
-                              padding: const EdgeInsets.fromLTRB(20, 0, 0, 20),
-                              constraints: const BoxConstraints(
-                                  minWidth: 400, maxWidth: 700),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'Quantity:',
-                                    style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
-                                        color: infoPageTextColor),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  const Text(
-                                    "1",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 18),
-                                    key: Key("productDetailQuantityText"),
-                                  ),
-                                  const SizedBox(width: 25),
-                                  Card(
-                                    child: IconButton(
-                                      iconSize: 25,
-                                      onPressed: () {},
-                                      icon:
-                                          const Icon(Icons.add_circle_outline),
-                                      key: const Key("productDetailAddButton"),
-                                    ),
-                                  ),
-                                  Card(
-                                    child: IconButton(
-                                      iconSize: 25,
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                          Icons.remove_circle_outline),
-                                      key: const Key(
-                                          "productDetailRemoveButton"),
-                                    ),
-                                  ),
-                                ],
-                              )),
-                        ),
-
-                        /// Button to add item to the shopping list!
+                        /// Add to cart button
                         Container(
                           padding: const EdgeInsets.fromLTRB(25, 2, 25, 2),
                           child: MaterialButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              addToCart(1, widget.shoppingItem!.id!);
+                            },
                             child: const Text(
-                              "Add to Bag +",
+                              "Add to cart +",
                               style: TextStyle(fontSize: 18),
                             ),
                             minWidth: double.infinity,
@@ -256,5 +254,21 @@ class _ProductDetailViewState extends State<ProductDetailView> {
         const HomePageFooter()
       ],
     );
+  }
+
+  ///Adding to cart API
+  void addToCart(int userId, int itemId) async {
+    final response =
+        await post(Uri.parse('${baseUrl}shopuser/Add$userId?itemId=$itemId'));
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      return print("Post was successfull");
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load todo');
+    }
   }
 }

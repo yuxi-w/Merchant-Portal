@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:merchant_app/constants/constants/AppConst.dart';
 import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/views/home/home_content_desktop.dart';
 import 'package:merchant_app/views/home/home_content_mobile.dart';
@@ -59,8 +60,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Future<List<ShoppingItem>> getShoppingItems() async {
-    final response =
-        await get(Uri.parse('https://merchant-api.azurewebsites.net/shopitem'));
+    final response = await get(Uri.parse('${baseUrl}shopitem'));
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,

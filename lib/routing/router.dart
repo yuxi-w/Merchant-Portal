@@ -39,7 +39,7 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
 
     case ProductDetailRoute:
       return _getPageRoute(settings,
-          ProductDetailView(settings: settings.arguments as ShoppingItem));
+          ProductDetailView(shoppingItem: settings.arguments as ShoppingItem));
 
     case AboutRoute:
       return _getPageRoute(settings, const AboutView());
