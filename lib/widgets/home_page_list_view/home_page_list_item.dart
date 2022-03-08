@@ -3,21 +3,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/locator.dart';
 import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/services/navigation_service.dart';
 
 /// This Class holds each item of the GridView in Home Page
 class HomePageListItem extends StatefulWidget {
-  final String title;
-  final String price;
-  final String description;
-  final String pictureLink;
+  final ShoppingItem shoppingItem;
 
-  const HomePageListItem(
-      this.title, this.price, this.description, this.pictureLink,
-      {Key? key})
-      : super(key: key);
+  const HomePageListItem(this.shoppingItem);
 
   @override
   _HomePageListItemState createState() => _HomePageListItemState();
@@ -34,25 +29,25 @@ class _HomePageListItemState extends State<HomePageListItem> {
           titlePosition: GFPosition.start,
 
           /// Image
-          image: Image.asset(
-            widget.pictureLink,
-            height: 180,
-            width: 200,
-            fit: BoxFit.cover,
-            key: Key("homeItemImage"),
-          ),
-          showImage: true,
+          // image: Image.asset(
+          //   widget.pictureLink,
+          //   height: 180,
+          //   width: 200,
+          //   fit: BoxFit.cover,
+          //   key: Key("homeItemImage"),
+          // ),
+          // showImage: true,
 
           /// Title
           title: GFListTile(
-            titleText: widget.title,
-            subTitleText: widget.price,
+            titleText: widget.shoppingItem.name,
+            subTitleText: widget.shoppingItem.price,
             key: Key("title"),
           ),
 
           /// Description
           content: Text(
-            widget.description,
+            widget.shoppingItem.shortDescription!,
             key: Key("description"),
           ),
 
