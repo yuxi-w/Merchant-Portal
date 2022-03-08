@@ -4,6 +4,7 @@ import 'package:merchant_app/constants/colors/app_colors.dart';
 import 'package:merchant_app/constants/constants/AppConst.dart';
 import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/services/navigation_service.dart';
+import 'package:merchant_app/widgets/dialog_message/dialog_message.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
 
@@ -20,7 +21,6 @@ class ProductDetailView extends StatefulWidget {
 class _ProductDetailViewState extends State<ProductDetailView> {
   @override
   Widget build(BuildContext context) {
-    print("mydata: ${widget.shoppingItem?.name}");
     return ListView(
       children: [
         /// Top Navigation Bar
@@ -227,8 +227,19 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                           padding: const EdgeInsets.fromLTRB(25, 2, 25, 2),
                           child: MaterialButton(
                             onPressed: () {
+                              ///API Call
                               addToCart(1, widget.shoppingItem!.id!);
+
+                              ///Show Dialog
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      DialogMessage(
+                                              context, widget.shoppingItem!)
+                                          .createDialog());
                             },
+
+                            ///Add to cart text
                             child: const Text(
                               "Add to cart +",
                               style: TextStyle(fontSize: 18),
