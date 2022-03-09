@@ -224,7 +224,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
 
                         /// Add to cart button
                         Container(
-                          padding: const EdgeInsets.fromLTRB(25, 2, 25, 2),
+                          padding: const EdgeInsets.fromLTRB(25, 50, 25, 2),
                           child: MaterialButton(
                             onPressed: () {
                               ///API Call

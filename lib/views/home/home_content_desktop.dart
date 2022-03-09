@@ -31,7 +31,7 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
                   (snapshot.data as List<ShoppingItem>)[index]);
             },
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 5, mainAxisSpacing: 0, crossAxisSpacing: 0),
+                crossAxisCount: 4, mainAxisSpacing: 1, crossAxisSpacing: 1),
           );
         },
         future: widget.futureShoppingItems,

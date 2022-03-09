@@ -21,51 +21,51 @@ class HomePageListItem extends StatefulWidget {
 class _HomePageListItemState extends State<HomePageListItem> {
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      children: [
-        GFCard(
-          elevation: 4,
-          boxFit: BoxFit.fill,
-          titlePosition: GFPosition.start,
+    return SizedBox(
+      width: 200,
+      height: 300,
+      child: GFCard(
+        elevation: 4,
+        boxFit: BoxFit.fill,
+        titlePosition: GFPosition.start,
 
-          /// Image
-          // image: Image.asset(
-          //   widget.pictureLink,
-          //   height: 180,
-          //   width: 200,
-          //   fit: BoxFit.cover,
-          //   key: Key("homeItemImage"),
-          // ),
-          // showImage: true,
-
-          /// Title
-          title: GFListTile(
-            titleText: widget.shoppingItem.name,
-            subTitleText: widget.shoppingItem.price,
-            key: Key("title"),
-          ),
-
-          /// Description
-          content: Text(
-            widget.shoppingItem.shortDescription!,
-            key: Key("description"),
-          ),
-
-          /// Buttons
-          buttonBar: GFButtonBar(
-            children: <Widget>[
-              TextButton(
-                  onPressed: () {
-                    goToProductDetailPage();
-                  },
-                  child: Text(
-                    "More Info",
-                    key: Key("HomeMoreInfoButton"),
-                  ))
-            ],
-          ),
+        /// Image
+        image: Image.network(
+          widget.shoppingItem.picture!,
+          height: 150,
+          width: 150,
+          fit: BoxFit.cover,
+          key: Key("homeItemImage"),
         ),
-      ],
+        showImage: true,
+
+        /// Title
+        title: GFListTile(
+          titleText: widget.shoppingItem.name,
+          subTitleText: widget.shoppingItem.price,
+          key: Key("title"),
+        ),
+
+        /// Description
+        content: Text(
+          widget.shoppingItem.shortDescription!,
+          key: Key("description"),
+        ),
+
+        /// Buttons
+        buttonBar: GFButtonBar(
+          children: <Widget>[
+            TextButton(
+                onPressed: () {
+                  goToProductDetailPage();
+                },
+                child: Text(
+                  "More Info >",
+                  key: Key("HomeMoreInfoButton"),
+                ))
+          ],
+        ),
+      ),
     );
   }
 
