@@ -30,14 +30,14 @@ class _HomePageListItemState extends State<HomePageListItem> {
         titlePosition: GFPosition.start,
 
         /// Image
-        image: Image.network(
-          widget.shoppingItem.picture!,
-          height: 150,
-          width: 150,
-          fit: BoxFit.cover,
-          key: Key("homeItemImage"),
-        ),
-        showImage: true,
+        // image: Image.network(
+        //   widget.shoppingItem.picture!,
+        //   height: 150,
+        //   width: 150,
+        //   fit: BoxFit.cover,
+        //   key: Key("homeItemImage"),
+        // ),
+        // showImage: true,
 
         /// Title
         title: GFListTile(

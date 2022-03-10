@@ -21,7 +21,7 @@ class UserInfo {
   String? password;
   bool? isBuyer;
   bool? isLoggedIn;
-  List<int>? shoppingBag;
+  List<dynamic>? shoppingBag;
 
   UserInfo(
       this.id,
@@ -58,5 +58,9 @@ class UserInfo {
       result.add(UserInfo.fromJson(d));
     }
     return result;
+  }
+
+  static UserInfo fromSingleUserJson(dynamic json) {
+    return UserInfo.fromJson(json);
   }
 }

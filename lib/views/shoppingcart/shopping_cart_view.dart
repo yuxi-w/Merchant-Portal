@@ -1,4 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:merchant_app/constants/constants/AppConst.dart';
+import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
+import 'package:merchant_app/datamodel/userInfo/UserInfo.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/shopping_cart_list_view/shopping_cart_list_view.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
@@ -12,6 +18,13 @@ class ShoppingCartView extends StatefulWidget {
 }
 
 class _ShoppingCartViewState extends State<ShoppingCartView> {
+  late Future<List<UserInfo>> futureUserInfo;
+  late Future<List<ShoppingItem>> futureShoppingItems;
+
+  List<UserInfo>? userInfo = [];
+  List<ShoppingItem>? allShoppingItems = [];
+  List<ShoppingItem>? userShoppingItems = [];
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -40,9 +53,8 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
 
         /// Main List View
         Container(
-          constraints: const BoxConstraints(minWidth: 300, maxWidth: 1000),
-          child: const ShopCartListView(),
-        ),
+            constraints: const BoxConstraints(minWidth: 300, maxWidth: 1000),
+            child: const ShopCartListView()),
 
         /// Text Showing Total Amount to Pay
         Container(
@@ -81,5 +93,76 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
         const HomePageFooter(),
       ],
     );
+  }
+
+  /// Getting User Information
+  Future<List<UserInfo>> getUserInfo(int userId) async {
+    final response = await get(Uri.parse('${baseUrl}shopuser/$userId'));
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      print("getting user successful");
+      return UserInfo.fromListJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load todo');
+    }
+  }
+
+  /// Getting All Shopping Items
+  Future<List<ShoppingItem>> getShoppingItems() async {
+    final response = await get(Uri.parse('${baseUrl}shopitem'));
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      print("getting shop items successful");
+      return ShoppingItem.fromListJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load todo');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    /// Getting values from future data
+    futureUserInfo = getUserInfo(1);
+    futureShoppingItems = getShoppingItems();
+
+    /// All shopping items
+    futureShoppingItems.then((value) {
+      allShoppingItems = value;
+
+      /// User Data
+      futureUserInfo.then((value) {
+        userInfo = value;
+        var userShoppingBagIds = userInfo?[0].shoppingBag;
+
+        print("AllShopItems ${allShoppingItems.toString()}");
+        print("UserItemsIDs ${userShoppingBagIds.toString()}");
+
+        if (userShoppingBagIds != null && allShoppingItems != null) {
+          addShoppingBag(userShoppingBagIds);
+        }
+      });
+    });
+  }
+
+  /// Adding Items That User Selected
+  void addShoppingBag(List<dynamic> userShoppingBagIds) {
+    for (ShoppingItem shoppingItem in allShoppingItems!) {
+      for (int itemId in userShoppingBagIds) {
+        if (shoppingItem.id == itemId) {
+          userShoppingItems?.add(shoppingItem);
+          print("UserBag ${userShoppingItems.toString()}");
+        }
+      }
+    }
   }
 }
