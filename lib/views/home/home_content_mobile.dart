@@ -21,7 +21,8 @@ class _HomeContentMobileState extends State<HomeContentMobile> {
       child: FutureBuilder(
         builder: (context, snapshot) {
           if (snapshot.hasData == false) {
-            return const CircularProgressIndicator();
+            return const SizedBox(
+                height: 500, child: Center(child: CircularProgressIndicator()));
           }
           return ListView.builder(
             shrinkWrap: true,

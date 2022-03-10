@@ -21,7 +21,8 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
       child: FutureBuilder(
         builder: (context, snapshot) {
           if (snapshot.hasData == false) {
-            return const CircularProgressIndicator();
+            return const SizedBox(
+                height: 500, child: Center(child: CircularProgressIndicator()));
           }
           return GridView.builder(
             shrinkWrap: true,
@@ -31,7 +32,7 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
                   (snapshot.data as List<ShoppingItem>)[index]);
             },
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4, mainAxisSpacing: 1, crossAxisSpacing: 1),
+                crossAxisCount: 3, mainAxisSpacing: 1, crossAxisSpacing: 1),
           );
         },
         future: widget.futureShoppingItems,

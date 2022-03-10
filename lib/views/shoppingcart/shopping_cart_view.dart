@@ -23,7 +23,8 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
 
   List<UserInfo>? userInfo = [];
   List<ShoppingItem>? allShoppingItems = [];
-  List<ShoppingItem>? userShoppingItems = [];
+  List<dynamic>? userShoppingBagIds = [];
+  List<ShoppingItem> userShoppingItems = [];
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,30 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
         /// Main List View
         Container(
             constraints: const BoxConstraints(minWidth: 300, maxWidth: 1000),
-            child: const ShopCartListView()),
+            child: FutureBuilder(
+              future: futureUserInfo,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  print("dataSnapShot ${snapshot.data}");
+                  var temp1 = addShoppingBag();
+                  if (temp1.isNotEmpty) {
+                    return ShopCartListView(
+                        userShoppingItems: addShoppingBag());
+                  } else {
+                    return const SizedBox(
+                        height: 500,
+                        child:
+                            Center(child: Text("Your shopping cart is empty")));
+                  }
+                } else if (snapshot.hasError) {
+                  return const Center(child: Text('Failed to load cart'));
+                } else {
+                  return const SizedBox(
+                      height: 500,
+                      child: Center(child: CircularProgressIndicator()));
+                }
+              },
+            )),
 
         /// Text Showing Total Amount to Pay
         Container(
@@ -135,34 +159,37 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
     futureUserInfo = getUserInfo(1);
     futureShoppingItems = getShoppingItems();
 
-    /// All shopping items
+    /// Get All shopping items
     futureShoppingItems.then((value) {
       allShoppingItems = value;
 
-      /// User Data
+      /// Get User Data
       futureUserInfo.then((value) {
         userInfo = value;
-        var userShoppingBagIds = userInfo?[0].shoppingBag;
+
+        if (userInfo?[0].shoppingBag != null) {
+          userShoppingBagIds = userInfo?[0].shoppingBag;
+        }
 
         print("AllShopItems ${allShoppingItems.toString()}");
         print("UserItemsIDs ${userShoppingBagIds.toString()}");
-
-        if (userShoppingBagIds != null && allShoppingItems != null) {
-          addShoppingBag(userShoppingBagIds);
-        }
       });
     });
   }
 
   /// Adding Items That User Selected
-  void addShoppingBag(List<dynamic> userShoppingBagIds) {
-    for (ShoppingItem shoppingItem in allShoppingItems!) {
-      for (int itemId in userShoppingBagIds) {
-        if (shoppingItem.id == itemId) {
-          userShoppingItems?.add(shoppingItem);
-          print("UserBag ${userShoppingItems.toString()}");
+  List<ShoppingItem> addShoppingBag() {
+    userShoppingItems.clear();
+    if (userShoppingBagIds != null && allShoppingItems != null) {
+      for (ShoppingItem shoppingItem in allShoppingItems!) {
+        for (int itemId in userShoppingBagIds!) {
+          if (shoppingItem.id == itemId) {
+            userShoppingItems.add(shoppingItem);
+          }
         }
       }
     }
+    print("UserBag ${userShoppingItems.toString()}");
+    return userShoppingItems;
   }
 }

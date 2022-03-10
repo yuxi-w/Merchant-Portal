@@ -28,7 +28,7 @@ class _CategoryContentDesktopState extends State<CategoryContentDesktop> {
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4, mainAxisSpacing: 10, crossAxisSpacing: 10),
+                  crossAxisCount: 3, mainAxisSpacing: 10, crossAxisSpacing: 10),
               children: const [
                 CategoryPageListItem("book 1", "\$10", "Description of book 1",
                     "assets/book.jpeg"),
@@ -49,7 +49,7 @@ class _CategoryContentDesktopState extends State<CategoryContentDesktop> {
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4, mainAxisSpacing: 10, crossAxisSpacing: 10),
+                  crossAxisCount: 3, mainAxisSpacing: 10, crossAxisSpacing: 10),
               children: const [
                 CategoryPageListItem("clothing 1", "\$10",
                     "Description of clothing 1", "assets/clothes.jpeg"),
@@ -70,7 +70,7 @@ class _CategoryContentDesktopState extends State<CategoryContentDesktop> {
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4, mainAxisSpacing: 10, crossAxisSpacing: 10),
+                  crossAxisCount: 3, mainAxisSpacing: 10, crossAxisSpacing: 10),
               children: const [
                 CategoryPageListItem("furniture 1", "\$10",
                     "Description of furniture 1", "assets/furniture.jpeg"),
@@ -91,7 +91,7 @@ class _CategoryContentDesktopState extends State<CategoryContentDesktop> {
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4, mainAxisSpacing: 10, crossAxisSpacing: 10),
+                  crossAxisCount: 3, mainAxisSpacing: 10, crossAxisSpacing: 10),
               children: const [
                 CategoryPageListItem("electronic 1", "\$10",
                     "Description of electronic 1", "assets/electronics.png"),
