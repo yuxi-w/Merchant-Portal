@@ -12,7 +12,7 @@ import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:http/http.dart';
 
-/// This is our Home Page
+/// This is the Home Page
 class HomeView extends StatefulWidget {
   const HomeView({BuildContext? appContext, Key? key}) : super(key: key);
 

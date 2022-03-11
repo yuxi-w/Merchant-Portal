@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:merchant_app/constants/constants/AppConst.dart';
+import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/datamodel/userInfo/UserInfo.dart';
 import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/services/navigation_service.dart';
@@ -10,8 +11,9 @@ import '../../locator.dart';
 class DialogPaymentOption {
   final BuildContext buildContext;
   final UserInfo userInfo;
+  final List<ShoppingItem> userShoppingBag;
 
-  DialogPaymentOption(this.buildContext, this.userInfo);
+  DialogPaymentOption(this.buildContext, this.userInfo, this.userShoppingBag);
 
   Dialog createDialog() {
     return Dialog(
@@ -92,7 +94,8 @@ class DialogPaymentOption {
                   onPressed: () {
                     checkOutApiCall(userInfo.id!);
                     Navigator.pop(buildContext);
-                    locator<NavigationService>().navigateTo(InvoiceRoute, null);
+                    locator<NavigationService>()
+                        .navigateTo(InvoiceRoute, userShoppingBag);
                   },
                   child: const Text("Place Order"),
                   minWidth: 152,

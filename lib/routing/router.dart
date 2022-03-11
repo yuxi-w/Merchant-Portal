@@ -53,7 +53,10 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
       return _getPageRoute(settings, const MerchantPortalView());
 
     case InvoiceRoute:
-      return _getPageRoute(settings, const InvoiceView());
+      return _getPageRoute(
+          settings,
+          InvoiceView(
+              userShoppingBag: settings.arguments as List<ShoppingItem>));
   }
 }
 

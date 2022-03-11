@@ -128,7 +128,8 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
       showDialog(
           context: context,
           builder: (BuildContext context) =>
-              DialogPaymentOption(context, userInfo).createDialog());
+              DialogPaymentOption(context, userInfo, userShoppingBag)
+                  .createDialog());
     } else {
       ///Show Hint Dialog
       showDialog(

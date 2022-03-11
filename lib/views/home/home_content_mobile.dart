@@ -18,23 +18,27 @@ class _HomeContentMobileState extends State<HomeContentMobile> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(16),
-      child: FutureBuilder(
-        builder: (context, snapshot) {
-          if (snapshot.hasData == false) {
-            return const SizedBox(
-                height: 500, child: Center(child: CircularProgressIndicator()));
-          }
-          return ListView.builder(
-            shrinkWrap: true,
-            itemCount: (snapshot.data as List<ShoppingItem>).length,
-            itemBuilder: (BuildContext context, int index) {
-              return HomePageListItem(
-                  (snapshot.data as List<ShoppingItem>)[index]);
-            },
-          );
-        },
-        future: widget.futureShoppingItems,
-      ),
+      child: buildFutureBuilder(),
+    );
+  }
+
+  FutureBuilder<List<ShoppingItem>> buildFutureBuilder() {
+    return FutureBuilder(
+      builder: (context, snapshot) {
+        if (snapshot.hasData == false) {
+          return const SizedBox(
+              height: 500, child: Center(child: CircularProgressIndicator()));
+        }
+        return ListView.builder(
+          shrinkWrap: true,
+          itemCount: (snapshot.data as List<ShoppingItem>).length,
+          itemBuilder: (BuildContext context, int index) {
+            return HomePageListItem(
+                (snapshot.data as List<ShoppingItem>)[index]);
+          },
+        );
+      },
+      future: widget.futureShoppingItems,
     );
   }
 }
