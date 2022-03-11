@@ -49,16 +49,14 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
 
         /// Main List View
         Container(
-            constraints: const BoxConstraints(minWidth: 300, maxWidth: 1000),
+            constraints: const BoxConstraints(
+                minHeight: 300, minWidth: 300, maxWidth: 1000),
             child: FutureBuilder(
               future: futureUserInfo,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   print("dataSnapShot ${snapshot.data}");
-
-                  return Container(
-                      constraints: const BoxConstraints(minHeight: 300),
-                      child: ShopCartListView(futureUserInfo: futureUserInfo));
+                  return ShopCartListView(futureUserInfo: futureUserInfo);
                 } else if (snapshot.hasError) {
                   return const Center(child: Text('Failed to load cart'));
                 } else {
