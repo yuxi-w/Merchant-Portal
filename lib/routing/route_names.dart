@@ -10,3 +10,4 @@ const String ProductDetailRoute = 'productDetailRoute';
 const String AboutRoute = 'aboutRoute';
 const String DiscussionRoute = 'discussionRoute';
 const String MerchantPortalRoute = 'merchantPortalRoute';
+const String InvoiceRoute = 'invoiceRoute';

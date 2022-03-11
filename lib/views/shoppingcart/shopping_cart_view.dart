@@ -6,6 +6,8 @@ import 'package:http/http.dart';
 import 'package:merchant_app/constants/constants/AppConst.dart';
 import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/datamodel/userInfo/UserInfo.dart';
+import 'package:merchant_app/widgets/dialog_message/dialog_message.dart';
+import 'package:merchant_app/widgets/dialog_payment_option/dialog_payment_option.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/shopping_cart_list_view/shopping_cart_list_view.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
@@ -20,7 +22,11 @@ class ShoppingCartView extends StatefulWidget {
 
 class _ShoppingCartViewState extends State<ShoppingCartView> {
   late Future<List<UserInfo>> futureUserInfo;
+  late UserInfo userInfo;
+
   var dynamicShoppingBag = [];
+  List<ShoppingItem> userShoppingBag = [];
+  bool isUserExist = false;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +83,9 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
           margin: const EdgeInsets.fromLTRB(10, 0, 120, 40),
           child: MaterialButton(
             minWidth: 200,
-            onPressed: () {},
+            onPressed: () {
+              checkUserBag();
+            },
             child: const Text(
               "Checkout!",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
@@ -110,7 +118,23 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
-      throw Exception('Failed to load todo');
+      throw Exception('Failed to load user info');
+    }
+  }
+
+  void checkUserBag() {
+    if (userShoppingBag.isNotEmpty && isUserExist == true) {
+      ///Show Payment Dialog
+      showDialog(
+          context: context,
+          builder: (BuildContext context) =>
+              DialogPaymentOption(context, userInfo).createDialog());
+    } else {
+      ///Show Hint Dialog
+      showDialog(
+          context: context,
+          builder: (BuildContext context) =>
+              DialogMessage(context, "No Item in Cart", "").createDialog());
     }
   }
 
@@ -124,12 +148,12 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
 
           /// Get User Info
           var tempUserInfo = snapshot.data as List<UserInfo>;
-          var userInfo = tempUserInfo[0];
+          userInfo = tempUserInfo[0];
+          isUserExist = true;
 
           /// Get User Shopping Bag
           if (userInfo.shoppingBag!.isNotEmpty) {
             List<String> priceList = [];
-            List<ShoppingItem> userShoppingBag = [];
             dynamicShoppingBag =
                 ShoppingItem.fromListJson(userInfo.shoppingBag!);
             userShoppingBag = dynamicShoppingBag as List<ShoppingItem>;
