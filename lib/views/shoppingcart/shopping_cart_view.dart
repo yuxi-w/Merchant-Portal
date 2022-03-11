@@ -20,6 +20,7 @@ class ShoppingCartView extends StatefulWidget {
 
 class _ShoppingCartViewState extends State<ShoppingCartView> {
   late Future<List<UserInfo>> futureUserInfo;
+  var dynamicShoppingBag = [];
 
   @override
   Widget build(BuildContext context) {
@@ -68,16 +69,7 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
             )),
 
         /// Text Showing Total Amount to Pay
-        Container(
-          alignment: Alignment.centerRight,
-          margin: const EdgeInsets.fromLTRB(10, 20, 100, 10),
-          child: const Text(
-            "Subtotal: \$200.00",
-            key: Key("totalAmountText"),
-            style: TextStyle(color: Colors.black, fontSize: 30),
-            textAlign: TextAlign.right,
-          ),
-        ),
+        calculateTotalPrice(),
 
         /// The Checkout Button
         Container(
@@ -106,7 +98,7 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
     );
   }
 
-  /// Getting User Information
+  /// Getting User Information From API
   Future<List<UserInfo>> getUserInfo(int userId) async {
     final response = await get(Uri.parse('${baseUrl}shopuser/$userId'));
 
@@ -120,6 +112,67 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
       // then throw an exception.
       throw Exception('Failed to load todo');
     }
+  }
+
+  /// Method For Calculating Total Price
+  FutureBuilder<List<UserInfo>> calculateTotalPrice() {
+    return FutureBuilder(
+      future: futureUserInfo,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          print("snapData ${snapshot.data}");
+
+          /// Get User Info
+          var tempUserInfo = snapshot.data as List<UserInfo>;
+          var userInfo = tempUserInfo[0];
+
+          /// Get User Shopping Bag
+          if (userInfo.shoppingBag!.isNotEmpty) {
+            List<String> priceList = [];
+            List<ShoppingItem> userShoppingBag = [];
+            dynamicShoppingBag =
+                ShoppingItem.fromListJson(userInfo.shoppingBag!);
+            userShoppingBag = dynamicShoppingBag as List<ShoppingItem>;
+
+            /// Adding Prices to Price List
+            userShoppingBag.forEach((element) {
+              priceList.add(element.price!);
+            });
+
+            print("PricesList ${priceList.toString()}");
+
+            /// Sum Prices
+            int totalPrice = 0;
+            priceList.forEach((element) {
+              totalPrice += int.parse(element);
+            });
+
+            /// Showing Total Price
+            return Container(
+              alignment: Alignment.centerRight,
+              margin: const EdgeInsets.fromLTRB(10, 20, 100, 10),
+              child: Text(
+                "Subtotal: \$${totalPrice.toString()}",
+                key: const Key("totalAmountText"),
+                style: const TextStyle(color: Colors.black, fontSize: 30),
+                textAlign: TextAlign.right,
+              ),
+            );
+          } else {
+            return const Center(
+                child: Text(
+              "\$0",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ));
+          }
+        } else if (snapshot.hasError) {
+          return const Center(child: Text('Failed To Load Data'));
+        } else {
+          return const SizedBox(
+              height: 500, child: Center(child: CircularProgressIndicator()));
+        }
+      },
+    );
   }
 
   @override
