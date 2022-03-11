@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:http/http.dart';
 import 'package:merchant_app/constants/constants/AppConst.dart';
 import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
@@ -60,19 +61,12 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   print("dataSnapShot ${snapshot.data}");
-                  var temp1 = addShoppingBag();
-                  if (temp1.isNotEmpty) {
-                    return ShopCartListView(
-                        userShoppingItems: addShoppingBag());
-                  } else {
-                    return const SizedBox(
-                        height: 500,
-                        child: Center(
-                            child: Text(
-                          "Your shopping cart is empty",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )));
-                  }
+
+                  return Container(
+                      constraints: const BoxConstraints(minHeight: 300),
+                      child: ShopCartListView(
+                        userShoppingItems: addShoppingBag(),
+                      ));
                 } else if (snapshot.hasError) {
                   return const Center(child: Text('Failed to load cart'));
                 } else {
@@ -159,7 +153,7 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
     super.initState();
 
     /// Getting values from future data
-    futureUserInfo = getUserInfo(1);
+    futureUserInfo = getUserInfo(2);
     futureShoppingItems = getShoppingItems();
 
     /// Get All shopping items

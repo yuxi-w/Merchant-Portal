@@ -228,14 +228,16 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                           child: MaterialButton(
                             onPressed: () {
                               ///API Call
-                              addToCart(1, widget.shoppingItem!.id!);
+                              addToCart(2, widget.shoppingItem!.id!);
 
                               ///Show Dialog
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) =>
                                       DialogMessage(
-                                              context, widget.shoppingItem!)
+                                              context,
+                                              widget.shoppingItem!.name!,
+                                              "Item added to your cart")
                                           .createDialog());
                             },
 

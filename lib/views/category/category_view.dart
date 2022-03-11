@@ -49,7 +49,7 @@ class _CategoryViewState extends State<CategoryView> {
         /// Main Content and products on category page
         ScreenTypeLayout(
           mobile:
-              CategoryContentMobile(),
+              CategoryContentMobile(futureShoppingItems: futureShoppingItems),
           desktop:
               CategoryContentDesktop(futureShoppingItems: futureShoppingItems),
         ),
