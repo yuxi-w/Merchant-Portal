@@ -35,7 +35,7 @@ class _ShopCartListItemState extends State<ShopCartListItem> {
         ///Title and price
         title: GFListTile(
           titleText: widget.userShoppingItem.name,
-          subTitleText: widget.userShoppingItem.price,
+          subTitleText: "\$${widget.userShoppingItem.price}",
           key: const Key("shoppingItemTitle"),
         ),
         content: Column(

@@ -42,7 +42,7 @@ class _HomePageListItemState extends State<HomePageListItem> {
         /// Title
         title: GFListTile(
           titleText: widget.shoppingItem.name,
-          subTitleText: widget.shoppingItem.price,
+          subTitleText: "\$${widget.shoppingItem.price}",
           key: Key("title"),
         ),
 

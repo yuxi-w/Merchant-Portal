@@ -38,7 +38,7 @@ class _CategoryPageListItemState extends State<CategoryPageListItem> {
         /// Title
         title: GFListTile(
           titleText: widget.shoppingItem.name,
-          subTitleText: widget.shoppingItem.price,
+          subTitleText: "\$${widget.shoppingItem.price}",
           key: const Key("categoryItemTitle"),
         ),
 
