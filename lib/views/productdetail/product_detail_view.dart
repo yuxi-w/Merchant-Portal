@@ -3,10 +3,13 @@ import 'package:http/http.dart';
 import 'package:merchant_app/constants/colors/app_colors.dart';
 import 'package:merchant_app/constants/constants/AppConst.dart';
 import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
+import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/services/navigation_service.dart';
 import 'package:merchant_app/widgets/dialog_message/dialog_message.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
+
+import '../../locator.dart';
 
 class ProductDetailView extends StatefulWidget {
   final ShoppingItem? shoppingItem;
@@ -138,7 +141,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      widget.shoppingItem!.price!,
+                                      "\$${widget.shoppingItem!.price!}",
                                       style: const TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 18),
@@ -227,7 +230,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                           padding: const EdgeInsets.fromLTRB(25, 50, 25, 2),
                           child: MaterialButton(
                             onPressed: () {
-                              ///API Call
+                              /// Add to Cart API Call
                               addToCart(1, widget.shoppingItem!.id!);
 
                               ///Show Dialog
@@ -239,6 +242,10 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                                               widget.shoppingItem!.name!,
                                               "Item added to your cart")
                                           .createDialog());
+
+                              /// Reroute to Home Page
+                              locator<NavigationService>()
+                                  .navigateTo(HomeRoute, null);
                             },
 
                             ///Add to cart text
@@ -269,7 +276,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
     );
   }
 
-  ///Adding to cart API
+  /// Adding to cart API
   void addToCart(int userId, int itemId) async {
     final response =
         await post(Uri.parse('${baseUrl}shopuser/Add$userId?itemId=$itemId'));

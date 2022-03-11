@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:http/http.dart';
+import 'package:merchant_app/constants/constants/AppConst.dart';
 import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
+import 'package:merchant_app/routing/route_names.dart';
+import 'package:merchant_app/services/navigation_service.dart';
+import 'package:merchant_app/widgets/dialog_message/dialog_message.dart';
+
+import '../../locator.dart';
 
 /// Shopping cart item
 class ShopCartListItem extends StatefulWidget {
@@ -74,7 +81,20 @@ class _ShopCartListItemState extends State<ShopCartListItem> {
             /// Cancel Item
             IconButton(
               color: Colors.red,
-              onPressed: () {},
+              onPressed: () {
+                removeFromCart(1, widget.userShoppingItem.id!);
+
+                ///Show Dialog
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) => DialogMessage(
+                            context,
+                            widget.userShoppingItem.name!,
+                            "Item removed from your cart")
+                        .createDialog());
+                locator<NavigationService>()
+                    .navigateTo(ShoppingCartRoute, null);
+              },
               icon: const Icon(Icons.cancel_sharp),
               key: const Key("shoppingItemCancelButton"),
             ),
@@ -82,5 +102,21 @@ class _ShopCartListItemState extends State<ShopCartListItem> {
         ),
       ),
     );
+  }
+
+  /// Remove Item From Cart API
+  void removeFromCart(int userId, int itemId) async {
+    final response = await post(
+        Uri.parse('${baseUrl}shopuser/remove$userId?itemId=$itemId'));
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      return print("Remove Item was successfull");
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to remove item');
+    }
   }
 }
