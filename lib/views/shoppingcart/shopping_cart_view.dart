@@ -67,8 +67,11 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
                   } else {
                     return const SizedBox(
                         height: 500,
-                        child:
-                            Center(child: Text("Your shopping cart is empty")));
+                        child: Center(
+                            child: Text(
+                          "Your shopping cart is empty",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )));
                   }
                 } else if (snapshot.hasError) {
                   return const Center(child: Text('Failed to load cart'));

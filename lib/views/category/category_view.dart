@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:merchant_app/constants/constants/AppConst.dart';
+import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/views/category/category_content_desktop.dart';
 import 'package:merchant_app/views/category/category_content_mobile.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
@@ -14,6 +19,8 @@ class CategoryView extends StatefulWidget {
 }
 
 class _CategoryViewState extends State<CategoryView> {
+  late Future<List<ShoppingItem>> futureShoppingItems;
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -41,13 +48,35 @@ class _CategoryViewState extends State<CategoryView> {
 
         /// Main Content and products on category page
         ScreenTypeLayout(
-          mobile: const CategoryContentMobile(),
-          desktop: const CategoryContentDesktop(),
+          mobile:
+              CategoryContentMobile(),
+          desktop:
+              CategoryContentDesktop(futureShoppingItems: futureShoppingItems),
         ),
 
         /// Page Footer
         const HomePageFooter()
       ],
     );
+  }
+
+  Future<List<ShoppingItem>> getShoppingItems() async {
+    final response = await get(Uri.parse('${baseUrl}shopitem'));
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      return ShoppingItem.fromListJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load todo');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    futureShoppingItems = getShoppingItems();
   }
 }
