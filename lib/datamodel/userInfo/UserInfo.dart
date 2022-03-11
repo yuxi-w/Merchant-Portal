@@ -22,6 +22,7 @@ class UserInfo {
   bool? isBuyer;
   bool? isLoggedIn;
   List<dynamic>? shoppingBag;
+  List<dynamic>? orderHistory;
 
   UserInfo(
       this.id,
@@ -34,7 +35,8 @@ class UserInfo {
       this.password,
       this.isBuyer,
       this.isLoggedIn,
-      this.shoppingBag);
+      this.shoppingBag,
+      this.orderHistory);
 
   factory UserInfo.fromJson(Map<String, dynamic> json) {
     return UserInfo(
@@ -49,6 +51,7 @@ class UserInfo {
       json['isBuyer'],
       json['isLoggedIn'],
       json['shoppingBag'],
+      json['orderHistory'],
     );
   }
 

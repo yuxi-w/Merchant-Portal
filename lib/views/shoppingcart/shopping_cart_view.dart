@@ -20,12 +20,6 @@ class ShoppingCartView extends StatefulWidget {
 
 class _ShoppingCartViewState extends State<ShoppingCartView> {
   late Future<List<UserInfo>> futureUserInfo;
-  late Future<List<ShoppingItem>> futureShoppingItems;
-
-  List<UserInfo>? userInfo = [];
-  List<ShoppingItem>? allShoppingItems = [];
-  List<dynamic>? userShoppingBagIds = [];
-  List<ShoppingItem> userShoppingItems = [];
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +58,7 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
 
                   return Container(
                       constraints: const BoxConstraints(minHeight: 300),
-                      child: ShopCartListView(
-                        userShoppingItems: addShoppingBag(),
-                      ));
+                      child: ShopCartListView(futureUserInfo: futureUserInfo));
                 } else if (snapshot.hasError) {
                   return const Center(child: Text('Failed to load cart'));
                 } else {
@@ -132,61 +124,9 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
     }
   }
 
-  /// Getting All Shopping Items
-  Future<List<ShoppingItem>> getShoppingItems() async {
-    final response = await get(Uri.parse('${baseUrl}shopitem'));
-
-    if (response.statusCode == 200) {
-      // If the server did return a 200 OK response,
-      // then parse the JSON.
-      print("getting shop items successful");
-      return ShoppingItem.fromListJson(jsonDecode(response.body));
-    } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
-      throw Exception('Failed to load todo');
-    }
-  }
-
   @override
   void initState() {
     super.initState();
-
-    /// Getting values from future data
-    futureUserInfo = getUserInfo(2);
-    futureShoppingItems = getShoppingItems();
-
-    /// Get All shopping items
-    futureShoppingItems.then((value) {
-      allShoppingItems = value;
-
-      /// Get User Data
-      futureUserInfo.then((value) {
-        userInfo = value;
-
-        if (userInfo?[0].shoppingBag != null) {
-          userShoppingBagIds = userInfo?[0].shoppingBag;
-        }
-
-        print("AllShopItems ${allShoppingItems.toString()}");
-        print("UserItemsIDs ${userShoppingBagIds.toString()}");
-      });
-    });
-  }
-
-  /// Adding Items That User Selected
-  List<ShoppingItem> addShoppingBag() {
-    userShoppingItems.clear();
-    if (userShoppingBagIds != null && allShoppingItems != null) {
-      for (ShoppingItem shoppingItem in allShoppingItems!) {
-        for (int itemId in userShoppingBagIds!) {
-          if (shoppingItem.id == itemId) {
-            userShoppingItems.add(shoppingItem);
-          }
-        }
-      }
-    }
-    print("UserBag ${userShoppingItems.toString()}");
-    return userShoppingItems;
+    futureUserInfo = getUserInfo(1);
   }
 }
