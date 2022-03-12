@@ -27,24 +27,34 @@ class _InvoiceViewState extends State<InvoiceView> {
           child: const MyNavigationBar(),
         ),
 
-        /// The Text Showing "Home"
+        /// The Text Showing "Invoice"
         Container(
           alignment: Alignment.centerLeft,
           margin: const EdgeInsets.fromLTRB(70, 20, 10, 10),
           child: const Text(
-            "Home",
+            "Invoice",
             textAlign: TextAlign.right,
             key: Key("invoiceMainTitle"),
             style: TextStyle(
-              color: Colors.blue,
               fontWeight: FontWeight.bold,
-              fontSize: 18.0,
+              fontSize: 25.0,
             ),
           ),
         ),
 
+        /// Divider!
+        const SizedBox(
+          width: 1350.0,
+          height: 20.0,
+          child: Divider(
+            color: Color.fromARGB(255, 90, 38, 31),
+          ),
+        ),
+
         /// Main Content is a List which shows the products in Home Page
-        InvoiceContent(userShoppingBag: widget.userShoppingBag),
+        Container(
+            constraints: const BoxConstraints(minHeight: 500),
+            child: InvoiceContent(userShoppingBag: widget.userShoppingBag)),
 
         /// Page Footer
         const HomePageFooter()
