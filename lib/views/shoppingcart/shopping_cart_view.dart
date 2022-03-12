@@ -48,8 +48,9 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
             textAlign: TextAlign.right,
             key: Key("shoppingMainTitle"),
             style: TextStyle(
+              color: Colors.blue,
               fontWeight: FontWeight.bold,
-              fontSize: 17.0,
+              fontSize: 25,
             ),
           ),
         ),
@@ -175,7 +176,7 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
             /// Showing Total Price
             return Container(
               alignment: Alignment.centerRight,
-              margin: const EdgeInsets.fromLTRB(10, 20, 100, 10),
+              margin: const EdgeInsets.fromLTRB(10, 20, 115, 10),
               child: Text(
                 "Subtotal: \$${totalPrice.toString()}",
                 key: const Key("totalAmountText"),

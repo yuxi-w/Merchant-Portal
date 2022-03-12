@@ -42,8 +42,9 @@ class _HomeViewState extends State<HomeView> {
             textAlign: TextAlign.right,
             key: Key("homeMainTitle"),
             style: TextStyle(
+              color: Colors.blue,
               fontWeight: FontWeight.bold,
-              fontSize: 17.0,
+              fontSize: 25,
             ),
           ),
         ),

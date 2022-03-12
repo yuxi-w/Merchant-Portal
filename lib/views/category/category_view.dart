@@ -40,8 +40,9 @@ class _CategoryViewState extends State<CategoryView> {
             textAlign: TextAlign.right,
             key: Key("categoryMainTitle"),
             style: TextStyle(
+              color: Colors.blue,
               fontWeight: FontWeight.bold,
-              fontSize: 17.0,
+              fontSize: 25,
             ),
           ),
         ),

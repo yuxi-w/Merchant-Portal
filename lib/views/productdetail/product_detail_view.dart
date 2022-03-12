@@ -243,14 +243,13 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                                               "Item added to your cart")
                                           .createDialog());
 
-                              /// Reroute to Home Page
-                              locator<NavigationService>()
-                                  .navigateTo(HomeRoute, null);
+                              /// Reroute to Previous Page
+                              locator<NavigationService>().goBack();
                             },
 
                             ///Add to cart text
                             child: const Text(
-                              "Add to cart +",
+                              "Add to Cart +",
                               style: TextStyle(fontSize: 18),
                             ),
                             minWidth: double.infinity,
