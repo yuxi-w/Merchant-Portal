@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:merchant_app/constants/constants/AppConst.dart';
+import 'package:merchant_app/routing/route_names.dart';
+import 'package:merchant_app/services/navigation_service.dart';
+import 'package:merchant_app/widgets/dialog_message/dialog_message.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
 
 import '../../constants/methods/validation_methods.dart';
+import '../../locator.dart';
 
 class DiscussionView extends StatefulWidget {
   const DiscussionView({Key? key}) : super(key: key);
@@ -12,17 +18,28 @@ class DiscussionView extends StatefulWidget {
 }
 
 class _DiscussionViewState extends State<DiscussionView> {
+  late TextEditingController titleText, bodyText;
   final postdiscussionformkey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    titleText = TextEditingController();
+    bodyText = TextEditingController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
         Container(
           margin: const EdgeInsets.fromLTRB(16, 16, 64, 16),
+
+          /// Top Navigation Bar
           child: const MyNavigationBar(),
         ),
 
-        // The Text Showing "Discussion Page"
+        /// The Text Showing "Discussion Page"
         Container(
           alignment: Alignment.centerLeft,
           margin: const EdgeInsets.fromLTRB(70, 20, 10, 10),
@@ -30,8 +47,9 @@ class _DiscussionViewState extends State<DiscussionView> {
             "Discussion Page",
             textAlign: TextAlign.right,
             style: TextStyle(
+              color: Colors.blue,
               fontWeight: FontWeight.bold,
-              fontSize: 24.0,
+              fontSize: 25,
             ),
           ),
         ),
@@ -77,8 +95,9 @@ class _DiscussionViewState extends State<DiscussionView> {
 
                                   const SizedBox(height: 24),
 
-                                  /// Input text Field
+                                  /// Title Text Field
                                   TextFormField(
+                                    controller: titleText,
                                     decoration: const InputDecoration(
                                       label: Text("Title"),
                                       hintText: "Enter Title",
@@ -88,8 +107,9 @@ class _DiscussionViewState extends State<DiscussionView> {
 
                                   const SizedBox(height: 24),
 
-                                  /// Password Text Field
+                                  /// Description Text Field
                                   TextFormField(
+                                    controller: bodyText,
                                     minLines: 2,
                                     maxLines: 5,
                                     keyboardType: TextInputType.multiline,
@@ -106,11 +126,26 @@ class _DiscussionViewState extends State<DiscussionView> {
 
                                   const SizedBox(height: 24),
 
+                                  /// Post Button
                                   MaterialButton(
                                     onPressed: () {
                                       if (postdiscussionformkey.currentState!
                                           .validate()) {
-                                        //onpress goes in here
+                                        postChatMessage(
+                                            titleText.text, bodyText.text);
+
+                                        ///Show Confirm Dialog
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                DialogMessage(
+                                                        context,
+                                                        "Your message has been received",
+                                                        "Thank you for your message, the merchant will answer as soon as possible...")
+                                                    .createDialog());
+
+                                        /// Go Back to Previous Page
+                                        locator<NavigationService>().goBack();
                                       }
                                     },
                                     child: const Text("Post"),
@@ -137,8 +172,30 @@ class _DiscussionViewState extends State<DiscussionView> {
           ),
         ),
 
+        /// Footer Page
         const HomePageFooter()
       ],
     );
+  }
+
+  /// Send Chat API
+  void postChatMessage(String title, String body) async {
+    try {
+      Response response =
+          await post(Uri.parse('${baseUrl}Chat').replace(queryParameters: {
+        'Name': title,
+        'Content': body,
+      }));
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        var data = (response.body.toString());
+        print(data);
+        print("success");
+      } else {
+        print("fail");
+      }
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }
