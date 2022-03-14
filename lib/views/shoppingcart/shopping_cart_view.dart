@@ -1,4 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:http/http.dart';
+import 'package:merchant_app/constants/constants/AppConst.dart';
+import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
+import 'package:merchant_app/datamodel/userInfo/UserInfo.dart';
+import 'package:merchant_app/widgets/dialog_message/dialog_message.dart';
+import 'package:merchant_app/widgets/dialog_payment_option/dialog_payment_option.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/shopping_cart_list_view/shopping_cart_list_view.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
@@ -12,6 +21,13 @@ class ShoppingCartView extends StatefulWidget {
 }
 
 class _ShoppingCartViewState extends State<ShoppingCartView> {
+  late Future<List<UserInfo>> futureUserInfo;
+  late UserInfo userInfo;
+
+  var dynamicShoppingBag = [];
+  List<ShoppingItem> userShoppingBag = [];
+  bool isUserExist = false;
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -32,29 +48,35 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
             textAlign: TextAlign.right,
             key: Key("shoppingMainTitle"),
             style: TextStyle(
+              color: Colors.blue,
               fontWeight: FontWeight.bold,
-              fontSize: 17.0,
+              fontSize: 25,
             ),
           ),
         ),
 
         /// Main List View
         Container(
-          constraints: const BoxConstraints(minWidth: 300, maxWidth: 1000),
-          child: const ShopCartListView(),
-        ),
+            constraints: const BoxConstraints(
+                minHeight: 300, minWidth: 300, maxWidth: 1000),
+            child: FutureBuilder(
+              future: futureUserInfo,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  print("dataSnapShot ${snapshot.data}");
+                  return ShopCartListView(futureUserInfo: futureUserInfo);
+                } else if (snapshot.hasError) {
+                  return const Center(child: Text('Failed to load cart'));
+                } else {
+                  return const SizedBox(
+                      height: 500,
+                      child: Center(child: CircularProgressIndicator()));
+                }
+              },
+            )),
 
         /// Text Showing Total Amount to Pay
-        Container(
-          alignment: Alignment.centerRight,
-          margin: const EdgeInsets.fromLTRB(10, 20, 100, 10),
-          child: const Text(
-            "Subtotal: \$200.00",
-            key: Key("totalAmountText"),
-            style: TextStyle(color: Colors.black, fontSize: 30),
-            textAlign: TextAlign.right,
-          ),
-        ),
+        calculateTotalPrice(),
 
         /// The Checkout Button
         Container(
@@ -62,7 +84,9 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
           margin: const EdgeInsets.fromLTRB(10, 0, 120, 40),
           child: MaterialButton(
             minWidth: 200,
-            onPressed: () {},
+            onPressed: () {
+              checkUserBag();
+            },
             child: const Text(
               "Checkout!",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
@@ -81,5 +105,105 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
         const HomePageFooter(),
       ],
     );
+  }
+
+  /// Getting User Information From API
+  Future<List<UserInfo>> getUserInfo(int userId) async {
+    final response = await get(Uri.parse('${baseUrl}shopuser/$userId'));
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      print("getting user successful");
+      return UserInfo.fromListJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load user info');
+    }
+  }
+
+  void checkUserBag() {
+    if (userShoppingBag.isNotEmpty && isUserExist == true) {
+      ///Show Payment Dialog
+      showDialog(
+          context: context,
+          builder: (BuildContext context) =>
+              DialogPaymentOption(context, userInfo, userShoppingBag)
+                  .createDialog());
+    } else {
+      ///Show Hint Dialog
+      showDialog(
+          context: context,
+          builder: (BuildContext context) =>
+              DialogMessage(context, "No Item in Cart", "").createDialog());
+    }
+  }
+
+  /// Method For Calculating Total Price
+  FutureBuilder<List<UserInfo>> calculateTotalPrice() {
+    return FutureBuilder(
+      future: futureUserInfo,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          print("snapData ${snapshot.data}");
+
+          /// Get User Info
+          var tempUserInfo = snapshot.data as List<UserInfo>;
+          userInfo = tempUserInfo[0];
+          isUserExist = true;
+
+          /// Get User Shopping Bag
+          if (userInfo.shoppingBag!.isNotEmpty) {
+            List<String> priceList = [];
+            dynamicShoppingBag =
+                ShoppingItem.fromListJson(userInfo.shoppingBag!);
+            userShoppingBag = dynamicShoppingBag as List<ShoppingItem>;
+
+            /// Adding Prices to Price List
+            userShoppingBag.forEach((element) {
+              priceList.add(element.price!);
+            });
+
+            print("PricesList ${priceList.toString()}");
+
+            /// Sum Prices
+            int totalPrice = 0;
+            priceList.forEach((element) {
+              totalPrice += int.parse(element);
+            });
+
+            /// Showing Total Price
+            return Container(
+              alignment: Alignment.centerRight,
+              margin: const EdgeInsets.fromLTRB(10, 20, 115, 10),
+              child: Text(
+                "Subtotal: \$${totalPrice.toString()}",
+                key: const Key("totalAmountText"),
+                style: const TextStyle(color: Colors.black, fontSize: 30),
+                textAlign: TextAlign.right,
+              ),
+            );
+          } else {
+            return const Center(
+                child: Text(
+              "\$0",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ));
+          }
+        } else if (snapshot.hasError) {
+          return const Center(child: Text('Failed To Load Data'));
+        } else {
+          return const SizedBox(
+              height: 500, child: Center(child: CircularProgressIndicator()));
+        }
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    futureUserInfo = getUserInfo(1);
   }
 }

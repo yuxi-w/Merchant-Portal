@@ -38,6 +38,8 @@ dependencies:
   getwidget: ^2.0.4
   footer: ^0.0.4
   get_it: ^5.0.3
+  http: ^0.13.4
+  convert: ^3.0.1
 
 
 dev_dependencies:

@@ -130,14 +130,14 @@ class _HomePageFooterState extends State<HomePageFooter> {
   }
 
   void goToHomePage() {
-    locator<NavigationService>().navigateTo(HomeRoute);
+    locator<NavigationService>().navigateTo(HomeRoute,null);
   }
 
   void goToPersonalInfoPage() {
-    locator<NavigationService>().navigateTo(PersonalInfoRoute);
+    locator<NavigationService>().navigateTo(PersonalInfoRoute,null);
   }
 
   void goToAboutPage() {
-    locator<NavigationService>().navigateTo(AboutRoute);
+    locator<NavigationService>().navigateTo(AboutRoute,null);
   }
 }

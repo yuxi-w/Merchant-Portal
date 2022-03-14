@@ -6,7 +6,6 @@ import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
 
 import '../../locator.dart';
 
-
 class AboutView extends StatefulWidget {
   const AboutView({Key? key}) : super(key: key);
 
@@ -78,6 +77,7 @@ class _AboutViewState extends State<AboutView> {
                         padding: const EdgeInsets.all(10),
                         child: Column(children: [
                           Container(
+                              margin: const EdgeInsets.all(32),
                               padding: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 20),
                               child: Column(

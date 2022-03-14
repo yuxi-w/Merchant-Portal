@@ -14,7 +14,7 @@ class NavBarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        locator<NavigationService>().navigateTo(navigationPath);
+        locator<NavigationService>().navigateTo(navigationPath,null);
       },
       child: Text(
         title,

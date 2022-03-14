@@ -350,6 +350,6 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
   }
 
   void goToPersonalInfoPage() {
-    locator<NavigationService>().navigateTo(PersonalInfoRoute);
+    locator<NavigationService>().navigateTo(PersonalInfoRoute,null);
   }
 }

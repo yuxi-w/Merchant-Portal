@@ -107,6 +107,6 @@ class _LoginLeftViewState extends State<LoginLeftView> {
   }
 
   void goToSignUpPage() {
-    locator<NavigationService>().navigateTo(SignUpRoute);
+    locator<NavigationService>().navigateTo(SignUpRoute,null);
   }
 }
