@@ -4,10 +4,10 @@ name: flutter_ci
 
 on:
   push:
-    branches: [ CI/CD ]
+    branches: [ CI-CD ]
   pull_request:
-    branches: [ CI/CD ]
-  workflow_dispatch:
+    branches: [ CI-CD ]
+  #workflow_dispatch:
 
 jobs:
   build:
