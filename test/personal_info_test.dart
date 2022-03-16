@@ -16,8 +16,7 @@ void main() {
     }
 
     //user status
-    expect(
-        find.byKey(const Key("personalinfo_customer_status")), findsOneWidget);
+    expect(find.byKey(const Key("personalinfo_customer_type")), findsOneWidget);
     if (kDebugMode) {
       print("Status display widget found");
     }
