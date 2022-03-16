@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:merchant_app/routing/route_names.dart';
+import 'package:merchant_app/services/navigation_service.dart';
+
+import '../../locator.dart';
 
 class MerchantItem extends StatefulWidget {
   final String title;
@@ -76,5 +80,10 @@ class _MerchantItemState extends State<MerchantItem> {
     );
   }
 
-  void goToDesiredPage() {}
+  void goToDesiredPage() {
+    switch (widget.title) {
+      case "Add Item":
+        locator<NavigationService>().navigateTo(AddItemRoute, null);
+    }
+  }
 }

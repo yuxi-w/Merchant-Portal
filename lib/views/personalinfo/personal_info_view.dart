@@ -3,7 +3,6 @@ import 'package:merchant_app/constants/colors/app_colors.dart';
 import 'package:merchant_app/locator.dart';
 import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/services/navigation_service.dart';
-import 'package:merchant_app/views/editpersonalinfo/edit_personal_info_view.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
 
@@ -253,6 +252,6 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
   }
 
   void goToEditPersonalInfoPage() {
-    locator<NavigationService>().navigateTo(EditPersonalInfoRoute,null);
+    locator<NavigationService>().navigateTo(EditPersonalInfoRoute, null);
   }
 }
