@@ -18,37 +18,35 @@ class _CategoryContentDesktopState extends State<CategoryContentDesktop> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(16),
-      child: Flexible(
-        child: ListView(
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(16),
-              child: Text("Electronics",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
-            ),
-            buildFutureBuilder("electronics"),
-            const Padding(
-              padding: EdgeInsets.all(16),
-              child: Text("TV",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
-            ),
-            buildFutureBuilder("tv"),
-            const Padding(
-              padding: EdgeInsets.all(16),
-              child: Text("Airpods",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
-            ),
-            buildFutureBuilder("airpods"),
-            const Padding(
-              padding: EdgeInsets.all(16),
-              child: Text("Headphones",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
-            ),
-            buildFutureBuilder("headphones"),
-          ],
-        ),
+      child: ListView(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(16),
+            child: Text("Electronics",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
+          ),
+          buildFutureBuilder("electronics"),
+          const Padding(
+            padding: EdgeInsets.all(16),
+            child: Text("TV",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
+          ),
+          buildFutureBuilder("tv"),
+          const Padding(
+            padding: EdgeInsets.all(16),
+            child: Text("Airpods",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
+          ),
+          buildFutureBuilder("airpods"),
+          const Padding(
+            padding: EdgeInsets.all(16),
+            child: Text("Headphones",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
+          ),
+          buildFutureBuilder("headphones"),
+        ],
       ),
     );
   }
