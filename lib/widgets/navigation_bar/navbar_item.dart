@@ -1,6 +1,11 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:merchant_app/constants/constants/AppConst.dart';
 import 'package:merchant_app/locator.dart';
 import 'package:merchant_app/services/navigation_service.dart';
+
+import 'package:merchant_app/constants/constants/globals.dart' as globals;
 
 /// Top Navigation Bar Items
 class NavBarItem extends StatelessWidget {
@@ -10,11 +15,39 @@ class NavBarItem extends StatelessWidget {
   const NavBarItem(this.title, this.navigationPath, {Key? key})
       : super(key: key);
 
+  Future<void> logout(int id) async {
+    try {
+      Response response = await post(
+        Uri.parse('${baseUrl}shopuser/logout$id'),
+      );
+
+      if (response.statusCode == 200) {
+        print("logged out");
+        globals.isLoggedIn = false;
+      } else {
+        print("logout fail");
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {
-        locator<NavigationService>().navigateTo(navigationPath,null);
+      onPressed: () async {
+        if (globals.isLoggedIn) {
+          await logout(globals.id);
+          CoolAlert.show(
+            context: context,
+            type: CoolAlertType.success,
+            text: "Logout Successful!",
+            // onConfirmBtnTap: () {
+            //   Navigator.pop(context);
+            // },
+          );
+        }
+        locator<NavigationService>().navigateTo(navigationPath, null);
       },
       child: Text(
         title,

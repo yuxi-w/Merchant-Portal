@@ -4,11 +4,14 @@ import 'package:merchant_app/routing/route_names.dart';
 import 'navbar_item.dart';
 import 'navbar_logo.dart';
 
+import 'package:merchant_app/constants/constants/globals.dart' as globals;
+
 class NavigationBarTabletDesktop extends StatelessWidget {
   const NavigationBarTabletDesktop({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    String loginorlogouttext = loginorlogout();
     return Container(
       constraints: const BoxConstraints(
           minWidth: 100, maxWidth: 300, minHeight: 100, maxHeight: 300),
@@ -20,36 +23,44 @@ class NavigationBarTabletDesktop extends StatelessWidget {
           const NavBarLogo(),
           Row(
             mainAxisSize: MainAxisSize.min,
-            children: const [
-              NavBarItem('Home', HomeRoute),
-              SizedBox(
+            children: [
+              const NavBarItem('Home', HomeRoute),
+              const SizedBox(
                 width: 50,
               ),
-              NavBarItem('Category', CategoryRoute),
-              SizedBox(
+              const NavBarItem('Category', CategoryRoute),
+              const SizedBox(
                 width: 50,
               ),
-              NavBarItem('Shopping Cart', ShoppingCartRoute),
-              SizedBox(
+              const NavBarItem('Shopping Cart', ShoppingCartRoute),
+              const SizedBox(
                 width: 50,
               ),
-              NavBarItem('My Info', PersonalInfoRoute),
-              SizedBox(
+              const NavBarItem('My Info', PersonalInfoRoute),
+              const SizedBox(
                 width: 50,
               ),
-              NavBarItem('Login', LoginRoute),
-              SizedBox(
+              NavBarItem(loginorlogouttext, LoginRoute),
+              const SizedBox(
                 width: 50,
               ),
-              NavBarItem('Sign Up', SignUpRoute),
-              SizedBox(
+              const NavBarItem('Sign Up', SignUpRoute),
+              const SizedBox(
                 width: 50,
               ),
-              NavBarItem('Merchant Portal', MerchantPortalRoute)
+              const NavBarItem('Merchant Portal', MerchantPortalRoute)
             ],
           )
         ],
       ),
     );
+  }
+
+  String loginorlogout() {
+    if (globals.isLoggedIn) {
+      return "Logout";
+    } else {
+      return "Login";
+    }
   }
 }

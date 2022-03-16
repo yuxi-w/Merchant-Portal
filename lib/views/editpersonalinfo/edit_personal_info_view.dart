@@ -1,10 +1,17 @@
+import 'dart:convert';
+
+import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:merchant_app/constants/constants/AppConst.dart';
 import 'package:merchant_app/constants/methods/validation_methods.dart';
 import 'package:merchant_app/locator.dart';
 import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/services/navigation_service.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
+
+import 'package:merchant_app/constants/constants/globals.dart' as globals;
 
 class EditPersonalInfoView extends StatefulWidget {
   const EditPersonalInfoView({Key? key}) : super(key: key);
@@ -16,8 +23,73 @@ class EditPersonalInfoView extends StatefulWidget {
 
 class _PersonalInfoViewState extends State<EditPersonalInfoView> {
   final editinfoformkey = GlobalKey<FormState>();
-  final TextEditingController _pass = TextEditingController();
-  final TextEditingController _confirmPass = TextEditingController();
+  final TextEditingController _name = TextEditingController(text: globals.name);
+  final TextEditingController _email =
+      TextEditingController(text: globals.email);
+  final TextEditingController _phone =
+      TextEditingController(text: globals.phoneNumber);
+  final TextEditingController _address =
+      TextEditingController(text: globals.address);
+  final TextEditingController _zip =
+      TextEditingController(text: globals.zipcode);
+  final TextEditingController _pass =
+      TextEditingController(text: globals.password);
+  final TextEditingController _confirmPass =
+      TextEditingController(text: globals.password);
+  bool success = false;
+  String errmsg = "temp";
+
+  Future<void> editinfo(
+      String name, email, pass, address, phone, zipcode, int id) async {
+    try {
+      Map mybody = {};
+      mybody['name'] = name;
+      mybody['email'] = email;
+      mybody['password'] = pass;
+      mybody['address'] = address;
+      mybody['profilePicture'] = "temp";
+      mybody['phoneNumber'] = phone;
+      mybody['zipcode'] = zipcode;
+      mybody['isBuyer'] = globals.isBuyer;
+      mybody['isLoggedIn'] = globals.isLoggedIn;
+      mybody['shoppingBag'] = globals.shoppingBag;
+      mybody['orderHistory'] = globals.orderHistory;
+      String str = jsonEncode(mybody);
+      print(str);
+      Response response = await put(
+        Uri.parse('${baseUrl}shopuser/$id'),
+        body: str,
+        headers: {"Content-Type": "application/json"},
+      );
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        print("success");
+        globals.name = name;
+        globals.email = email;
+        globals.password = pass;
+        globals.address = address;
+        globals.phoneNumber = phone;
+        globals.zipcode = zipcode;
+        setState(() {
+          success = true;
+        });
+      } else {
+        var data = (response.body.toString());
+        print(data);
+        print("fail");
+        setState(() {
+          success = false;
+          errmsg = data;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        success = false;
+      });
+      print(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -84,6 +156,7 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(8)))),
                               validator: NameFieldValidator.validate,
+                              controller: _name,
                             ),
                           ),
 
@@ -111,13 +184,14 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                               decoration: const InputDecoration(
                                   fillColor: Colors.white,
                                   filled: true,
-                                  hintText: "+1 123 1231231",
+                                  hintText: "1231231231",
                                   contentPadding:
                                       EdgeInsets.fromLTRB(16, 8, 16, 8),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(8)))),
                               validator: PhoneFieldValidator.validate,
+                              controller: _phone,
                             ),
                           ),
 
@@ -152,6 +226,7 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(8)))),
                               validator: EmailFieldValidator.validate,
+                              controller: _email,
                             ),
                           ),
 
@@ -186,6 +261,7 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(8)))),
                               validator: EmptyFieldValidator.validate,
+                              controller: _address,
                             ),
                           ),
 
@@ -205,6 +281,7 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(8)))),
                               validator: ZipcodeFieldValidator.validate,
+                              controller: _zip,
                             ),
                           ),
 
@@ -240,7 +317,6 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(8)))),
                               controller: _pass,
-                              validator: EmptyFieldValidator.validate,
                             ),
                           ),
 
@@ -262,9 +338,7 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                                           Radius.circular(8)))),
                               controller: _confirmPass,
                               validator: (value) {
-                                if (value!.isEmpty) {
-                                  return "Please confirm your password";
-                                } else if (value != _pass.text) {
+                                if (value != _pass.text) {
                                   return "Password dosen't match";
                                 } else {
                                   return null;
@@ -323,11 +397,37 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 21),
                                     ),
-                                    onPressed: () {
+                                    onPressed: () async {
                                       if (editinfoformkey.currentState!
                                           .validate()) {
                                         //onpress goes here
-                                        goToPersonalInfoPage();
+                                        await editinfo(
+                                            _name.text.toString(),
+                                            _email.text.toString(),
+                                            _pass.text.toString(),
+                                            _address.text.toString(),
+                                            _phone.text.toString(),
+                                            _zip.text.toString(),
+                                            globals.id);
+                                        if (success) {
+                                          CoolAlert.show(
+                                            context: context,
+                                            type: CoolAlertType.success,
+                                            text: "Changes made successfully!",
+                                            // onConfirmBtnTap: () {
+                                            //   Navigator.pop(context);
+                                            // },
+                                          );
+                                          goToPersonalInfoPage();
+                                        } else {
+                                          CoolAlert.show(
+                                            context: context,
+                                            type: CoolAlertType.error,
+                                            title: 'Oops...',
+                                            text: errmsg,
+                                            loopAnimation: false,
+                                          );
+                                        }
                                       }
                                     },
                                   ),
@@ -350,6 +450,6 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
   }
 
   void goToPersonalInfoPage() {
-    locator<NavigationService>().navigateTo(PersonalInfoRoute,null);
+    locator<NavigationService>().navigateTo(PersonalInfoRoute, null);
   }
 }
