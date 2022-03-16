@@ -287,7 +287,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
-      throw Exception('Failed to load todo');
+      throw Exception('Failed to load Add to Cart');
     }
   }
 }

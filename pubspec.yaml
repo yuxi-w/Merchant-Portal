@@ -40,6 +40,8 @@ dependencies:
   get_it: ^5.0.3
   http: ^0.13.4
   convert: ^3.0.1
+  flutter_svg: ^1.0.3
+
 
 
 dev_dependencies:
@@ -78,6 +80,12 @@ flutter:
     - assets/shopping_bags.jpg
     - assets/cart.png
     - assets/shopping.png
+    - assets/add_category.png
+    - assets/add_item.png
+    - assets/edit_item.png
+    - assets/remove_category.png
+    - assets/remove_item.png
+    - assets/user_orders.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
