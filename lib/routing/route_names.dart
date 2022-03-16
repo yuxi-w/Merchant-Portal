@@ -12,3 +12,4 @@ const String DiscussionRoute = 'discussionRoute';
 const String MerchantPortalRoute = 'merchantPortalRoute';
 const String InvoiceRoute = 'invoiceRoute';
 const String AddItemRoute = 'addItemRoute';
+const String RemoveItemRoute = 'removeItemRoute';
