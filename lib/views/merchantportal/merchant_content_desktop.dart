@@ -23,13 +23,8 @@ class _MerchantContentDesktopState extends State<MerchantContentDesktop> {
               imgHeight: 150,
               imgWidth: 150),
           MerchantItem(
-              title: "Edit Item",
+              title: "Edit & Remove Item",
               imageSrc: "assets/edit_item.png",
-              imgHeight: 150,
-              imgWidth: 150),
-          MerchantItem(
-              title: "Remove Item",
-              imageSrc: "assets/remove_item.png",
               imgHeight: 150,
               imgWidth: 150),
           MerchantItem(
