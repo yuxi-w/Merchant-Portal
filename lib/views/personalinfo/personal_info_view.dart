@@ -79,11 +79,10 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
 
                     /// Smaller wrapper to keep everything in center and look nice and professional
                     Container(
-                      constraints:
-                          const BoxConstraints(minWidth: 500, maxWidth: 800),
-                      padding: const EdgeInsets.all(10),
-                      child: Column(
-                        children: [
+                        constraints:
+                            const BoxConstraints(minWidth: 500, maxWidth: 800),
+                        padding: const EdgeInsets.all(10),
+                        child: Column(children: [
                           /// Phone number text section
                           Align(
                             alignment: Alignment.centerLeft,
@@ -270,11 +269,11 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                               textColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(32)),
+
+                              /// Button to editing page
                             ),
                           ),
-                        ],
-                      ),
-                    )
+                        ]))
                   ],
                 ),
               ),
