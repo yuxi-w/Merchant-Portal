@@ -68,7 +68,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                           letterSpacing: 2.5),
                     ),
 
-                    /// Devider!
+                    /// Divider!
                     const SizedBox(
                       width: 1350.0,
                       height: 20.0,
@@ -285,6 +285,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
         ],
       );
     } else {
+      /// If User not Logged In
       return ListView(
         children: [
           /// Top Navigation Bar
@@ -294,6 +295,8 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
           ),
 
           Container(
+            constraints: const BoxConstraints(
+                minHeight: 350, minWidth: 300, maxWidth: 1000),
             alignment: Alignment.center,
             margin: const EdgeInsets.fromLTRB(70, 20, 10, 110),
             child: const Text(
