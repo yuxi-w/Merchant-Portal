@@ -88,7 +88,7 @@ class _MerchantItemState extends State<MerchantItem> {
         locator<NavigationService>().navigateTo(AddItemRoute, null);
         break;
 
-      case "Remove Item":
+      case "Edit & Remove Item":
         locator<NavigationService>().navigateTo(RemoveItemRoute, null);
     }
   }

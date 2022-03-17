@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:merchant_app/constants/colors/app_colors.dart';
+import 'package:merchant_app/constants/constants/AppConst.dart';
 import 'package:merchant_app/constants/methods/validation_methods.dart';
 import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
@@ -15,6 +17,19 @@ class EditItemView extends StatefulWidget {
 }
 
 class _EditItemViewState extends State<EditItemView> {
+  late TextEditingController nameText, categoryText, priceText, descriptionText;
+  GlobalKey<FormState>? addItemFormKey;
+
+  @override
+  void initState() {
+    super.initState();
+    nameText = TextEditingController();
+    categoryText = TextEditingController();
+    priceText = TextEditingController();
+    descriptionText = TextEditingController();
+    addItemFormKey = GlobalKey<FormState>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -74,7 +89,7 @@ class _EditItemViewState extends State<EditItemView> {
                           decoration: const InputDecoration(
                             label: Text("Item Name"),
                           ),
-                          validator: NameFieldValidator.validate,
+                          validator: EmptyFieldValidator.validate,
                         ),
 
                         /// Item Price Text Field
@@ -82,7 +97,7 @@ class _EditItemViewState extends State<EditItemView> {
                           decoration: const InputDecoration(
                             label: Text("\$ Item Price"),
                           ),
-                          validator: NameFieldValidator.validate,
+                          validator: EmptyFieldValidator.validate,
                         ),
 
                         /// Item Category Text Field
@@ -90,7 +105,7 @@ class _EditItemViewState extends State<EditItemView> {
                           decoration: const InputDecoration(
                             label: Text("Item Category"),
                           ),
-                          validator: NameFieldValidator.validate,
+                          validator: EmptyFieldValidator.validate,
                         ),
 
                         const SizedBox(height: 50),
@@ -119,7 +134,16 @@ class _EditItemViewState extends State<EditItemView> {
                           padding: const EdgeInsets.fromLTRB(25, 2, 25, 2),
                           child: MaterialButton(
                             key: const Key("edit_item_button_merchant"),
-                            onPressed: () {},
+                            onPressed: () {
+                              if (addItemFormKey!.currentState!.validate()) {
+                                /// Call Edit Item API
+                                // editItemApiCall();
+
+
+
+
+                              }
+                            },
                             child: const Text(
                               "Edit Item",
                               style: TextStyle(fontSize: 18),
@@ -145,4 +169,36 @@ class _EditItemViewState extends State<EditItemView> {
       ],
     );
   }
+
+  // void editItemApiCall() async {
+  //   try {
+  //     Response response = await post(
+  //         Uri.parse('${baseUrl}shopitem/createbykeys')
+  //             .replace(queryParameters: {
+  //           'name': nameText.text,
+  //           'shortDescription': "short description",
+  //           'description': descriptionText.text,
+  //           'picture': "a",
+  //           'price': priceText.text,
+  //           'option': "Black",
+  //           'category': categoryText.text,
+  //           'quantity': "1",
+  //         }));
+  //     print(response.statusCode);
+  //     if (response.statusCode == 200) {
+  //       var data = (response.body.toString());
+  //       print(data);
+  //       print("success");
+  //       showSuccessDialog();
+  //
+  //       /// Go Back to Previous Page
+  //       locator<NavigationService>().goBack();
+  //     } else {
+  //       print("fail");
+  //     }
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  //
+  // }
 }

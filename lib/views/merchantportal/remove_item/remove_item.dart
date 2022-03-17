@@ -35,7 +35,7 @@ class _RemoveItemViewState extends State<RemoveItemView> {
           alignment: Alignment.centerLeft,
           margin: const EdgeInsets.fromLTRB(70, 20, 10, 10),
           child: const Text(
-            "Remove Item",
+            "Edit & Remove Item",
             textAlign: TextAlign.right,
             key: Key("main_remove_item_title"),
             style: TextStyle(
