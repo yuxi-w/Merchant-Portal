@@ -18,51 +18,35 @@ class _CategoryContentDesktopState extends State<CategoryContentDesktop> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(16),
-      child: ListView(
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(16),
-            child: Text("Electronics",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
-          ),
-          buildFutureBuilder("electronics"),
-          const Padding(
-            padding: EdgeInsets.all(16),
-            child: Text("TV",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
-          ),
-          buildFutureBuilder("tv"),
-          const Padding(
-            padding: EdgeInsets.all(16),
-            child: Text("Airpods",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
-          ),
-          buildFutureBuilder("airpods"),
-          const Padding(
-            padding: EdgeInsets.all(16),
-            child: Text("Headphones",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
-          ),
-          buildFutureBuilder("headphones"),
-        ],
-      ),
+      child: buildFutureBuilder(),
     );
   }
 
-  FutureBuilder<List<ShoppingItem>> buildFutureBuilder(String categoryName) {
+  FutureBuilder<List<ShoppingItem>> buildFutureBuilder() {
     return FutureBuilder(
       future: widget.futureShoppingItems,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           print("snapShotData ${snapshot.data}");
+
+          ///Getting All Items
           var allShoppingItems = snapshot.data as List<ShoppingItem>;
-          List<ShoppingItem> categoryItems = [];
+
+          ///Getting Category Names
+          Set<String> categoryNames = {};
           allShoppingItems.forEach((element) {
-            if (element.category?.toLowerCase() == categoryName.toLowerCase()) {
-              categoryItems.add(element);
-            }
+            categoryNames.add(element.category!.toLowerCase());
+          });
+
+          ///Adding Category Items
+          List<ShoppingItem> categoryItems = [];
+          allShoppingItems.forEach((shoppingItem) {
+            categoryNames.forEach((categoryName) {
+              if (shoppingItem.category!.toLowerCase() ==
+                  categoryName.toLowerCase()) {
+                categoryItems.add(shoppingItem);
+              }
+            });
           });
           if (categoryItems.isNotEmpty) {
             return GridView.builder(
