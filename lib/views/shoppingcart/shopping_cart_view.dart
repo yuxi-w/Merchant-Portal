@@ -11,6 +11,7 @@ import 'package:merchant_app/widgets/dialog_payment_option/dialog_payment_option
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/shopping_cart_list_view/shopping_cart_list_view.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
+import 'package:merchant_app/constants/constants/globals.dart' as globals;
 
 /// Shopping Cart Page
 class ShoppingCartView extends StatefulWidget {
@@ -204,6 +205,6 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
   @override
   void initState() {
     super.initState();
-    futureUserInfo = getUserInfo(1);
+    futureUserInfo = getUserInfo(globals.id);
   }
 }

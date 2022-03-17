@@ -8,6 +8,7 @@ import 'package:merchant_app/services/navigation_service.dart';
 import 'package:merchant_app/widgets/dialog_message/dialog_message.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
+import 'package:merchant_app/constants/constants/globals.dart' as globals;
 
 import '../../locator.dart';
 
@@ -231,7 +232,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                           child: MaterialButton(
                             onPressed: () {
                               /// Add to Cart API Call
-                              addToCart(1, widget.shoppingItem!.id!);
+                              addToCart(globals.id, widget.shoppingItem!.id!);
 
                               ///Show Dialog
                               showDialog(

@@ -79,10 +79,11 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
 
                     /// Smaller wrapper to keep everything in center and look nice and professional
                     Container(
-                        constraints:
-                            const BoxConstraints(minWidth: 500, maxWidth: 800),
-                        padding: const EdgeInsets.all(10),
-                        child: Column(children: [
+                      constraints:
+                          const BoxConstraints(minWidth: 500, maxWidth: 800),
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        children: [
                           /// Phone number text section
                           Align(
                             alignment: Alignment.centerLeft,
@@ -243,8 +244,37 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(32)),
                             ),
-                          )
-                        ]))
+                          ),
+                          const Text(
+                            ' ',
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 70, 70, 70)),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.fromLTRB(25, 2, 25, 2),
+                            child: MaterialButton(
+                              key: const Key("orderhistory_redirect_button"),
+                              onPressed: () {
+                                goToOrderHistoryPage();
+                              },
+                              child: const Text(
+                                "View Order history",
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              minWidth: double.infinity,
+                              height: 52,
+                              elevation: 24,
+                              color: Colors.blue,
+                              textColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(32)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -294,5 +324,9 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
 
   void goToEditPersonalInfoPage() {
     locator<NavigationService>().navigateTo(EditPersonalInfoRoute, null);
+  }
+
+  void goToOrderHistoryPage() {
+    locator<NavigationService>().navigateTo(OrderHistoryRoute, null);
   }
 }

@@ -11,3 +11,4 @@ const String AboutRoute = 'aboutRoute';
 const String DiscussionRoute = 'discussionRoute';
 const String MerchantPortalRoute = 'merchantPortalRoute';
 const String InvoiceRoute = 'invoiceRoute';
+const String OrderHistoryRoute = 'orderHistoryRoute';

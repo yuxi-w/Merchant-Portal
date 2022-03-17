@@ -9,6 +9,7 @@ import 'package:merchant_app/views/home/home_view.dart';
 import 'package:merchant_app/views/invoice/invoice_view.dart';
 import 'package:merchant_app/views/login/login_view.dart';
 import 'package:merchant_app/views/merchantportal/merchant_portal_view.dart';
+import 'package:merchant_app/views/order_history/order_history_view.dart';
 import 'package:merchant_app/views/personalinfo/personal_info_view.dart';
 import 'package:merchant_app/views/productdetail/product_detail_view.dart';
 import 'package:merchant_app/views/shoppingcart/shopping_cart_view.dart';
@@ -57,6 +58,9 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
           settings,
           InvoiceView(
               userShoppingBag: settings.arguments as List<ShoppingItem>));
+
+    case OrderHistoryRoute:
+      return _getPageRoute(settings, const OrderHistoryView());
   }
 }
 

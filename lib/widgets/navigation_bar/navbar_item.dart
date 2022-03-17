@@ -36,15 +36,12 @@ class NavBarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () async {
-        if (globals.isLoggedIn) {
+        if (globals.isLoggedIn && title == "Logout") {
           await logout(globals.id);
           CoolAlert.show(
             context: context,
             type: CoolAlertType.success,
             text: "Logout Successful!",
-            // onConfirmBtnTap: () {
-            //   Navigator.pop(context);
-            // },
           );
         }
         locator<NavigationService>().navigateTo(navigationPath, null);

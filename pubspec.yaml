@@ -40,12 +40,9 @@ dependencies:
   get_it: ^5.0.3
   http: ^0.13.4
   convert: ^3.0.1
-<<<<<<< HEAD
   flutter_svg: ^1.0.3
 
-=======
   cool_alert: ^1.1.0
->>>>>>> d62c370 (first commit)
 
 
 dev_dependencies:
