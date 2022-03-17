@@ -41,8 +41,8 @@ class _MerchantPortalViewState extends State<MerchantPortalView> {
 
         /// Main Content is a List which shows the products in Home Page
         ScreenTypeLayout(
-          mobile: MerchantContentMobile(),
-          desktop: MerchantContentDesktop(),
+          mobile: const MerchantContentMobile(),
+          desktop: const MerchantContentDesktop(),
         ),
 
         /// Page Footer

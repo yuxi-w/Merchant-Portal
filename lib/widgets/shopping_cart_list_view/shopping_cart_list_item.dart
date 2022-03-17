@@ -63,6 +63,7 @@ class _ShopCartListItemState extends State<ShopCartListItem> {
 
         ///Function buttons
         buttonBar: GFButtonBar(
+          direction: Axis.vertical,
           children: <Widget>[
             /// Add Quantity Button
             // IconButton(
@@ -79,6 +80,14 @@ class _ShopCartListItemState extends State<ShopCartListItem> {
             // ),
 
             /// Cancel Item
+            TextButton(
+                onPressed: () {
+                  goToProductDetailPage();
+                },
+                child: const Text(
+                  "More Info >",
+                  key: Key("ShoppingCartMoreInfoButton"),
+                )),
             IconButton(
               color: Colors.red,
               onPressed: () {
@@ -118,5 +127,10 @@ class _ShopCartListItemState extends State<ShopCartListItem> {
       // then throw an exception.
       throw Exception('Failed to remove item');
     }
+  }
+
+  void goToProductDetailPage() {
+    locator<NavigationService>()
+        .navigateTo(ProductDetailRoute, widget.userShoppingItem);
   }
 }

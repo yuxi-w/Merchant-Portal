@@ -1,4 +1,7 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:merchant_app/constants/constants/AppConst.dart';
 import 'package:merchant_app/locator.dart';
 import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/services/navigation_service.dart';
@@ -16,8 +19,57 @@ class SignUpPageView extends StatefulWidget {
 
 class _SignUpPageViewState extends State<SignUpPageView> {
   final signupformkey = GlobalKey<FormState>();
+  final TextEditingController _name = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _phone = TextEditingController();
+  final TextEditingController _address = TextEditingController();
+  final TextEditingController _zip = TextEditingController();
   final TextEditingController _pass = TextEditingController();
   final TextEditingController _confirmPass = TextEditingController();
+  String dropdownValue = "Client";
+  bool success = false;
+  String isBuyer = "true";
+  String errmsg = "temp";
+
+  Future<void> signup(
+      String name, email, pass, address, phone, zipcode, isBuyer) async {
+    try {
+      Response response = await post(
+        Uri.parse('${baseUrl}shopuser/Createbykeys').replace(queryParameters: {
+          'name': name,
+          'email': email,
+          'password': pass,
+          'address': address,
+          'profilePicture': "temp",
+          'phoneNumber': phone,
+          'zipcode': zipcode,
+          'isBuyer': isBuyer,
+        }),
+      );
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        var data = (response.body.toString());
+        print(data);
+        print("success");
+        setState(() {
+          success = true;
+        });
+      } else {
+        var data = (response.body.toString());
+        print(data);
+        print("fail");
+        setState(() {
+          success = false;
+          errmsg = data;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        success = false;
+      });
+      print(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +125,40 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                               ),
                             ),
                             const SizedBox(height: 24),
+                            const SizedBox(height: 24),
+
+                            const Center(
+                              child: Text("Signup as: "),
+                            ),
+
+                            //Dropdown button
+                            Center(
+                              child: SizedBox(
+                                width: 100,
+                                height: 40,
+                                child: DropdownButton(
+                                  isExpanded: true,
+                                  value: dropdownValue,
+                                  items: <String>['Client', 'Merchant']
+                                      .map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? newValue) {
+                                    setState(
+                                      () {
+                                        dropdownValue = newValue!;
+                                      },
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+
+                            const SizedBox(height: 24),
 
                             /// Full Name Text Field
                             TextFormField(
@@ -80,6 +166,7 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                                 label: Text("Full Name"),
                               ),
                               validator: NameFieldValidator.validate,
+                              controller: _name,
                             ),
                             //const SizedBox(height: 24),
 
@@ -90,6 +177,7 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                                 hintText: "abc@xyz.com",
                               ),
                               validator: EmailFieldValidator.validate,
+                              controller: _email,
                             ),
 
                             // Phone Number Text Field
@@ -99,6 +187,7 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                                 hintText: "10 digit phone number 1231231231",
                               ),
                               validator: PhoneFieldValidator.validate,
+                              controller: _phone,
                             ),
 
                             //Address Text Field
@@ -108,6 +197,7 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                                 hintText: "ex 123 Nelson, Ottawa, ON, CA",
                               ),
                               validator: EmptyFieldValidator.validate,
+                              controller: _address,
                             ),
 
                             /// Zip Code Text Field
@@ -117,6 +207,7 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                                 hintText: "ex. K1N7N8",
                               ),
                               validator: ZipcodeFieldValidator.validate,
+                              controller: _zip,
                             ),
 
                             /// Password Text Field
@@ -151,9 +242,42 @@ class _SignUpPageViewState extends State<SignUpPageView> {
 
                             const SizedBox(height: 24),
                             MaterialButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 if (signupformkey.currentState!.validate()) {
                                   //onpress goes here
+                                  if (dropdownValue == "Client") {
+                                    isBuyer = "true";
+                                  } else {
+                                    isBuyer = "false";
+                                  }
+                                  await signup(
+                                      _name.text.toString(),
+                                      _email.text.toString(),
+                                      _pass.text.toString(),
+                                      _address.text.toString(),
+                                      _phone.text.toString(),
+                                      _zip.text.toString(),
+                                      isBuyer);
+                                  if (success) {
+                                    CoolAlert.show(
+                                      context: context,
+                                      type: CoolAlertType.success,
+                                      text:
+                                          "Signup Successful! \nPlease login to continue",
+                                      // onConfirmBtnTap: () {
+                                      //   Navigator.pop(context);
+                                      // },
+                                    );
+                                    goToSignInPage();
+                                  } else {
+                                    CoolAlert.show(
+                                      context: context,
+                                      type: CoolAlertType.error,
+                                      title: 'Oops...',
+                                      text: errmsg,
+                                      loopAnimation: false,
+                                    );
+                                  }
                                 }
                               },
                               child: const Text("Signup"),
