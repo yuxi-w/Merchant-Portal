@@ -4,22 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:merchant_app/constants/constants/AppConst.dart';
 import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
-import 'package:merchant_app/views/merchantportal/remove_item/remove_item_content_desktop.dart';
-import 'package:merchant_app/views/merchantportal/remove_item/remove_item_content_mobile.dart';
+import 'package:merchant_app/views/merchantportal/remove_edit_category/remove_edit_category_desktop.dart';
+import 'package:merchant_app/views/merchantportal/remove_edit_category/remove_edit_category_mobile.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class RemoveItemView extends StatefulWidget {
-  const RemoveItemView({Key? key}) : super(key: key);
+class RemoveEditCategoryView extends StatefulWidget {
+  const RemoveEditCategoryView({Key? key}) : super(key: key);
 
   @override
-  State<RemoveItemView> createState() => _RemoveItemViewState();
+  State<RemoveEditCategoryView> createState() => _RemoveEditCategoryViewState();
 }
 
-class _RemoveItemViewState extends State<RemoveItemView> {
+class _RemoveEditCategoryViewState extends State<RemoveEditCategoryView> {
   late Future<List<ShoppingItem>> futureShoppingItems;
-
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +48,9 @@ class _RemoveItemViewState extends State<RemoveItemView> {
 
         /// Main Content is a List which shows the products in Remove Page
         ScreenTypeLayout(
-          mobile:
-              RemoveItemContentMobile(futureShoppingItems: futureShoppingItems),
-          desktop: RemoveItemContentDesktop(
+          mobile: RemoveEditCategoryMobile(
+              futureShoppingItems: futureShoppingItems),
+          desktop: RemoveEditCategoryDesktop(
               futureShoppingItems: futureShoppingItems),
         ),
 

@@ -92,6 +92,11 @@ class _MerchantItemState extends State<MerchantItem> {
 
       case "Customer's Orders":
         locator<NavigationService>().navigateTo(UserOrderHistoryRoute, null);
+        break;
+
+      case "Add Category":
+        locator<NavigationService>().navigateTo(AddCategoryRoute, null);
+        break;
     }
   }
 }

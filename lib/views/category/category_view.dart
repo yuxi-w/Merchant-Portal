@@ -71,7 +71,7 @@ class _CategoryViewState extends State<CategoryView> {
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
-      throw Exception('Failed to load todo');
+      throw Exception('Failed to load shopping items');
     }
   }
 

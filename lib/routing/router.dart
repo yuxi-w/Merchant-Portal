@@ -8,6 +8,7 @@ import 'package:merchant_app/views/editpersonalinfo/edit_personal_info_view.dart
 import 'package:merchant_app/views/home/home_view.dart';
 import 'package:merchant_app/views/invoice/invoice_view.dart';
 import 'package:merchant_app/views/login/login_view.dart';
+import 'package:merchant_app/views/merchantportal/add_category/add_category.dart';
 import 'package:merchant_app/views/merchantportal/add_item/add_item.dart';
 import 'package:merchant_app/views/merchantportal/edit_item/edit_item_view.dart';
 import 'package:merchant_app/views/merchantportal/merchant_portal_view.dart';
@@ -80,6 +81,9 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
     /// For Merchant Portal
     case UserOrderHistoryRoute:
       return _getPageRoute(settings, const UserOrderHistoryView());
+
+    case AddCategoryRoute:
+      return _getPageRoute(settings, const AddCategoryView());
   }
 }
 
