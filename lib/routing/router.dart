@@ -12,6 +12,7 @@ import 'package:merchant_app/views/merchantportal/add_item/add_item.dart';
 import 'package:merchant_app/views/merchantportal/edit_item/edit_item_view.dart';
 import 'package:merchant_app/views/merchantportal/merchant_portal_view.dart';
 import 'package:merchant_app/views/merchantportal/remove_item/remove_item.dart';
+import 'package:merchant_app/views/merchantportal/user_order_history/user_order_history.dart';
 import 'package:merchant_app/views/order_history/order_history_view.dart';
 import 'package:merchant_app/views/personalinfo/personal_info_view.dart';
 import 'package:merchant_app/views/productdetail/product_detail_view.dart';
@@ -72,8 +73,13 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
       return _getPageRoute(settings,
           EditItemView(shoppingItem: settings.arguments as ShoppingItem));
 
+    /// For Client
     case OrderHistoryRoute:
       return _getPageRoute(settings, const OrderHistoryView());
+
+    /// For Merchant Portal
+    case UserOrderHistoryRoute:
+      return _getPageRoute(settings, const UserOrderHistoryView());
   }
 }
 

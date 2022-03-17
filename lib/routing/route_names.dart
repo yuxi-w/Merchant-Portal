@@ -15,3 +15,4 @@ const String AddItemRoute = 'addItemRoute';
 const String RemoveItemRoute = 'removeItemRoute';
 const String EditItemRoute = 'editItemRoute';
 const String OrderHistoryRoute = 'orderHistoryRoute';
+const String UserOrderHistoryRoute = 'userOrderHistoryRoute';
