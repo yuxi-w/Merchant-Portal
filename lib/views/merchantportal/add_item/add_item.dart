@@ -169,7 +169,7 @@ class _AddItemViewState extends State<AddItemView> {
           Uri.parse('${baseUrl}shopitem/createbykeys')
               .replace(queryParameters: {
         'name': nameText.text,
-        'shortDescription': "short description",
+        'shortDescription': descriptionText.text,
         'description': descriptionText.text,
         'picture': "a",
         'price': priceText.text,

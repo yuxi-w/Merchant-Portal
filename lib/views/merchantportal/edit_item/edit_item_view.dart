@@ -1,12 +1,20 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:merchant_app/constants/colors/app_colors.dart';
 import 'package:merchant_app/constants/constants/AppConst.dart';
 import 'package:merchant_app/constants/methods/validation_methods.dart';
 import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
+import 'package:merchant_app/routing/route_names.dart';
+import 'package:merchant_app/services/navigation_service.dart';
+import 'package:merchant_app/widgets/dialog_message/dialog_message.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
 
+import '../../../locator.dart';
+
+/// EDIT ITEM PAGE
 class EditItemView extends StatefulWidget {
   final ShoppingItem shoppingItem;
 
@@ -18,7 +26,7 @@ class EditItemView extends StatefulWidget {
 
 class _EditItemViewState extends State<EditItemView> {
   late TextEditingController nameText, categoryText, priceText, descriptionText;
-  GlobalKey<FormState>? addItemFormKey;
+  GlobalKey<FormState>? editItemFormKey;
 
   @override
   void initState() {
@@ -27,7 +35,12 @@ class _EditItemViewState extends State<EditItemView> {
     categoryText = TextEditingController();
     priceText = TextEditingController();
     descriptionText = TextEditingController();
-    addItemFormKey = GlobalKey<FormState>();
+    editItemFormKey = GlobalKey<FormState>();
+
+    nameText.text = widget.shoppingItem.name!;
+    categoryText.text = widget.shoppingItem.category!;
+    priceText.text = widget.shoppingItem.price!;
+    descriptionText.text = widget.shoppingItem.description!;
   }
 
   @override
@@ -83,81 +96,108 @@ class _EditItemViewState extends State<EditItemView> {
                       constraints:
                           const BoxConstraints(minWidth: 500, maxWidth: 800),
                       padding: const EdgeInsets.all(10),
-                      child: Column(children: [
-                        /// Item Name Text Field
-                        TextFormField(
-                          decoration: const InputDecoration(
-                            label: Text("Item Name"),
+                      child: Form(
+                        key: editItemFormKey,
+                        child: Column(children: [
+                          /// Item Name Text Field
+                          TextFormField(
+                            decoration: const InputDecoration(
+                              label: Text("Item Name"),
+                            ),
+                            validator: EmptyFieldValidator.validate,
+                            controller: nameText,
                           ),
-                          validator: EmptyFieldValidator.validate,
-                        ),
 
-                        /// Item Price Text Field
-                        TextFormField(
-                          decoration: const InputDecoration(
-                            label: Text("\$ Item Price"),
+                          /// Item Price Text Field
+                          TextFormField(
+                            controller: priceText,
+                            decoration: const InputDecoration(
+                              label: Text("\$ Item Price"),
+                            ),
+                            validator: EmptyFieldValidator.validate,
                           ),
-                          validator: EmptyFieldValidator.validate,
-                        ),
 
-                        /// Item Category Text Field
-                        TextFormField(
-                          decoration: const InputDecoration(
-                            label: Text("Item Category"),
+                          /// Item Category Text Field
+                          TextFormField(
+                            controller: categoryText,
+                            decoration: const InputDecoration(
+                              label: Text("Item Category"),
+                            ),
+                            validator: EmptyFieldValidator.validate,
                           ),
-                          validator: EmptyFieldValidator.validate,
-                        ),
 
-                        const SizedBox(height: 50),
+                          const SizedBox(height: 50),
 
-                        /// Description Text Field
-                        TextFormField(
-                          // controller: bodyText,
-                          minLines: 2,
-                          maxLines: 5,
-                          keyboardType: TextInputType.multiline,
-                          decoration: const InputDecoration(
-                            hintText: 'Description',
-                            hintStyle: TextStyle(color: Colors.grey),
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                          /// Description Text Field
+                          TextFormField(
+                            controller: descriptionText,
+                            minLines: 2,
+                            maxLines: 5,
+                            keyboardType: TextInputType.multiline,
+                            decoration: const InputDecoration(
+                              hintText: 'Description',
+                              hintStyle: TextStyle(color: Colors.grey),
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20.0)),
+                              ),
+                            ),
+                            validator: EmptyFieldValidator.validate,
+                          ),
+
+                          const SizedBox(height: 50),
+
+                          /// Edit Item Button
+                          Container(
+                            padding: const EdgeInsets.fromLTRB(25, 2, 25, 2),
+                            child: MaterialButton(
+                              key: const Key("edit_item_button_merchant"),
+                              onPressed: () {
+                                if (editItemFormKey!.currentState!.validate()) {
+                                  /// Call Edit Item API
+                                  editItemApiCall();
+                                }
+                              },
+                              child: const Text(
+                                "Edit Item",
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              minWidth: double.infinity,
+                              height: 52,
+                              elevation: 24,
+                              color: Colors.amber.shade700,
+                              textColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(32)),
                             ),
                           ),
-                          validator: EmptyFieldValidator.validate,
-                        ),
+                          const SizedBox(height: 20),
 
-                        const SizedBox(height: 50),
-
-                        /// Edit Item Button
-                        Container(
-                          padding: const EdgeInsets.fromLTRB(25, 2, 25, 2),
-                          child: MaterialButton(
-                            key: const Key("edit_item_button_merchant"),
-                            onPressed: () {
-                              if (addItemFormKey!.currentState!.validate()) {
-                                /// Call Edit Item API
-                                // editItemApiCall();
-
-
-
-
-                              }
-                            },
-                            child: const Text(
-                              "Edit Item",
-                              style: TextStyle(fontSize: 18),
+                          /// Cancel Button
+                          Container(
+                            padding: const EdgeInsets.fromLTRB(25, 2, 25, 2),
+                            child: MaterialButton(
+                              key:
+                                  const Key("cancel_edit_item_button_merchant"),
+                              onPressed: () {
+                                /// GO BACK TO PREVIOUS PAGE
+                                locator<NavigationService>().goBack();
+                              },
+                              child: const Text(
+                                "Cancel",
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              minWidth: double.infinity,
+                              height: 52,
+                              elevation: 24,
+                              color: Colors.red,
+                              textColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(32)),
                             ),
-                            minWidth: double.infinity,
-                            height: 52,
-                            elevation: 24,
-                            color: Colors.amber.shade700,
-                            textColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(32)),
                           ),
-                        )
-                      ]))
+                        ]),
+                      ))
                 ],
               ),
             ),
@@ -170,35 +210,49 @@ class _EditItemViewState extends State<EditItemView> {
     );
   }
 
-  // void editItemApiCall() async {
-  //   try {
-  //     Response response = await post(
-  //         Uri.parse('${baseUrl}shopitem/createbykeys')
-  //             .replace(queryParameters: {
-  //           'name': nameText.text,
-  //           'shortDescription': "short description",
-  //           'description': descriptionText.text,
-  //           'picture': "a",
-  //           'price': priceText.text,
-  //           'option': "Black",
-  //           'category': categoryText.text,
-  //           'quantity': "1",
-  //         }));
-  //     print(response.statusCode);
-  //     if (response.statusCode == 200) {
-  //       var data = (response.body.toString());
-  //       print(data);
-  //       print("success");
-  //       showSuccessDialog();
-  //
-  //       /// Go Back to Previous Page
-  //       locator<NavigationService>().goBack();
-  //     } else {
-  //       print("fail");
-  //     }
-  //   } catch (e) {
-  //     print(e.toString());
-  //   }
-  //
-  // }
+  void editItemApiCall() async {
+    try {
+      /// Creating JSON Body
+      Map myBody = {};
+      myBody['name'] = nameText.text;
+      myBody['shortDescription'] = descriptionText.text;
+      myBody['description'] = descriptionText.text;
+      myBody['picture'] = "a";
+      myBody['price'] = priceText.text;
+      myBody['option'] = "black";
+      myBody['category'] = categoryText.text;
+      myBody['quantity'] = "1";
+      String str = jsonEncode(myBody);
+      print(str);
+      Response response = await put(
+        Uri.parse('${baseUrl}shopitem/${widget.shoppingItem.id}'),
+        body: str,
+        headers: {"Content-Type": "application/json"},
+      );
+
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        var data = (response.body.toString());
+        print(data);
+        print("Edit Successful");
+        showSuccessDialog();
+
+        /// Go Back to Previous Page
+        locator<NavigationService>().navigateTo(RemoveItemRoute, null);
+      } else {
+        print("Edit failed");
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  void showSuccessDialog() {
+    ///Show Confirm Dialog
+    showDialog(
+        context: context,
+        builder: (BuildContext context) =>
+            DialogMessage(context, "Item Edited Successfully", "")
+                .createDialog());
+  }
 }

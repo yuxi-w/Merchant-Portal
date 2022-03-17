@@ -7,6 +7,7 @@ import 'package:merchant_app/widgets/question_dialog/question_dialog.dart';
 
 import '../../../locator.dart';
 
+/// REMOVE ITEM PAGE
 class RemoveItemListItems extends StatefulWidget {
   final ShoppingItem shoppingItem;
 
@@ -89,6 +90,7 @@ class _RemoveItemListItemsState extends State<RemoveItemListItems> {
     );
   }
 
+  /// ASK ARE YOU SURE TO REMOVE THE ITEM?
   void askQuestionDialog(BuildContext context) {
     ///Show Confirm Dialog
     showDialog(
@@ -98,6 +100,7 @@ class _RemoveItemListItemsState extends State<RemoveItemListItems> {
             .createDialog());
   }
 
+  /// GO TO EDIT ITEM PAGE
   void goToEditItemPage(ShoppingItem shoppingItem) {
     locator<NavigationService>().navigateTo(EditItemRoute, shoppingItem);
   }
