@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:merchant_app/routing/route_names.dart';
+import 'package:merchant_app/services/navigation_service.dart';
 import 'package:merchant_app/widgets/question_dialog/category_question_dialog.dart';
+
+import '../../../locator.dart';
 
 class RemoveEditCategoryItem extends StatefulWidget {
   final String categoryName;
@@ -77,7 +81,9 @@ class _RemoveEditCategoryItemState extends State<RemoveEditCategoryItem> {
             Container(
               margin: const EdgeInsets.fromLTRB(0, 40, 0, 0),
               child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  goToEditCategoryPage();
+                },
                 child: const Text("Edit Category"),
                 minWidth: 152,
                 height: 52,
@@ -103,5 +109,10 @@ class _RemoveEditCategoryItemState extends State<RemoveEditCategoryItem> {
               widget.categoryName,
               context,
             ).createDialog());
+  }
+
+  /// Go to Edit Category Page
+  void goToEditCategoryPage() {
+    locator<NavigationService>().navigateTo(EditCategoryRoute, widget.categoryName);
   }
 }
