@@ -48,11 +48,44 @@ class _CategoryViewState extends State<CategoryView> {
         ),
 
         /// Main Content and products on category page
-        ScreenTypeLayout(
-          mobile:
-              CategoryContentMobile(futureShoppingItems: futureShoppingItems),
-          desktop:
-              CategoryContentDesktop(futureShoppingItems: futureShoppingItems),
+        FutureBuilder(
+          future: futureShoppingItems,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              ///Getting All Items
+              var allShoppingItems = snapshot.data as List<ShoppingItem>;
+              print("CategoryItems ${allShoppingItems.toString()}");
+              if (allShoppingItems.isNotEmpty) {
+                ///Getting Category Names
+                Set<String> categoryNames = {};
+                allShoppingItems.forEach((element) {
+                  categoryNames.add(element.category!.toLowerCase());
+                });
+                return ScreenTypeLayout(
+                  mobile: CategoryContentMobile(
+                      shoppingItemList: allShoppingItems,
+                      categoryNameList: categoryNames.toList()),
+                  desktop: CategoryContentDesktop(
+                      shoppingItemList: allShoppingItems,
+                      categoryNameList: categoryNames.toList()),
+                );
+              } else {
+                return const SizedBox(
+                    height: 500,
+                    child: Center(
+                        child: Text(
+                      "Items Not Available",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )));
+              }
+            } else if (snapshot.hasError) {
+              return const Center(child: Text('Failed To Load Data'));
+            } else {
+              return const SizedBox(
+                  height: 500,
+                  child: Center(child: CircularProgressIndicator()));
+            }
+          },
         ),
 
         /// Page Footer
@@ -71,7 +104,7 @@ class _CategoryViewState extends State<CategoryView> {
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
-      throw Exception('Failed to load todo');
+      throw Exception('Failed to load shopping items');
     }
   }
 
