@@ -90,13 +90,13 @@ class _EditCategoryViewState extends State<EditCategoryView> {
                           /// Category Name Text Field
                           TextFormField(
                             decoration: const InputDecoration(
-                              label: Text("Enter new name"),
+                              label: Text("Enter new category name"),
                             ),
                             validator: EmptyFieldValidator.validate,
                             controller: newCategoryName,
                           ),
 
-                          const SizedBox(height: 50),
+                          const SizedBox(height: 200),
 
                           /// Edit Category Button
                           Container(
