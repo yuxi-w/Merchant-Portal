@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/widgets/question_dialog/category_question_dialog.dart';
 
 class RemoveEditCategoryItem extends StatefulWidget {
@@ -61,7 +60,7 @@ class _RemoveEditCategoryItemState extends State<RemoveEditCategoryItem> {
               margin: const EdgeInsets.fromLTRB(0, 40, 0, 0),
               child: MaterialButton(
                 onPressed: () {
-                  // askQuestionDialog(context);
+                  askQuestionDialog(context);
                 },
                 child: const Text("Remove Category"),
                 minWidth: 152,
@@ -96,12 +95,13 @@ class _RemoveEditCategoryItemState extends State<RemoveEditCategoryItem> {
   }
 
   /// ASK ARE YOU SURE TO REMOVE THE CATEGORY?
-// void askQuestionDialog(BuildContext context) {
-//   ///Show Confirm Dialog
-//   showDialog(
-//       context: context,
-//       builder: (BuildContext context) => CategoryQuestionDialog(
-//           widget.shoppingItem.name!, context, widget.shoppingItem.id!)
-//           .createDialog());
-// }
+  void askQuestionDialog(BuildContext context) {
+    ///Show Confirm Dialog
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => CategoryQuestionDialog(
+              widget.categoryName,
+              context,
+            ).createDialog());
+  }
 }
