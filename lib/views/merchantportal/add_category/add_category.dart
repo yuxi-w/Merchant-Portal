@@ -142,7 +142,6 @@ class _AddCategoryViewState extends State<AddCategoryView> {
                                     print("isExistValue $value");
                                     if (value) {
                                       showErrorDialog();
-                                      categoryText.text = "";
                                     } else {
                                       addCategory();
                                     }

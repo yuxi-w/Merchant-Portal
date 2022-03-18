@@ -18,61 +18,50 @@ class CategoryPageListItem extends StatefulWidget {
 class _CategoryPageListItemState extends State<CategoryPageListItem> {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      shrinkWrap: true,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: Text(widget.shoppingItem.category!,
-              style:
-                  const TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
+    return SizedBox(
+      width: 200,
+      height: 300,
+      child: GFCard(
+        elevation: 4,
+        boxFit: BoxFit.fill,
+        titlePosition: GFPosition.start,
+
+        /// Image
+        // image: Image.asset(
+        //   widget.pictureLink,
+        //   height: 150,
+        //   width: 150,
+        //   fit: BoxFit.cover,
+        // ),
+        // showImage: true,
+
+        /// Title
+        title: GFListTile(
+          titleText: widget.shoppingItem.name,
+          subTitleText: "\$${widget.shoppingItem.price}",
+          key: const Key("categoryItemTitle"),
         ),
-        SizedBox(
-          width: 200,
-          height: 300,
-          child: GFCard(
-            elevation: 4,
-            boxFit: BoxFit.fill,
-            titlePosition: GFPosition.start,
 
-            /// Image
-            // image: Image.asset(
-            //   widget.pictureLink,
-            //   height: 150,
-            //   width: 150,
-            //   fit: BoxFit.cover,
-            // ),
-            // showImage: true,
-
-            /// Title
-            title: GFListTile(
-              titleText: widget.shoppingItem.name,
-              subTitleText: "\$${widget.shoppingItem.price}",
-              key: const Key("categoryItemTitle"),
-            ),
-
-            /// Description
-            content: Text(
-              widget.shoppingItem.shortDescription!,
-              key: const Key("categoryItemDescription"),
-            ),
-
-            /// Buttons
-            buttonBar: GFButtonBar(
-              children: <Widget>[
-                TextButton(
-                    onPressed: () {
-                      goToProductDetailPage();
-                    },
-                    child: const Text(
-                      "More Info >",
-                      key: Key("CategoryMoreInfoButton"),
-                    ))
-              ],
-            ),
-          ),
+        /// Description
+        content: Text(
+          widget.shoppingItem.shortDescription!,
+          key: const Key("categoryItemDescription"),
         ),
-      ],
+
+        /// Buttons
+        buttonBar: GFButtonBar(
+          children: <Widget>[
+            TextButton(
+                onPressed: () {
+                  goToProductDetailPage();
+                },
+                child: const Text(
+                  "More Info >",
+                  key: Key("CategoryMoreInfoButton"),
+                ))
+          ],
+        ),
+      ),
     );
   }
 
