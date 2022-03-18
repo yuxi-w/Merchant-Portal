@@ -31,81 +31,111 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      shrinkWrap: true,
-      children: <Widget>[
-        /// Top Navigation Bar
-        Container(
-          margin: const EdgeInsets.fromLTRB(16, 16, 64, 16),
-          child: const MyNavigationBar(),
-        ),
-
-        /// The Text Showing "Shopping Cart"
-        Container(
-          alignment: Alignment.centerLeft,
-          margin: const EdgeInsets.fromLTRB(70, 20, 10, 10),
-          child: const Text(
-            "Shopping Cart",
-            textAlign: TextAlign.right,
-            key: Key("shoppingMainTitle"),
-            style: TextStyle(
-              color: Colors.blue,
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
-            ),
+    if (globals.isLoggedIn) {
+      return ListView(
+        shrinkWrap: true,
+        children: <Widget>[
+          /// Top Navigation Bar
+          Container(
+            margin: const EdgeInsets.fromLTRB(16, 16, 64, 16),
+            child: const MyNavigationBar(),
           ),
-        ),
 
-        /// Main List View
-        Container(
-            constraints: const BoxConstraints(
-                minHeight: 300, minWidth: 300, maxWidth: 1000),
-            child: FutureBuilder(
-              future: futureUserInfo,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  print("dataSnapShot ${snapshot.data}");
-                  return ShopCartListView(futureUserInfo: futureUserInfo);
-                } else if (snapshot.hasError) {
-                  return const Center(child: Text('Failed to load cart'));
-                } else {
-                  return const SizedBox(
-                      height: 500,
-                      child: Center(child: CircularProgressIndicator()));
-                }
-              },
-            )),
-
-        /// Text Showing Total Amount to Pay
-        calculateTotalPrice(),
-
-        /// The Checkout Button
-        Container(
-          alignment: Alignment.centerRight,
-          margin: const EdgeInsets.fromLTRB(10, 0, 120, 40),
-          child: MaterialButton(
-            minWidth: 200,
-            onPressed: () {
-              checkUserBag();
-            },
+          /// The Text Showing "Shopping Cart"
+          Container(
+            alignment: Alignment.centerLeft,
+            margin: const EdgeInsets.fromLTRB(70, 20, 10, 10),
             child: const Text(
-              "Checkout!",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+              "Shopping Cart",
+              textAlign: TextAlign.right,
+              key: Key("shoppingMainTitle"),
+              style: TextStyle(
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
             ),
-            height: 52,
-            elevation: 24,
-            color: Colors.amber.shade700,
-            textColor: Colors.white,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-            key: const Key("checkOutButton"),
           ),
-        ),
 
-        /// Home Page Footer
-        const HomePageFooter(),
-      ],
-    );
+          /// Main List View
+          Container(
+              constraints: const BoxConstraints(
+                  minHeight: 300, minWidth: 300, maxWidth: 1000),
+              child: FutureBuilder(
+                future: futureUserInfo,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    print("dataSnapShot ${snapshot.data}");
+                    return ShopCartListView(futureUserInfo: futureUserInfo);
+                  } else if (snapshot.hasError) {
+                    return const Center(child: Text('Failed to load cart'));
+                  } else {
+                    return const SizedBox(
+                        height: 500,
+                        child: Center(child: CircularProgressIndicator()));
+                  }
+                },
+              )),
+
+          /// Text Showing Total Amount to Pay
+          calculateTotalPrice(),
+
+          /// The Checkout Button
+          Container(
+            alignment: Alignment.centerRight,
+            margin: const EdgeInsets.fromLTRB(10, 0, 120, 40),
+            child: MaterialButton(
+              minWidth: 200,
+              onPressed: () {
+                checkUserBag();
+              },
+              child: const Text(
+                "Checkout!",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+              ),
+              height: 52,
+              elevation: 24,
+              color: Colors.amber.shade700,
+              textColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32)),
+              key: const Key("checkOutButton"),
+            ),
+          ),
+
+          /// Home Page Footer
+          const HomePageFooter(),
+        ],
+      );
+    } else {
+      return ListView(
+        children: [
+          /// Top Navigation Bar
+          Container(
+            margin: const EdgeInsets.fromLTRB(16, 16, 64, 16),
+            child: const MyNavigationBar(),
+          ),
+
+          Container(
+            constraints: const BoxConstraints(
+                minHeight: 350, minWidth: 300, maxWidth: 1000),
+            alignment: Alignment.center,
+            margin: const EdgeInsets.fromLTRB(70, 20, 10, 110),
+            child: const Text(
+              "Please login to view your Shopping Cart",
+              textAlign: TextAlign.right,
+              key: Key("notLoggedInText_shoppingCart"),
+              style: TextStyle(
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
+            ),
+          ),
+          const HomePageFooter()
+        ],
+      );
+    }
   }
 
   /// Getting User Information From API
@@ -204,7 +234,9 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
 
   @override
   void initState() {
-    super.initState();
-    futureUserInfo = getUserInfo(globals.id);
+    if (globals.isLoggedIn) {
+      super.initState();
+      futureUserInfo = getUserInfo(globals.id);
+    }
   }
 }

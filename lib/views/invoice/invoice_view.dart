@@ -42,6 +42,20 @@ class _InvoiceViewState extends State<InvoiceView> {
           ),
         ),
 
+        //Success message
+        const SizedBox(height: 12),
+        const Center(
+          child: Text(
+            "Order Placed Successfully!",
+            style: TextStyle(
+              color: Colors.green,
+              fontWeight: FontWeight.bold,
+              fontSize: 25,
+            ),
+          ),
+        ),
+        const SizedBox(height: 12),
+
         /// Divider!
         const SizedBox(
           width: 1350.0,

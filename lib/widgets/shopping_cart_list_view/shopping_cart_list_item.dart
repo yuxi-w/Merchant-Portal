@@ -6,7 +6,7 @@ import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/services/navigation_service.dart';
 import 'package:merchant_app/widgets/dialog_message/dialog_message.dart';
-
+import 'package:merchant_app/constants/constants/globals.dart' as globals;
 import '../../locator.dart';
 
 /// Shopping cart item
@@ -91,7 +91,7 @@ class _ShopCartListItemState extends State<ShopCartListItem> {
             IconButton(
               color: Colors.red,
               onPressed: () {
-                removeFromCart(1, widget.userShoppingItem.id!);
+                removeFromCart(globals.id, widget.userShoppingItem.id!);
 
                 ///Show Dialog
                 showDialog(

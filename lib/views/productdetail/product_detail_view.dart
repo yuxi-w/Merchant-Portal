@@ -1,3 +1,4 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:merchant_app/constants/colors/app_colors.dart';
@@ -232,20 +233,42 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                           child: MaterialButton(
                             onPressed: () {
                               /// Add to Cart API Call
-                              addToCart(globals.id, widget.shoppingItem!.id!);
+                              if (globals.isLoggedIn && globals.isBuyer) {
+                                addToCart(globals.id, widget.shoppingItem!.id!);
 
-                              ///Show Dialog
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) =>
-                                      DialogMessage(
-                                              context,
-                                              widget.shoppingItem!.name!,
-                                              "Item added to your cart")
-                                          .createDialog());
+                                ///Show Dialog
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        DialogMessage(
+                                                context,
+                                                widget.shoppingItem!.name!,
+                                                "Item added to your cart")
+                                            .createDialog());
 
-                              /// Reroute to Previous Page
-                              locator<NavigationService>().goBack();
+                                /// Reroute to Previous Page
+                                locator<NavigationService>().goBack();
+                              } else {
+                                if (globals.isLoggedIn == false) {
+                                  CoolAlert.show(
+                                    context: context,
+                                    type: CoolAlertType.error,
+                                    title: 'Oops...',
+                                    text:
+                                        "Please login to add items to your cart!",
+                                    loopAnimation: false,
+                                  );
+                                } else {
+                                  CoolAlert.show(
+                                    context: context,
+                                    type: CoolAlertType.error,
+                                    title: 'Oops...',
+                                    text:
+                                        "You need to login via a Buyer account to access this feature!",
+                                    loopAnimation: false,
+                                  );
+                                }
+                              }
                             },
 
                             ///Add to cart text

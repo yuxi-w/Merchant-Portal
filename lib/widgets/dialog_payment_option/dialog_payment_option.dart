@@ -62,7 +62,7 @@ class DialogPaymentOption {
               alignment: Alignment.centerLeft,
               margin: const EdgeInsets.fromLTRB(20, 0, 16, 16),
               child: const Text(
-                "Credit Car",
+                "Credit Card",
                 style: TextStyle(fontSize: 16, color: Colors.black),
               ),
             ),
