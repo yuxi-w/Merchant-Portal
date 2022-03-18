@@ -16,7 +16,10 @@ class RemoveEditCategoryMobile extends StatefulWidget {
 class _RemoveEditCategoryMobileState extends State<RemoveEditCategoryMobile> {
   @override
   Widget build(BuildContext context) {
-    return buildFutureBuilder();
+    return Container(
+      margin: const EdgeInsets.fromLTRB(100, 16, 100, 16),
+      child: buildFutureBuilder(),
+    );
   }
 
   FutureBuilder<List<ShoppingItem>> buildFutureBuilder() {
@@ -26,12 +29,24 @@ class _RemoveEditCategoryMobileState extends State<RemoveEditCategoryMobile> {
           return const SizedBox(
               height: 500, child: Center(child: CircularProgressIndicator()));
         }
+
+        ///Getting Categories
+        Set<String> categoryNameList = {};
+        var allItems = snapshot.data as List<ShoppingItem>;
+        if (allItems.isNotEmpty) {
+          allItems.forEach((shoppingItem) {
+            categoryNameList.add(shoppingItem.category!);
+          });
+        }
+
         return ListView.builder(
           shrinkWrap: true,
-          itemCount: (snapshot.data as List<ShoppingItem>).length,
+          itemCount: categoryNameList.length,
           itemBuilder: (BuildContext context, int index) {
             return RemoveEditCategoryItem(
-              shoppingItem: (snapshot.data as List<ShoppingItem>)[index],
+              categoryName: categoryNameList.toList()[index],
+              imgWidth: 50,
+              imgHeight: 50,
             );
           },
         );

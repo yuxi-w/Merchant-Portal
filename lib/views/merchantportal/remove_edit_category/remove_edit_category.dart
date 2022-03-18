@@ -30,14 +30,14 @@ class _RemoveEditCategoryViewState extends State<RemoveEditCategoryView> {
           child: const MyNavigationBar(),
         ),
 
-        /// The Text Showing "Remove Item"
+        /// The Text Showing "Remove Category"
         Container(
           alignment: Alignment.centerLeft,
           margin: const EdgeInsets.fromLTRB(70, 20, 10, 10),
           child: const Text(
-            "Edit & Remove Item",
+            "Edit & Remove Category",
             textAlign: TextAlign.right,
-            key: Key("main_remove_item_title"),
+            key: Key("main_remove_category_title"),
             style: TextStyle(
               color: Colors.red,
               fontWeight: FontWeight.bold,

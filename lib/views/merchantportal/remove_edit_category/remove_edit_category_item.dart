@@ -4,9 +4,15 @@ import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/widgets/question_dialog/category_question_dialog.dart';
 
 class RemoveEditCategoryItem extends StatefulWidget {
-  final ShoppingItem shoppingItem;
+  final String categoryName;
+  final double imgHeight;
+  final double imgWidth;
 
-  const RemoveEditCategoryItem({Key? key, required this.shoppingItem})
+  const RemoveEditCategoryItem(
+      {Key? key,
+      required this.categoryName,
+      required this.imgHeight,
+      required this.imgWidth})
       : super(key: key);
 
   @override
@@ -25,48 +31,63 @@ class _RemoveEditCategoryItemState extends State<RemoveEditCategoryItem> {
         titlePosition: GFPosition.start,
 
         /// Title
-        title: GFListTile(
-          titleText: "Category name",
-          subTitleText: widget.shoppingItem.category,
-          key: const Key("remove_item_title"),
+        title: const GFListTile(
+          titleText: "Category name:",
+          key: Key("remove_category_title"),
         ),
 
         /// Description
-        content: const Text(
-          "",
-          key: Key("remove_item_description"),
+        content: Text(
+          widget.categoryName,
+          key: const Key("remove_category_description"),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
+
+        /// Image
+        image: Image.asset(
+          "assets/remove_category.png",
+          height: widget.imgHeight,
+          width: widget.imgWidth,
+          fit: BoxFit.cover,
+          key: Key("category_remove_pic"),
+        ),
+        showImage: true,
 
         /// Buttons
         buttonBar: GFButtonBar(
           children: <Widget>[
             /// Remove Button
-            MaterialButton(
-              onPressed: () {
-                askQuestionDialog(context);
-              },
-              child: const Text("Remove Category"),
-              minWidth: 152,
-              height: 52,
-              elevation: 24,
-              color: Colors.red,
-              textColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32)),
+            Container(
+              margin: const EdgeInsets.fromLTRB(0, 40, 0, 0),
+              child: MaterialButton(
+                onPressed: () {
+                  // askQuestionDialog(context);
+                },
+                child: const Text("Remove Category"),
+                minWidth: 152,
+                height: 52,
+                elevation: 24,
+                color: Colors.red,
+                textColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32)),
+              ),
             ),
 
             /// Edit Button
-            MaterialButton(
-              onPressed: () {
-              },
-              child: const Text("Edit Category"),
-              minWidth: 152,
-              height: 52,
-              elevation: 24,
-              color: Colors.amber.shade700,
-              textColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32)),
+            Container(
+              margin: const EdgeInsets.fromLTRB(0, 40, 0, 0),
+              child: MaterialButton(
+                onPressed: () {},
+                child: const Text("Edit Category"),
+                minWidth: 152,
+                height: 52,
+                elevation: 24,
+                color: Colors.amber.shade700,
+                textColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32)),
+              ),
             ),
           ],
         ),
@@ -75,12 +96,12 @@ class _RemoveEditCategoryItemState extends State<RemoveEditCategoryItem> {
   }
 
   /// ASK ARE YOU SURE TO REMOVE THE CATEGORY?
-  void askQuestionDialog(BuildContext context) {
-    ///Show Confirm Dialog
-    showDialog(
-        context: context,
-        builder: (BuildContext context) => CategoryQuestionDialog(
-            widget.shoppingItem.name!, context, widget.shoppingItem.id!)
-            .createDialog());
-  }
+// void askQuestionDialog(BuildContext context) {
+//   ///Show Confirm Dialog
+//   showDialog(
+//       context: context,
+//       builder: (BuildContext context) => CategoryQuestionDialog(
+//           widget.shoppingItem.name!, context, widget.shoppingItem.id!)
+//           .createDialog());
+// }
 }

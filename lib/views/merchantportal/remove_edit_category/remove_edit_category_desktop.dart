@@ -5,16 +5,21 @@ import 'package:merchant_app/views/merchantportal/remove_edit_category/remove_ed
 class RemoveEditCategoryDesktop extends StatefulWidget {
   final Future<List<ShoppingItem>> futureShoppingItems;
 
-  const RemoveEditCategoryDesktop({Key? key, required this.futureShoppingItems}) : super(key: key);
+  const RemoveEditCategoryDesktop({Key? key, required this.futureShoppingItems})
+      : super(key: key);
 
   @override
-  State<RemoveEditCategoryDesktop> createState() => _RemoveEditCategoryDesktopState();
+  State<RemoveEditCategoryDesktop> createState() =>
+      _RemoveEditCategoryDesktopState();
 }
 
 class _RemoveEditCategoryDesktopState extends State<RemoveEditCategoryDesktop> {
   @override
   Widget build(BuildContext context) {
-    return buildFutureBuilder();
+    return Container(
+      margin: const EdgeInsets.all(16),
+      child: buildFutureBuilder(),
+    );
   }
 
   FutureBuilder<List<ShoppingItem>> buildFutureBuilder() {
@@ -24,12 +29,25 @@ class _RemoveEditCategoryDesktopState extends State<RemoveEditCategoryDesktop> {
           return const SizedBox(
               height: 500, child: Center(child: CircularProgressIndicator()));
         }
+
+        ///Getting Categories
+        Set<String> categoryNameList = {};
+        var allItems = snapshot.data as List<ShoppingItem>;
+        if (allItems.isNotEmpty) {
+          allItems.forEach((shoppingItem) {
+            categoryNameList.add(shoppingItem.category!);
+          });
+        }
+
         return GridView.builder(
           shrinkWrap: true,
-          itemCount: (snapshot.data as List<ShoppingItem>).length,
+          itemCount: categoryNameList.length,
           itemBuilder: (BuildContext context, int index) {
             return RemoveEditCategoryItem(
-                shoppingItem: (snapshot.data as List<ShoppingItem>)[index]);
+              categoryName: categoryNameList.toList()[index],
+              imgWidth: 150,
+              imgHeight: 150,
+            );
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3, mainAxisSpacing: 1, crossAxisSpacing: 1),
@@ -38,5 +56,4 @@ class _RemoveEditCategoryDesktopState extends State<RemoveEditCategoryDesktop> {
       future: widget.futureShoppingItems,
     );
   }
-
 }
