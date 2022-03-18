@@ -33,13 +33,8 @@ class _MerchantContentMobileState extends State<MerchantContentMobile> {
               imgHeight: 50,
               imgWidth: 50),
           MerchantItem(
-              title: "Edit Category",
-              imageSrc: "assets/edit_item.png",
-              imgHeight: 50,
-              imgWidth: 50),
-          MerchantItem(
-              title: "Remove Category",
-              imageSrc: "assets/remove_category.png",
+              title: "Edit & Remove Category",
+              imageSrc: "assets/category_remove_edit.png",
               imgHeight: 50,
               imgWidth: 50),
           MerchantItem(

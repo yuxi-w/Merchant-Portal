@@ -12,6 +12,7 @@ import 'package:merchant_app/views/merchantportal/add_category/add_category.dart
 import 'package:merchant_app/views/merchantportal/add_item/add_item.dart';
 import 'package:merchant_app/views/merchantportal/edit_item/edit_item_view.dart';
 import 'package:merchant_app/views/merchantportal/merchant_portal_view.dart';
+import 'package:merchant_app/views/merchantportal/remove_edit_category/remove_edit_category.dart';
 import 'package:merchant_app/views/merchantportal/remove_item/remove_item.dart';
 import 'package:merchant_app/views/merchantportal/user_order_history/user_order_history.dart';
 import 'package:merchant_app/views/order_history/order_history_view.dart';
@@ -84,6 +85,9 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
 
     case AddCategoryRoute:
       return _getPageRoute(settings, const AddCategoryView());
+
+    case RemoveEditCategoryRoute:
+      return _getPageRoute(settings, const RemoveEditCategoryView());
   }
 }
 
