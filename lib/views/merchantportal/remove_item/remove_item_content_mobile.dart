@@ -35,6 +35,8 @@ class _RemoveItemContentDesktopState extends State<RemoveItemContentMobile> {
           itemBuilder: (BuildContext context, int index) {
             return RemoveItemListItems(
               shoppingItem: (snapshot.data as List<ShoppingItem>)[index],
+              width: 50,
+              height: 50,
             );
           },
         );

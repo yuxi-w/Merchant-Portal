@@ -38,7 +38,7 @@ class _InvoiceContentHomeState extends State<InvoiceContent> {
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic),
-          ),
+          key: const Key("invoice_sub_total_text"),),
         ],
       ),
     );

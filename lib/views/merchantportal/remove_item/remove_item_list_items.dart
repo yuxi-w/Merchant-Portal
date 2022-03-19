@@ -10,8 +10,14 @@ import '../../../locator.dart';
 /// REMOVE ITEM PAGE
 class RemoveItemListItems extends StatefulWidget {
   final ShoppingItem shoppingItem;
+  final double height;
+  final double width;
 
-  const RemoveItemListItems({Key? key, required this.shoppingItem})
+  const RemoveItemListItems(
+      {Key? key,
+      required this.shoppingItem,
+      required this.height,
+      required this.width})
       : super(key: key);
 
   @override
@@ -30,14 +36,14 @@ class _RemoveItemListItemsState extends State<RemoveItemListItems> {
         titlePosition: GFPosition.start,
 
         /// Image
-        // image: Image.network(
-        //   widget.shoppingItem.picture!,
-        //   height: 150,
-        //   width: 150,
-        //   fit: BoxFit.cover,
-        //   key: Key("homeItemImage"),
-        // ),
-        // showImage: true,
+        image: Image.asset(
+          "assets/item_edit.png",
+          height: widget.height,
+          width: widget.width,
+          fit: BoxFit.cover,
+          key: const Key("remove_item_img"),
+        ),
+        showImage: true,
 
         /// Title
         title: GFListTile(

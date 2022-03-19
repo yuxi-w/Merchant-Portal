@@ -34,7 +34,7 @@ class _MerchantPortalViewState extends State<MerchantPortalView> {
             child: const Text(
               "Merchant Portal",
               textAlign: TextAlign.right,
-              key: Key("merchantMainTitle"),
+              key: Key("merchant_portal_main_title"),
               style: TextStyle(
                 color: Colors.blue,
                 fontWeight: FontWeight.bold,
@@ -62,7 +62,7 @@ class _MerchantPortalViewState extends State<MerchantPortalView> {
             child: const MyNavigationBar(),
           ),
 
-          /// The Text Showing "Home"
+          /// The Text Showing "Merchant Portal"
           Container(
             alignment: Alignment.centerLeft,
             margin: const EdgeInsets.fromLTRB(70, 20, 10, 10),
@@ -78,7 +78,7 @@ class _MerchantPortalViewState extends State<MerchantPortalView> {
             ),
           ),
 
-          /// Main Content is a List which shows the products in Home Page
+          /// Main Content
           Container(
             constraints: const BoxConstraints(
                 minHeight: 350, minWidth: 300, maxWidth: 1000),
@@ -95,6 +95,7 @@ class _MerchantPortalViewState extends State<MerchantPortalView> {
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                   ),
+                  key: Key("merchant_portal_text_restricted_access"),
                 ),
                 Text(
                   "Please Login using your Merchant Id and Password to access this content.",
@@ -104,6 +105,7 @@ class _MerchantPortalViewState extends State<MerchantPortalView> {
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                   ),
+                  key: Key("merchant_portal_text_please_login"),
                 ),
               ],
             ),

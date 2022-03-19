@@ -34,7 +34,10 @@ class _RemoveItemContentDesktopState extends State<RemoveItemContentDesktop> {
           itemCount: (snapshot.data as List<ShoppingItem>).length,
           itemBuilder: (BuildContext context, int index) {
             return RemoveItemListItems(
-                shoppingItem: (snapshot.data as List<ShoppingItem>)[index]);
+              shoppingItem: (snapshot.data as List<ShoppingItem>)[index],
+              height: 150,
+              width: 150,
+            );
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3, mainAxisSpacing: 1, crossAxisSpacing: 1),
