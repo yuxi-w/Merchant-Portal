@@ -137,6 +137,7 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                                 width: 100,
                                 height: 40,
                                 child: DropdownButton(
+                                  key: const Key("signupTypeSelection"),
                                   isExpanded: true,
                                   value: dropdownValue,
                                   items: <String>['Client', 'Merchant']

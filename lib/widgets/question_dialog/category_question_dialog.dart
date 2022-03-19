@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:merchant_app/constants/constants/AppConst.dart';
-import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
-import 'package:merchant_app/datamodel/userInfo/UserInfo.dart';
 import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/services/navigation_service.dart';
 
 import '../../locator.dart';
 
-class DialogPaymentOption {
+class CategoryQuestionDialog {
+  final String categoryName;
   final BuildContext buildContext;
-  final UserInfo userInfo;
-  final List<ShoppingItem> userShoppingBag;
 
-  DialogPaymentOption(this.buildContext, this.userInfo, this.userShoppingBag);
+  CategoryQuestionDialog(
+    this.categoryName,
+    this.buildContext,
+  );
 
   Dialog createDialog() {
     return Dialog(
@@ -32,7 +32,7 @@ class DialogPaymentOption {
               alignment: Alignment.centerLeft,
               margin: const EdgeInsets.all(16),
               child: const Text(
-                "Address:",
+                "This category will be removed",
                 style: TextStyle(fontSize: 18, color: Colors.deepOrange),
               ),
             ),
@@ -42,28 +42,23 @@ class DialogPaymentOption {
               alignment: Alignment.centerLeft,
               margin: const EdgeInsets.fromLTRB(20, 0, 16, 16),
               child: Text(
-                userInfo.address!,
+                categoryName,
                 style: const TextStyle(fontSize: 16, color: Colors.black),
               ),
             ),
 
-            ///Payment Title
-            Container(
-              alignment: Alignment.centerLeft,
-              margin: const EdgeInsets.all(16),
-              child: const Text(
-                "Payment Method:",
-                style: TextStyle(fontSize: 18, color: Colors.deepOrange),
-              ),
-            ),
+            const SizedBox(height: 50),
 
             ///Body Text
             Container(
-              alignment: Alignment.centerLeft,
+              alignment: Alignment.center,
               margin: const EdgeInsets.fromLTRB(20, 0, 16, 16),
               child: const Text(
-                "Credit Card",
-                style: TextStyle(fontSize: 16, color: Colors.black),
+                "Are you sure?",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.black),
               ),
             ),
 
@@ -73,35 +68,34 @@ class DialogPaymentOption {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                /// Cancel Button
+                /// No Button
                 MaterialButton(
                   onPressed: () {
                     Navigator.pop(buildContext);
                   },
-                  child: const Text("Cancel"),
+                  child: const Text("No"),
                   minWidth: 152,
                   height: 52,
                   elevation: 24,
-                  color: Colors.amber.shade700,
+                  color: Colors.red,
                   textColor: Colors.white,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(32)),
                 ),
                 const SizedBox(width: 20),
 
-                /// Place Order Button
+                /// Yes Button
                 MaterialButton(
                   onPressed: () {
-                    checkOutApiCall(userInfo.id!);
+                    /// Removing Item
+                    removeCategoryAPICall();
                     Navigator.pop(buildContext);
-                    locator<NavigationService>()
-                        .navigateTo(InvoiceRoute, userShoppingBag);
                   },
-                  child: const Text("Place Order"),
+                  child: const Text("Yes"),
                   minWidth: 152,
                   height: 52,
                   elevation: 24,
-                  color: Colors.amber.shade700,
+                  color: Colors.green,
                   textColor: Colors.white,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(32)),
@@ -114,19 +108,21 @@ class DialogPaymentOption {
     );
   }
 
-  /// Checkout API Call
-  void checkOutApiCall(int userId) async {
-    final response =
-        await post(Uri.parse('${baseUrl}shopuser/checkout$userId'));
-
-    if (response.statusCode == 200) {
-      // If the server did return a 200 OK response,
-      // then parse the JSON.
-      return print("Checkout was successful");
-    } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
-      throw Exception('Failed to Checkout');
+  /// Remove The Category API Call
+  void removeCategoryAPICall() async {
+    try {
+      final response = await post(Uri.parse('${baseUrl}shopitem/deletecategory')
+          .replace(queryParameters: {
+        'Cat': categoryName,
+      }));
+      if (response.statusCode == 200) {
+        print("Category Removed Successfully");
+        locator<NavigationService>().navigateTo(RemoveEditCategoryRoute, null);
+      } else {
+        print("Category Remove failed");
+      }
+    } catch (e) {
+      print(e.toString());
     }
   }
 }

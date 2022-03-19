@@ -15,8 +15,6 @@ class InvoiceView extends StatefulWidget {
 }
 
 class _InvoiceViewState extends State<InvoiceView> {
-  late Future<List<ShoppingItem>> futureShoppingItems;
-
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -41,6 +39,21 @@ class _InvoiceViewState extends State<InvoiceView> {
             ),
           ),
         ),
+
+        //Success message
+        const SizedBox(height: 12),
+        const Center(
+          child: Text(
+            "Order Placed Successfully!",
+            style: TextStyle(
+              color: Colors.green,
+              fontWeight: FontWeight.bold,
+              fontSize: 25,
+            ),
+            key: Key("invoice_page_order_placed"),
+          ),
+        ),
+        const SizedBox(height: 12),
 
         /// Divider!
         const SizedBox(

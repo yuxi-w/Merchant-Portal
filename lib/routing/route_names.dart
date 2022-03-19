@@ -16,3 +16,6 @@ const String RemoveItemRoute = 'removeItemRoute';
 const String EditItemRoute = 'editItemRoute';
 const String OrderHistoryRoute = 'orderHistoryRoute';
 const String UserOrderHistoryRoute = 'userOrderHistoryRoute';
+const String AddCategoryRoute = 'addCategoryRoute';
+const String RemoveEditCategoryRoute = 'removeEditCategoryRoute';
+const String EditCategoryRoute = 'editCategoryRoute';

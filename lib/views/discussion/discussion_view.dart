@@ -51,7 +51,7 @@ class _DiscussionViewState extends State<DiscussionView> {
               fontWeight: FontWeight.bold,
               fontSize: 25,
             ),
-          ),
+          key: Key("chat_page_main_title"),),
         ),
 
         Container(
@@ -157,7 +157,7 @@ class _DiscussionViewState extends State<DiscussionView> {
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(32)),
-                                  ),
+                                  key: const Key("chat_page_send_button"),),
                                 ],
                               ),
                             ),

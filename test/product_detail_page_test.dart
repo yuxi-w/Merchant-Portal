@@ -1,11 +1,25 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/views/productdetail/product_detail_view.dart';
 
 void main() {
   testWidgets('Product detail page test', (WidgetTester tester) async {
-    await tester.pumpWidget(const MaterialApp(home: ProductDetailView()));
+    final ShoppingItem tempshoppingitem = ShoppingItem(
+        1,
+        "name",
+        "short description",
+        "description",
+        "sample img",
+        "price",
+        "option",
+        "category",
+        "quantity");
+    await tester.pumpWidget(MaterialApp(
+        home: ProductDetailView(
+      shoppingItem: tempshoppingitem,
+    )));
 
     ///Test main title
     final mainTitle = find.byKey(const ValueKey("productDetailTitle"));
@@ -45,42 +59,6 @@ void main() {
     var text3 = productPriceText.evaluate().single.widget as Text;
     if (kDebugMode) {
       print(text3.data);
-    }
-
-    ///Test product color text
-    final productColorText = find.byKey(const ValueKey("productDetailColor"));
-    expect(productColorText, findsOneWidget);
-    var text4 = productColorText.evaluate().single.widget as Text;
-    if (kDebugMode) {
-      print(text4.data);
-    }
-
-    ///Test product quantity text
-    final productQuantityText =
-        find.byKey(const ValueKey("productDetailQuantityText"));
-    expect(productQuantityText, findsOneWidget);
-    var text5 = productQuantityText.evaluate().single.widget as Text;
-    if (kDebugMode) {
-      print(text5.data);
-    }
-
-    ///Test add button
-    final addButton = find.byKey(const ValueKey("productDetailAddButton"));
-    expect(addButton, findsOneWidget);
-    await tester.tap(addButton, warnIfMissed: false);
-    await tester.pump();
-    if (kDebugMode) {
-      print('add button works fine');
-    }
-
-    ///Test remove button
-    final removeButton =
-        find.byKey(const ValueKey("productDetailRemoveButton"));
-    expect(removeButton, findsOneWidget);
-    await tester.tap(removeButton, warnIfMissed: false);
-    await tester.pump();
-    if (kDebugMode) {
-      print('remove button works fine');
     }
 
     ///Test add to bag button

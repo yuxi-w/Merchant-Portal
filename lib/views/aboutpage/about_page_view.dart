@@ -90,13 +90,13 @@ class _AboutViewState extends State<AboutView> {
                                     "portal for selecting and ordering items, saving to and loading from NoSQL databases, functionalities "
                                     "of shopping carts and platforms for basic interactions between clients and merchants."
                                     "Here are the members of our group: Mohammadreza Davoudi (Payam), Alim Manjiyani, "
-                                    "Zhiyi Dong, Alireza Montazeralzohour, Yuxi Wang",
+                                    "Alireza Montazeralzohour, Yuxi Wang",
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 20,
                                         height: 1.5),
-                                    key: Key("productDetailDescription"),
+                                    key: Key("about_us_text_key"),
                                   )
                                 ],
                               )),

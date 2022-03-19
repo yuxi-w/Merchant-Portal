@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:merchant_app/locator.dart';
 import 'package:merchant_app/views/personalinfo/personal_info_view.dart';
+import 'package:merchant_app/constants/constants/globals.dart' as globals;
 
 void main() {
   testWidgets('Personal Info Page test', (WidgetTester tester) async {
     setupLocator();
+    globals.isLoggedIn = true;
     await tester.pumpWidget(const MaterialApp(home: PersonalInfoView()));
 
     //name of the user

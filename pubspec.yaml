@@ -87,6 +87,8 @@ flutter:
     - assets/remove_category.png
     - assets/remove_item.png
     - assets/user_orders.png
+    - assets/category_remove_edit.png
+    - assets/item_edit.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

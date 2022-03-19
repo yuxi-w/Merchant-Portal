@@ -16,7 +16,7 @@ void main() {
       print("Name input widget found");
     }
 
-    expect(find.text("+1 123 1231231"), findsOneWidget);
+    expect(find.text("1231231231"), findsOneWidget);
     if (kDebugMode) {
       print("Phone input widget found");
     }
