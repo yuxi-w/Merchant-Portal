@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -80,7 +79,7 @@ class _HomeViewState extends State<HomeView> {
       }
     } catch (e) {
       print("here");
-      if (baseUrl == "http://ec2-100-26-134-56.compute-1.amazonaws.comasd/") {
+      if (baseUrl == "http://ec2-100-26-134-56.compute-1.amazonaws.com/") {
         baseUrl = "https://merchant-api.azurewebsites.net/";
         final newresponse = await get(Uri.parse('${baseUrl}shopitem'));
         if (newresponse.statusCode == 200) {
