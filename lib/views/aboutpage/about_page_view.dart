@@ -85,7 +85,7 @@ class _AboutViewState extends State<AboutView> {
                                   /// About us main text
                                   Text(
                                     "Hello! This is our project for the course CSI5112 - Software Engineering, "
-                                    "offered by the EECS. We are a group of 5 master's students from uOttawa."
+                                    "offered by the EECS. We are a group of 4 master's students from uOttawa."
                                     "The project includes following topics initially:"
                                     "portal for selecting and ordering items, saving to and loading from NoSQL databases, functionalities "
                                     "of shopping carts and platforms for basic interactions between clients and merchants."

@@ -53,9 +53,12 @@ class _RemoveItemListItemsState extends State<RemoveItemListItems> {
         ),
 
         /// Description
-        content: Text(
-          widget.shoppingItem.shortDescription!,
-          key: const Key("remove_item_description"),
+        content: Container(
+          margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+          child: Text(
+            widget.shoppingItem.description!.substring(0, 70) + "...",
+            key: const Key("remove_item_description"),
+          ),
         ),
 
         /// Buttons
