@@ -13,13 +13,17 @@ void main() {
         "name",
         "short description",
         "description description description description description description description description",
-        "sample img",
+        "assets/logitech_g432.jpg",
         "price",
         "option",
         "category",
         "quantity");
-    await tester
-        .pumpWidget(MaterialApp(home: HomePageListItem(tempshoppingitem)));
+    await tester.pumpWidget(MaterialApp(
+        home: HomePageListItem(
+      tempshoppingitem,
+      imgHeight: 50,
+      imgWidth: 50,
+    )));
 
     ///Test title text
     final title = find.byKey(const ValueKey("title"));

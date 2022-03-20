@@ -13,7 +13,7 @@ void main() {
         "name",
         "short description",
         "description description description description description description description description",
-        "sample img",
+        "assets/logitech_g432.jpg",
         "price",
         "option",
         "category",
