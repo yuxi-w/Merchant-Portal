@@ -60,22 +60,24 @@ class _RemoveEditCategoryItemState extends State<RemoveEditCategoryItem> {
         buttonBar: GFButtonBar(
           children: <Widget>[
             /// Remove Button
-            Container(
-              margin: const EdgeInsets.fromLTRB(0, 40, 0, 0),
-              child: MaterialButton(
-                onPressed: () {
-                  askQuestionDialog(context);
-                },
-                child: const Text("Remove Category"),
-                minWidth: 152,
-                height: 52,
-                elevation: 24,
-                color: Colors.red,
-                textColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(32)),
+            if (widget.categoryName != "Uncategorized") ...[
+              Container(
+                margin: const EdgeInsets.fromLTRB(0, 40, 0, 0),
+                child: MaterialButton(
+                  onPressed: () {
+                    askQuestionDialog(context);
+                  },
+                  child: const Text("Remove Category"),
+                  minWidth: 152,
+                  height: 52,
+                  elevation: 24,
+                  color: Colors.red,
+                  textColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(32)),
+                ),
               ),
-            ),
+            ],
 
             /// Edit Button
             Container(
@@ -113,6 +115,7 @@ class _RemoveEditCategoryItemState extends State<RemoveEditCategoryItem> {
 
   /// Go to Edit Category Page
   void goToEditCategoryPage() {
-    locator<NavigationService>().navigateTo(EditCategoryRoute, widget.categoryName);
+    locator<NavigationService>()
+        .navigateTo(EditCategoryRoute, widget.categoryName);
   }
 }

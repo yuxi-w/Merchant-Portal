@@ -135,14 +135,6 @@ class _LoginLeftViewState extends State<LoginLeftView> {
                     validator: EmptyFieldValidator.validate,
                   ),
                   const SizedBox(height: 24),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: MaterialButton(
-                      child: const Text("Forget password?"),
-                      onPressed: () {},
-                    ),
-                  ),
-                  const SizedBox(height: 24),
 
                   /// Login Button
                   MaterialButton(
@@ -174,6 +166,7 @@ class _LoginLeftViewState extends State<LoginLeftView> {
                       }
                     },
                     child: const Text("Login"),
+                    key: const Key("Loginbutton"),
                     minWidth: double.infinity,
                     height: 52,
                     elevation: 24,
@@ -190,7 +183,7 @@ class _LoginLeftViewState extends State<LoginLeftView> {
                     },
                     child: const Text(
                       "Don't have an account yet? Click here to Signup!",
-                      style: TextStyle(fontSize: 12),
+                      style: TextStyle(fontSize: 15),
                     ),
                   )
                 ],

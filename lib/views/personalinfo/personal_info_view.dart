@@ -310,6 +310,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
               ),
             ),
           ),
+          const SizedBox(height: 200),
           const HomePageFooter()
         ],
       );

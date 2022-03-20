@@ -104,6 +104,7 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
           ),
 
           /// Home Page Footer
+          const SizedBox(height: 220),
           const HomePageFooter(),
         ],
       );
@@ -132,6 +133,7 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
               ),
             ),
           ),
+          const SizedBox(height: 200),
           const HomePageFooter()
         ],
       );
