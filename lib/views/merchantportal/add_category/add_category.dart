@@ -122,7 +122,7 @@ class _AddCategoryViewState extends State<AddCategoryView> {
                                     BorderRadius.all(Radius.circular(20.0)),
                               ),
                             ),
-                            validator: EmptyFieldValidator.validate,
+                            validator: LengthValidator.validate,
                           ),
 
                           const SizedBox(height: 50),
@@ -224,7 +224,7 @@ class _AddCategoryViewState extends State<AddCategoryView> {
         'name': nameText.text,
         'shortDescription': descriptionText.text,
         'description': descriptionText.text,
-        'picture': "a",
+        'picture': "coming_soon.jpeg",
         'price': priceText.text,
         'option': "Black",
         'category': categoryText.text,

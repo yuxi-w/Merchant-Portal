@@ -95,7 +95,7 @@ class _ShopCartListItemState extends State<ShopCartListItem> {
                   textColor: Colors.white,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(32)),
-                  key: const Key("shoppingItemCancelButton"),
+                  key: const Key("shoppingItemProductInfoButton"),
                 ),
               ),
             ],
