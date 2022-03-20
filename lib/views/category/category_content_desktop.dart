@@ -57,7 +57,11 @@ class _CategoryContentDesktopState extends State<CategoryContentDesktop> {
       shrinkWrap: true,
       itemCount: categoryItems.length,
       itemBuilder: (BuildContext context, int index) {
-        return CategoryPageListItem((categoryItems)[index]);
+        return CategoryPageListItem(
+          (categoryItems)[index],
+          imgWidth: 150,
+          imgHeight: 150,
+        );
       },
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3, mainAxisSpacing: 1, crossAxisSpacing: 1),

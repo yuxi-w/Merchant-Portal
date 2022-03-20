@@ -22,94 +22,86 @@ class ShopCartListItem extends StatefulWidget {
 class _ShopCartListItemState extends State<ShopCartListItem> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 200,
-      height: 300,
-      child: GFCard(
-        elevation: 2,
-        boxFit: BoxFit.fill,
-        titlePosition: GFPosition.start,
+    return Wrap(
+      children: [
+        GFCard(
+          elevation: 2,
+          boxFit: BoxFit.fill,
+          titlePosition: GFPosition.start,
 
-        ///Product image
-        // image: Image.asset(
-        //   widget.imageSrc,
-        //   height: 180,
-        //   width: 150,
-        //   fit: BoxFit.cover,
-        // ),
-        // showImage: true,
+          ///Title and price
+          title: GFListTile(
+            titleText: widget.userShoppingItem.name,
+            subTitleText: "\$${widget.userShoppingItem.price}",
+            key: const Key("shoppingItemTitle"),
+          ),
+          content: Column(
+            children: <Widget>[
+              /// Item Description
+              Text(
+                widget.userShoppingItem.description!.substring(0, 70) + "...",
+                key: const Key("shoppingItemDescription"),
+              ),
+            ],
+          ),
 
-        ///Title and price
-        title: GFListTile(
-          titleText: widget.userShoppingItem.name,
-          subTitleText: "\$${widget.userShoppingItem.price}",
-          key: const Key("shoppingItemTitle"),
+          ///Function buttons
+          buttonBar: GFButtonBar(
+            direction: Axis.horizontal,
+            children: <Widget>[
+              /// Remove Button
+              Container(
+                margin: const EdgeInsets.fromLTRB(0, 40, 0, 20),
+                child: MaterialButton(
+                  onPressed: () {
+                    removeFromCart(globals.id, widget.userShoppingItem.id!);
+
+                    ///Show Dialog
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) => DialogMessage(
+                                context,
+                                widget.userShoppingItem.name!,
+                                "Item removed from your cart")
+                            .createDialog());
+
+                    /// Call Shopping cart again
+                    locator<NavigationService>()
+                        .navigateTo(ShoppingCartRoute, null);
+                  },
+                  child: const Text("Remove Item"),
+                  minWidth: 152,
+                  height: 52,
+                  elevation: 24,
+                  color: Colors.red,
+                  textColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(32)),
+                  key: const Key("shoppingItemCancelButton"),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.fromLTRB(0, 40, 0, 20),
+                child: MaterialButton(
+                  onPressed: () {
+                    locator<NavigationService>().navigateTo(
+                        ProductDetailRoute, widget.userShoppingItem);
+                  },
+                  child: const Text("Product Info"),
+                  minWidth: 152,
+                  height: 52,
+                  elevation: 24,
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(32)),
+                  key: const Key("shoppingItemProductInfoButton"),
+                ),
+              ),
+            ],
+          ),
         ),
-        content: Column(
-          children: <Widget>[
-            /// Item Description
-            Text(
-              widget.userShoppingItem.shortDescription!,
-              key: const Key("shoppingItemDescription"),
-            ),
-
-            /// Item Quantity
-            // Text(
-            //   "\nAmount: " + widget.amount.toString(),
-            //   key: const Key("shoppingItemAmount"),
-            // ),
-          ],
-        ),
-
-        ///Function buttons
-        buttonBar: GFButtonBar(
-          direction: Axis.vertical,
-          children: <Widget>[
-            /// Add Quantity Button
-            // IconButton(
-            //   onPressed: () {},
-            //   icon: const Icon(Icons.add_circle_outline),
-            //   key: const Key("shoppingItemAddButton"),
-            // ),
-
-            /// Remove Quantity Button
-            // IconButton(
-            //   onPressed: () {},
-            //   icon: const Icon(Icons.remove_circle_outline),
-            //   key: const Key("shoppingItemRemoveButton"),
-            // ),
-
-            /// Cancel Item
-            TextButton(
-                onPressed: () {
-                  goToProductDetailPage();
-                },
-                child: const Text(
-                  "More Info >",
-                  key: Key("ShoppingCartMoreInfoButton"),
-                )),
-            IconButton(
-              color: Colors.red,
-              onPressed: () {
-                removeFromCart(globals.id, widget.userShoppingItem.id!);
-
-                ///Show Dialog
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) => DialogMessage(
-                            context,
-                            widget.userShoppingItem.name!,
-                            "Item removed from your cart")
-                        .createDialog());
-                locator<NavigationService>()
-                    .navigateTo(ShoppingCartRoute, null);
-              },
-              icon: const Icon(Icons.cancel_sharp),
-              key: const Key("shoppingItemCancelButton"),
-            ),
-          ],
-        ),
-      ),
+      ],
     );
   }
 

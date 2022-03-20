@@ -18,6 +18,16 @@ class EmptyFieldValidator {
   }
 }
 
+class LengthValidator {
+  static String? validate(String? value) {
+    if (value!.length < 70 || RegExp(r'^\s*$').hasMatch(value)) {
+      return "Please write at least 70 characters";
+    } else {
+      return null;
+    }
+  }
+}
+
 class NameFieldValidator {
   static String? validate(String? value) {
     if (value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {

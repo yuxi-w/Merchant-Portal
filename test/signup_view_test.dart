@@ -12,12 +12,6 @@ void main() {
 
     //Testing various input field widgets in the signup page
 
-    final signupType = find.byKey(const ValueKey("signupTypeSelection"));
-    expect(signupType, findsOneWidget);
-    if (kDebugMode) {
-      print('test Signup type completed');
-    }
-
     expect(find.text("Full Name"), findsOneWidget);
     if (kDebugMode) {
       print("Name input widget found");

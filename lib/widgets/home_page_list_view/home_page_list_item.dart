@@ -11,8 +11,15 @@ import 'package:merchant_app/services/navigation_service.dart';
 /// This Class holds each item of the GridView in Home Page
 class HomePageListItem extends StatefulWidget {
   final ShoppingItem shoppingItem;
+  final double imgWidth;
+  final double imgHeight;
 
-  const HomePageListItem(this.shoppingItem, {Key? key}) : super(key: key);
+  const HomePageListItem(
+    this.shoppingItem, {
+    Key? key,
+    required this.imgWidth,
+    required this.imgHeight,
+  }) : super(key: key);
 
   @override
   _HomePageListItemState createState() => _HomePageListItemState();
@@ -30,14 +37,14 @@ class _HomePageListItemState extends State<HomePageListItem> {
         titlePosition: GFPosition.start,
 
         /// Image
-        // image: Image.network(
-        //   widget.shoppingItem.picture!,
-        //   height: 150,
-        //   width: 150,
-        //   fit: BoxFit.cover,
-        //   key: Key("homeItemImage"),
-        // ),
-        // showImage: true,
+        image: Image.asset(
+          widget.shoppingItem.picture!,
+          height: widget.imgHeight,
+          width: widget.imgWidth,
+          fit: BoxFit.cover,
+          key: Key("homeItemImage"),
+        ),
+        showImage: true,
 
         /// Title
         title: GFListTile(
@@ -48,7 +55,7 @@ class _HomePageListItemState extends State<HomePageListItem> {
 
         /// Description
         content: Text(
-          widget.shoppingItem.shortDescription!,
+          widget.shoppingItem.description!.substring(0, 70) + "...",
           key: Key("description"),
         ),
 

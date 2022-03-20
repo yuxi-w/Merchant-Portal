@@ -34,7 +34,10 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
           itemCount: (snapshot.data as List<ShoppingItem>).length,
           itemBuilder: (BuildContext context, int index) {
             return HomePageListItem(
-                (snapshot.data as List<ShoppingItem>)[index]);
+              (snapshot.data as List<ShoppingItem>)[index],
+              imgHeight: 150,
+              imgWidth: 150,
+            );
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3, mainAxisSpacing: 1, crossAxisSpacing: 1),

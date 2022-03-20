@@ -40,68 +40,77 @@ class _UserOrderHistoryListViewState extends State<UserOrderHistoryListView> {
                   return Column(
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "User Id: " + (tempUserInfo[index].id!).toString(),
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 26,
+                      if (tempUserInfo[index].isBuyer!) ...[
+                        Text(
+                          "User " +
+                              (tempUserInfo[index].id!).toString() +
+                              ": " +
+                              tempUserInfo[index].name!,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 26,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 15),
-                      if (tempUserInfo[index].orderHistory!.isNotEmpty) ...[
-                        //             var orderHistoryList = [];
-                        // for (var i = 0; i < userInfo.orderHistory!.length; i++) {
-                        //   var userOrderHistory =
-                        //       ShoppingItem.fromListJson(userInfo.orderHistory![i]);
-                        //   orderHistoryList.add(userOrderHistory);
-                        // }
+                        const SizedBox(height: 15),
+                        if (tempUserInfo[index].orderHistory!.isNotEmpty) ...[
+                          //             var orderHistoryList = [];
+                          // for (var i = 0; i < userInfo.orderHistory!.length; i++) {
+                          //   var userOrderHistory =
+                          //       ShoppingItem.fromListJson(userInfo.orderHistory![i]);
+                          //   orderHistoryList.add(userOrderHistory);
+                          // }
 
-                        ListView.builder(
-                            shrinkWrap: true,
-                            physics: const ClampingScrollPhysics(),
-                            itemCount: tempUserInfo[index].orderHistory!.length,
-                            itemBuilder: (BuildContext context, int index1) {
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Order " + (index1 + 1).toString(),
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 24,
+                          ListView.builder(
+                              shrinkWrap: true,
+                              physics: const ClampingScrollPhysics(),
+                              itemCount:
+                                  tempUserInfo[index].orderHistory!.length,
+                              itemBuilder: (BuildContext context, int index1) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Order " + (index1 + 1).toString(),
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 24,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  ListView.builder(
-                                      shrinkWrap: true,
-                                      physics: const ClampingScrollPhysics(),
-                                      itemCount: ShoppingItem.fromListJson(
+                                    const SizedBox(height: 10),
+                                    ListView.builder(
+                                        shrinkWrap: true,
+                                        physics: const ClampingScrollPhysics(),
+                                        itemCount: ShoppingItem.fromListJson(
+                                                tempUserInfo[index]
+                                                    .orderHistory![index1])
+                                            .length,
+                                        itemBuilder:
+                                            (BuildContext context, ind) {
+                                          return OrderHistoryListItem(
+                                              ShoppingItem.fromListJson(
+                                                  tempUserInfo[index]
+                                                          .orderHistory![
+                                                      index1])[ind]);
+                                        }),
+                                    Container(
+                                      alignment: Alignment.centerRight,
+                                      margin: const EdgeInsets.fromLTRB(
+                                          10, 20, 115, 10),
+                                      child: calculateOrderTotal(
+                                          ShoppingItem.fromListJson(
                                               tempUserInfo[index]
-                                                  .orderHistory![index1])
-                                          .length,
-                                      itemBuilder: (BuildContext context, ind) {
-                                        return OrderHistoryListItem(ShoppingItem
-                                            .fromListJson(tempUserInfo[index]
-                                                .orderHistory![index1])[ind]);
-                                      }),
-                                  Container(
-                                    alignment: Alignment.centerRight,
-                                    margin: const EdgeInsets.fromLTRB(
-                                        10, 20, 115, 10),
-                                    child: calculateOrderTotal(
-                                        ShoppingItem.fromListJson(
-                                            tempUserInfo[index]
-                                                .orderHistory![index1])),
-                                  ),
-                                ],
-                              );
-                            }),
-                      ] else ...[
-                        const Center(
-                            child: Text(
-                          "This user has not placed an order yet.",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )),
+                                                  .orderHistory![index1])),
+                                    ),
+                                  ],
+                                );
+                              }),
+                        ] else ...[
+                          const Center(
+                              child: Text(
+                            "This user has not placed an order yet.",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )),
+                        ],
                       ],
                       const SizedBox(height: 25),
                     ],

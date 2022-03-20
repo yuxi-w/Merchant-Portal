@@ -1,5 +1,5 @@
+import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -62,16 +62,48 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Future<List<ShoppingItem>> getShoppingItems() async {
-    final response = await get(Uri.parse('${baseUrl}shopitem'));
-
-    if (response.statusCode == 200) {
-      // If the server did return a 200 OK response,
-      // then parse the JSON.
-      return ShoppingItem.fromListJson(jsonDecode(response.body));
-    } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
-      throw Exception('Failed to load shopping list');
+    try {
+      final response = await get(Uri.parse('${baseUrl}shopitem'))
+          .timeout(const Duration(seconds: 5), onTimeout: () {
+        print("timedout");
+        throw TimeoutException('Can\'t connect in 5 seconds.');
+      });
+      if (response.statusCode == 200) {
+        // If the server did return a 200 OK response,
+        // then parse the JSON.
+        return ShoppingItem.fromListJson(jsonDecode(response.body));
+      } else {
+        // If the server did not return a 200 OK response,
+        // then throw an exception.
+        throw Exception('Failed to load shopping list');
+      }
+    } catch (e) {
+      print("here");
+      if (baseUrl == "http://ec2-100-26-134-56.compute-1.amazonaws.com/") {
+        baseUrl = "https://merchant-api.azurewebsites.net/";
+        final newresponse = await get(Uri.parse('${baseUrl}shopitem'));
+        if (newresponse.statusCode == 200) {
+          // If the server did return a 200 OK response,
+          // then parse the JSON.
+          return ShoppingItem.fromListJson(jsonDecode(newresponse.body));
+        } else {
+          // If the server did not return a 200 OK response,
+          // then throw an exception.
+          throw Exception('Failed to load shopping list');
+        }
+      } else {
+        baseUrl = "http://ec2-100-26-134-56.compute-1.amazonaws.com/";
+        final newresponse = await get(Uri.parse('${baseUrl}shopitem'));
+        if (newresponse.statusCode == 200) {
+          // If the server did return a 200 OK response,
+          // then parse the JSON.
+          return ShoppingItem.fromListJson(jsonDecode(newresponse.body));
+        } else {
+          // If the server did not return a 200 OK response,
+          // then throw an exception.
+          throw Exception('Failed to load shopping list');
+        }
+      }
     }
   }
 

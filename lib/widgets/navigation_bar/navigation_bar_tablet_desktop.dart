@@ -44,10 +44,6 @@ class NavigationBarTabletDesktop extends StatelessWidget {
               const SizedBox(
                 width: 50,
               ),
-              const NavBarItem('Sign Up', SignUpRoute),
-              const SizedBox(
-                width: 50,
-              ),
               const NavBarItem('Merchant Portal', MerchantPortalRoute)
             ],
           )
@@ -60,7 +56,7 @@ class NavigationBarTabletDesktop extends StatelessWidget {
     if (globals.isLoggedIn) {
       return "Logout";
     } else {
-      return "Login";
+      return "Login/Signup";
     }
   }
 }

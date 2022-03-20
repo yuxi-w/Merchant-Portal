@@ -12,14 +12,18 @@ void main() {
         1,
         "name",
         "short description",
-        "description",
-        "sample img",
+        "description description description description description description description description",
+        "assets/logitech_g432.jpg",
         "price",
         "option",
         "category",
         "quantity");
-    await tester
-        .pumpWidget(MaterialApp(home: HomePageListItem(tempshoppingitem)));
+    await tester.pumpWidget(MaterialApp(
+        home: HomePageListItem(
+      tempshoppingitem,
+      imgHeight: 50,
+      imgWidth: 50,
+    )));
 
     ///Test title text
     final title = find.byKey(const ValueKey("title"));
@@ -32,7 +36,6 @@ void main() {
     ///Test description text
     final description = find.byKey(const ValueKey("description"));
     expect(description, findsOneWidget);
-    expect(find.text('short description'), findsOneWidget);
     if (kDebugMode) {
       print('test description completed');
     }

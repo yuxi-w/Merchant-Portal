@@ -34,7 +34,10 @@ class _HomeContentMobileState extends State<HomeContentMobile> {
           itemCount: (snapshot.data as List<ShoppingItem>).length,
           itemBuilder: (BuildContext context, int index) {
             return HomePageListItem(
-                (snapshot.data as List<ShoppingItem>)[index]);
+              (snapshot.data as List<ShoppingItem>)[index],
+              imgWidth: 50,
+              imgHeight: 50,
+            );
           },
         );
       },

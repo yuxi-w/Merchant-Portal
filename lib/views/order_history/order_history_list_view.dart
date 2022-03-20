@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/datamodel/userInfo/UserInfo.dart';
 import 'package:merchant_app/views/order_history/order_history_list_item.dart';
-import 'package:merchant_app/widgets/shopping_cart_list_view/shopping_cart_list_item.dart';
 
 /// Shopping cart item list
 class OrderHistoryListView extends StatefulWidget {
@@ -19,6 +18,8 @@ class _OrderHistoryListViewState extends State<OrderHistoryListView> {
   @override
   Widget build(BuildContext context) {
     return Container(
+        constraints:
+            const BoxConstraints(minHeight: 450, minWidth: 300, maxWidth: 1000),
         margin: const EdgeInsets.fromLTRB(70, 16, 70, 16),
         child: buildFutureBuilder());
   }
@@ -84,7 +85,10 @@ class _OrderHistoryListViewState extends State<OrderHistoryListView> {
             return const Center(
                 child: Text(
               "You have not placed any orders.",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
             ));
           }
         } else if (snapshot.hasError) {

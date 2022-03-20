@@ -45,8 +45,8 @@ class _RemoveEditCategoryDesktopState extends State<RemoveEditCategoryDesktop> {
           itemBuilder: (BuildContext context, int index) {
             return RemoveEditCategoryItem(
               categoryName: categoryNameList.toList()[index],
-              imgWidth: 150,
-              imgHeight: 150,
+              imgWidth: 125,
+              imgHeight: 125,
             );
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

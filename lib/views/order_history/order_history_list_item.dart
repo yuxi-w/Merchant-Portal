@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:http/http.dart';
-import 'package:merchant_app/constants/constants/AppConst.dart';
 import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/services/navigation_service.dart';
-import 'package:merchant_app/widgets/dialog_message/dialog_message.dart';
 
 import '../../locator.dart';
 
@@ -40,7 +37,7 @@ class _OrderHistoryListItemState extends State<OrderHistoryListItem> {
           children: <Widget>[
             /// Item Description
             Text(
-              widget.userShoppingItem.shortDescription!,
+              widget.userShoppingItem.description!.substring(0, 70) + "...",
               key: const Key("orderHistoryItemDescription"),
             ),
           ],

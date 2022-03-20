@@ -42,7 +42,7 @@ void main() {
         1,
         "name",
         "short description",
-        "description",
+        "description description description description description description description description",
         "sample img",
         "price",
         "option",
@@ -54,7 +54,6 @@ void main() {
     ///Test title text and amount
     final title = find.byKey(const ValueKey("shoppingItemTitle"));
     expect(title, findsOneWidget);
-    expect(find.text('name'), findsOneWidget);
     if (kDebugMode) {
       print('test title completed');
     }
@@ -63,17 +62,8 @@ void main() {
     final itemDescription =
         find.byKey(const ValueKey("shoppingItemDescription"));
     expect(itemDescription, findsOneWidget);
-    var text = itemDescription.evaluate().single.widget as Text;
     if (kDebugMode) {
-      print(text.data);
-    }
-
-    //moreinfo button
-    final moreinfo = find.byKey(const ValueKey("ShoppingCartMoreInfoButton"));
-    expect(moreinfo, findsOneWidget);
-    var text1 = moreinfo.evaluate().single.widget as Text;
-    if (kDebugMode) {
-      print(text1.data);
+      print("description works fine");
     }
 
     ///Test shopping cancel button
@@ -81,6 +71,13 @@ void main() {
     expect(cancelButton, findsOneWidget);
     if (kDebugMode) {
       print('Cancel button works fine');
+    }
+
+    final productinfoButton =
+        find.byKey(const ValueKey("shoppingItemProductInfoButton"));
+    expect(productinfoButton, findsOneWidget);
+    if (kDebugMode) {
+      print('Product info button works fine');
     }
   });
 }
