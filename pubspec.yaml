@@ -108,6 +108,7 @@ flutter:
     - assets/logitech_g733.jpg
     - assets/logitech_h340.jpg
     - assets/logitech_g432.jpg
+    - assets/coming_soon.jpeg
     - assets/gaming_ear.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

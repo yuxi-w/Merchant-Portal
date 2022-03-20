@@ -119,7 +119,7 @@ class _AddItemViewState extends State<AddItemView> {
                                     BorderRadius.all(Radius.circular(20.0)),
                               ),
                             ),
-                            validator: EmptyFieldValidator.validate,
+                            validator: LengthValidator.validate,
                           ),
 
                           const SizedBox(height: 50),
@@ -171,7 +171,7 @@ class _AddItemViewState extends State<AddItemView> {
         'name': nameText.text,
         'shortDescription': descriptionText.text,
         'description': descriptionText.text,
-        'picture': "a",
+        'picture': "assets/coming_soon.jpeg",
         'price': priceText.text,
         'option': "Black",
         'category': categoryText.text,
