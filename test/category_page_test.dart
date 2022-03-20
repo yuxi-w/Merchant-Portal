@@ -18,8 +18,12 @@ void main() {
         "option",
         "category",
         "quantity");
-    await tester
-        .pumpWidget(MaterialApp(home: CategoryPageListItem(tempshoppingitem)));
+    await tester.pumpWidget(MaterialApp(
+        home: CategoryPageListItem(
+      tempshoppingitem,
+      imgWidth: 50,
+      imgHeight: 50,
+    )));
 
     ///Test title text
     final title = find.byKey(const ValueKey("categoryItemTitle"));

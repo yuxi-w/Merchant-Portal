@@ -4,7 +4,6 @@ import 'package:http/http.dart';
 import 'package:merchant_app/constants/colors/app_colors.dart';
 import 'package:merchant_app/constants/constants/AppConst.dart';
 import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
-import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/services/navigation_service.dart';
 import 'package:merchant_app/widgets/dialog_message/dialog_message.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
@@ -47,26 +46,12 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                       mainAxisAlignment: MainAxisAlignment
                           .center, //Center Row contents horizontally,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
+                      children: [
                         /// top Picture1 section!
                         CircleAvatar(
                           radius: 50.0,
                           backgroundImage:
-                              AssetImage('./assets/electronics.png'),
-                        ),
-
-                        /// top Picture1 section!
-                        CircleAvatar(
-                          radius: 50.0,
-                          backgroundImage:
-                              AssetImage('./assets/electronics.png'),
-                        ),
-
-                        /// top Picture1 section!
-                        CircleAvatar(
-                          radius: 50.0,
-                          backgroundImage:
-                              AssetImage('./assets/electronics.png'),
+                              AssetImage(widget.shoppingItem!.picture!),
                         ),
                       ]),
 
