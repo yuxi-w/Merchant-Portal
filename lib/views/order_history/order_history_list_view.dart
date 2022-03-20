@@ -85,7 +85,10 @@ class _OrderHistoryListViewState extends State<OrderHistoryListView> {
             return const Center(
                 child: Text(
               "You have not placed any orders.",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
             ));
           }
         } else if (snapshot.hasError) {

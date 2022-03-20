@@ -277,6 +277,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
             ),
           ),
         ),
+        const SizedBox(height: 190),
 
         /// Footer
         const HomePageFooter()

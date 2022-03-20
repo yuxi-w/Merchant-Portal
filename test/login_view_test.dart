@@ -32,7 +32,8 @@ void main() {
     }
 
     //test login button
-    expect(find.text("Login"), findsNWidgets(3));
+    final loginbutton = find.byKey(const ValueKey("Loginbutton"));
+    expect(loginbutton, findsOneWidget);
     if (kDebugMode) {
       print("Login button found");
     }
