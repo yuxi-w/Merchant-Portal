@@ -44,7 +44,7 @@ class _CategoryPageListItemState extends State<CategoryPageListItem> {
 
         /// Description
         content: Text(
-          widget.shoppingItem.shortDescription!,
+          widget.shoppingItem.description!.substring(0, 70) + "...",
           key: const Key("categoryItemDescription"),
         ),
 

@@ -48,7 +48,7 @@ class _HomePageListItemState extends State<HomePageListItem> {
 
         /// Description
         content: Text(
-          widget.shoppingItem.shortDescription!,
+          widget.shoppingItem.description!.substring(0, 70) + "...",
           key: Key("description"),
         ),
 
