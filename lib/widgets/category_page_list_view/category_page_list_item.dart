@@ -8,8 +8,15 @@ import 'package:merchant_app/services/navigation_service.dart';
 /// This Class holds each item of the CategoryView page
 class CategoryPageListItem extends StatefulWidget {
   final ShoppingItem shoppingItem;
+  final double imgHeight;
+  final double imgWidth;
 
-  const CategoryPageListItem(this.shoppingItem, {Key? key}) : super(key: key);
+  const CategoryPageListItem(
+    this.shoppingItem, {
+    Key? key,
+    required this.imgHeight,
+    required this.imgWidth,
+  }) : super(key: key);
 
   @override
   _CategoryPageListItemState createState() => _CategoryPageListItemState();
@@ -27,13 +34,13 @@ class _CategoryPageListItemState extends State<CategoryPageListItem> {
         titlePosition: GFPosition.start,
 
         /// Image
-        // image: Image.asset(
-        //   widget.pictureLink,
-        //   height: 150,
-        //   width: 150,
-        //   fit: BoxFit.cover,
-        // ),
-        // showImage: true,
+        image: Image.asset(
+          widget.shoppingItem.picture!,
+          height: widget.imgHeight,
+          width: widget.imgWidth,
+          fit: BoxFit.cover,
+        ),
+        showImage: true,
 
         /// Title
         title: GFListTile(

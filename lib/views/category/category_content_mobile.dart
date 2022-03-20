@@ -57,7 +57,11 @@ class _CategoryContentMobileState extends State<CategoryContentMobile> {
       shrinkWrap: true,
       itemCount: categoryItems.length,
       itemBuilder: (BuildContext context, int index) {
-        return CategoryPageListItem((categoryItems)[index]);
+        return CategoryPageListItem(
+          (categoryItems)[index],
+          imgHeight: 50,
+          imgWidth: 50,
+        );
       },
     );
   }
