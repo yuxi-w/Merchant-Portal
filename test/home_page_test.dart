@@ -12,7 +12,7 @@ void main() {
         1,
         "name",
         "short description",
-        "description",
+        "description description description description description description description description",
         "sample img",
         "price",
         "option",
@@ -32,7 +32,6 @@ void main() {
     ///Test description text
     final description = find.byKey(const ValueKey("description"));
     expect(description, findsOneWidget);
-    expect(find.text('short description'), findsOneWidget);
     if (kDebugMode) {
       print('test description completed');
     }

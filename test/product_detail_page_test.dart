@@ -10,7 +10,7 @@ void main() {
         1,
         "name",
         "short description",
-        "description",
+        "description description description description description description description description",
         "sample img",
         "price",
         "option",
