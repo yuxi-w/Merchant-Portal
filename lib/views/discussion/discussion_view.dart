@@ -1,11 +1,16 @@
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:merchant_app/constants/constants/AppConst.dart';
+import 'package:merchant_app/datamodel/message_list/MessageList.dart';
 import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/services/navigation_service.dart';
 import 'package:merchant_app/widgets/dialog_message/dialog_message.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
+import 'package:merchant_app/constants/constants/globals.dart' as globals;
 
 import '../../constants/methods/validation_methods.dart';
 import '../../locator.dart';
@@ -18,12 +23,14 @@ class DiscussionView extends StatefulWidget {
 }
 
 class _DiscussionViewState extends State<DiscussionView> {
+  late Future<List<MessageList>?> futureMessageList;
   late TextEditingController titleText, bodyText;
   final postdiscussionformkey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
+    futureMessageList = getMessageList();
     titleText = TextEditingController();
     bodyText = TextEditingController();
   }
@@ -51,7 +58,8 @@ class _DiscussionViewState extends State<DiscussionView> {
               fontWeight: FontWeight.bold,
               fontSize: 25,
             ),
-          key: Key("chat_page_main_title"),),
+            key: Key("chat_page_main_title"),
+          ),
         ),
 
         Container(
@@ -59,8 +67,8 @@ class _DiscussionViewState extends State<DiscussionView> {
           child: Center(
             child: SingleChildScrollView(
               child: Container(
-                height: 640,
-                width: 640,
+                height: 840,
+                width: 840,
                 margin: const EdgeInsets.symmetric(horizontal: 24),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 decoration: BoxDecoration(
@@ -84,7 +92,7 @@ class _DiscussionViewState extends State<DiscussionView> {
 
                                 children: [
                                   const Text(
-                                    "New Post",
+                                    "Conversations",
                                     style: TextStyle(
                                         fontSize: 24,
                                         fontWeight: FontWeight.w900),
@@ -95,26 +103,74 @@ class _DiscussionViewState extends State<DiscussionView> {
 
                                   const SizedBox(height: 24),
 
-                                  /// Title Text Field
-                                  TextFormField(
-                                    controller: titleText,
-                                    decoration: const InputDecoration(
-                                      label: Text("Title"),
-                                      hintText: "Enter Title",
+                                  /// Conversations box area
+                                  Container(
+                                    height: 350,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.blue,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
-                                    validator: EmptyFieldValidator.validate,
+                                    child: Container(
+                                      margin: const EdgeInsets.all(16),
+                                      child: FutureBuilder(
+                                          future: futureMessageList,
+                                          builder: (context, snapshot) {
+                                            if (snapshot.hasData) {
+                                              /// Getting All Messages
+                                              var allMessages = snapshot.data
+                                                  as List<MessageList>;
+                                              print(
+                                                  "MessageList ${allMessages.toString()}");
+
+                                              /// Showing Messages in message area
+                                              return ListView.builder(
+                                                  itemCount: allMessages.length,
+                                                  shrinkWrap: true,
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int index) {
+                                                    return Padding(
+                                                      padding: const EdgeInsets
+                                                              .fromLTRB(
+                                                          0, 3.5, 0, 3.5),
+                                                      child: Text(
+                                                        '${(allMessages)[index].name}: '
+                                                        '${(allMessages)[index].content}',
+                                                        style: const TextStyle(
+                                                          fontSize: 17,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  });
+                                            } else if (snapshot.hasError) {
+                                              return const Center(
+                                                  child: Text(
+                                                      'Failed To Load Data'));
+                                            } else {
+                                              return const SizedBox(
+                                                  height: 500,
+                                                  child: Center(
+                                                      child:
+                                                          CircularProgressIndicator()));
+                                            }
+                                          }),
+                                    ),
                                   ),
 
                                   const SizedBox(height: 24),
 
-                                  /// Description Text Field
+                                  /// Message Text Field
                                   TextFormField(
                                     controller: bodyText,
                                     minLines: 2,
                                     maxLines: 5,
                                     keyboardType: TextInputType.multiline,
                                     decoration: const InputDecoration(
-                                      hintText: 'description',
+                                      hintText: 'Type your message',
                                       hintStyle: TextStyle(color: Colors.grey),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
@@ -129,23 +185,11 @@ class _DiscussionViewState extends State<DiscussionView> {
                                   /// Post Button
                                   MaterialButton(
                                     onPressed: () {
+                                      /// Send Message to server
                                       if (postdiscussionformkey.currentState!
                                           .validate()) {
                                         postChatMessage(
-                                            titleText.text, bodyText.text);
-
-                                        ///Show Confirm Dialog
-                                        showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) =>
-                                                DialogMessage(
-                                                        context,
-                                                        "Your message has been received",
-                                                        "Thank you for your message, the merchant will answer as soon as possible...")
-                                                    .createDialog());
-
-                                        /// Go Back to Previous Page
-                                        locator<NavigationService>().goBack();
+                                            globals.name, bodyText.text);
                                       }
                                     },
                                     child: const Text("Post"),
@@ -157,7 +201,8 @@ class _DiscussionViewState extends State<DiscussionView> {
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(32)),
-                                  key: const Key("chat_page_send_button"),),
+                                    key: const Key("chat_page_send_button"),
+                                  ),
                                 ],
                               ),
                             ),
@@ -179,11 +224,11 @@ class _DiscussionViewState extends State<DiscussionView> {
   }
 
   /// Send Chat API
-  void postChatMessage(String title, String body) async {
+  void postChatMessage(String userName, String body) async {
     try {
       Response response =
           await post(Uri.parse('${baseUrl}Chat').replace(queryParameters: {
-        'Name': title,
+        'Name': userName,
         'Content': body,
       }));
       print(response.statusCode);
@@ -191,8 +236,27 @@ class _DiscussionViewState extends State<DiscussionView> {
         var data = (response.body.toString());
         print(data);
         print("success");
+
+        /// Refresh the page
+        locator<NavigationService>().navigateTo(DiscussionRoute, null);
       } else {
         print("fail");
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  /// Get Message List
+  Future<List<MessageList>?> getMessageList() async {
+    try {
+      Response messageListResponse = await get(Uri.parse('${baseUrl}Chat'));
+      print(messageListResponse.statusCode);
+      if (messageListResponse.statusCode == 200) {
+        return MessageList.fromListJson(jsonDecode(messageListResponse.body));
+      } else {
+        print("getting message list failed");
+        return null;
       }
     } catch (e) {
       print(e.toString());
