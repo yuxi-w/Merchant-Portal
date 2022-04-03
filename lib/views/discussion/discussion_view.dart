@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:merchant_app/constants/constants/AppConst.dart';
@@ -182,17 +181,28 @@ class _DiscussionViewState extends State<DiscussionView> {
 
                                   const SizedBox(height: 24),
 
-                                  /// Post Button
+                                  /// Send Button
                                   MaterialButton(
                                     onPressed: () {
-                                      /// Send Message to server
-                                      if (postdiscussionformkey.currentState!
-                                          .validate()) {
-                                        postChatMessage(
-                                            globals.name, bodyText.text);
+                                      if (globals.isLoggedIn) {
+                                        /// Send Message to server
+                                        if (postdiscussionformkey.currentState!
+                                            .validate()) {
+                                          postChatMessage(
+                                              globals.name, bodyText.text);
+                                        }
+                                      } else {
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                DialogMessage(
+                                                        context,
+                                                        "Not Logged In?",
+                                                        "Please login to be able to send message")
+                                                    .createDialog());
                                       }
                                     },
-                                    child: const Text("Post"),
+                                    child: const Text("Send"),
                                     minWidth: double.infinity,
                                     height: 52,
                                     elevation: 24,
@@ -223,7 +233,7 @@ class _DiscussionViewState extends State<DiscussionView> {
     );
   }
 
-  /// Send Chat API
+  /// Send Message API
   void postChatMessage(String userName, String body) async {
     try {
       Response response =
