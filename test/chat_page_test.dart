@@ -18,7 +18,7 @@ void main() {
     }
 
     ///Test text form fields
-    expect(find.byType(TextFormField), findsNWidgets(2));
+    expect(find.byType(TextFormField), findsNWidgets(1));
     if (kDebugMode) {
       print("Text fields work fine");
     }
