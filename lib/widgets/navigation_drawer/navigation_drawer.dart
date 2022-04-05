@@ -24,7 +24,9 @@ class NavigationDrawer extends StatelessWidget {
             DrawerItem("Category", Icons.category, CategoryRoute),
             DrawerItem(
                 "Shopping Cart", Icons.shopping_cart_sharp, ShoppingCartRoute),
-            DrawerItem("My Info", Icons.person, PersonalInfoRoute)
+            DrawerItem("My Info", Icons.person, PersonalInfoRoute),
+            DrawerItem("Login/Signup", Icons.login, LoginRoute),
+            DrawerItem("Merchant Portal", Icons.shop, MerchantPortalRoute),
           ],
         ),
       ),

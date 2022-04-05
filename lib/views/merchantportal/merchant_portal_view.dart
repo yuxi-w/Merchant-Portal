@@ -87,25 +87,29 @@ class _MerchantPortalViewState extends State<MerchantPortalView> {
             child: Column(
               key: const Key("notLoggedInText_merchantPortal"),
               children: const [
-                Text(
-                  "Restricted Access!",
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
+                Center(
+                  child: Text(
+                    "Restricted Access!",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
+                    key: Key("merchant_portal_text_restricted_access"),
                   ),
-                  key: Key("merchant_portal_text_restricted_access"),
                 ),
-                Text(
-                  "Please Login using your Merchant Id and Password to access this content.",
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
+                Center(
+                  child: Text(
+                    "Please Login using your Merchant Id and Password to access this content.",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
+                    key: Key("merchant_portal_text_please_login"),
                   ),
-                  key: Key("merchant_portal_text_please_login"),
                 ),
               ],
             ),
