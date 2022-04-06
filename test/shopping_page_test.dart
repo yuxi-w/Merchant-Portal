@@ -39,7 +39,7 @@ void main() {
 
   testWidgets('Shopping cart items test', (WidgetTester tester) async {
     final ShoppingItem tempshoppingitem = ShoppingItem(
-        1,
+        "1",
         "name",
         "short description",
         "description description description description description description description description",

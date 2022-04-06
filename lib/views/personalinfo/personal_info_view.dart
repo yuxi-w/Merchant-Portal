@@ -3,10 +3,8 @@ import 'package:merchant_app/constants/colors/app_colors.dart';
 import 'package:merchant_app/locator.dart';
 import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/services/navigation_service.dart';
-import 'package:merchant_app/views/editpersonalinfo/edit_personal_info_view.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
-
 import 'package:merchant_app/constants/constants/globals.dart' as globals;
 
 /// this is the page for user to check and change the personal and contact information

@@ -42,10 +42,7 @@ class _UserOrderHistoryListViewState extends State<UserOrderHistoryListView> {
                     children: [
                       if (tempUserInfo[index].isBuyer!) ...[
                         Text(
-                          "User " +
-                              (tempUserInfo[index].id!).toString() +
-                              ": " +
-                              tempUserInfo[index].name!,
+                          "User Name: " + tempUserInfo[index].name!,
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 26,

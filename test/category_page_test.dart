@@ -9,7 +9,7 @@ void main() {
   testWidgets('Category page items test', (WidgetTester tester) async {
     setupLocator();
     final ShoppingItem tempshoppingitem = ShoppingItem(
-        1,
+        "1",
         "name",
         "short description",
         "description description description description description description description description",

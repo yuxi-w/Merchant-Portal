@@ -217,7 +217,7 @@ class _EditItemViewState extends State<EditItemView> {
       myBody['name'] = nameText.text;
       myBody['shortDescription'] = descriptionText.text;
       myBody['description'] = descriptionText.text;
-      myBody['picture'] = "a";
+      myBody['picture'] = "assets/coming_soon.jpeg";
       myBody['price'] = priceText.text;
       myBody['option'] = "black";
       myBody['category'] = categoryText.text;

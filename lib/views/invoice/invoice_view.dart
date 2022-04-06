@@ -74,25 +74,4 @@ class _InvoiceViewState extends State<InvoiceView> {
       ],
     );
   }
-
-// Future<List<ShoppingItem>> getUserInvoice(int userId) async {
-//   final response = await get(Uri.parse('${baseUrl}Invoice$userId'));
-//
-//   if (response.statusCode == 200) {
-//     // If the server did return a 200 OK response,
-//     // then parse the JSON.
-//     print("Getting user invoice was successful");
-//     return ShoppingItem.fromListJson(jsonDecode(response.body));
-//   } else {
-//     // If the server did not return a 200 OK response,
-//     // then throw an exception.
-//     throw Exception('Failed to load user invoice');
-//   }
-// }
-
-// @override
-// void initState() {
-//   super.initState();
-//   futureShoppingItems = getUserInvoice(widget.userId);
-// }
 }

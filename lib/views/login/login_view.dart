@@ -24,36 +24,4 @@ class _LoginViewState extends State<LoginView> {
       ],
     );
   }
-
-  //Widget may be used in future
-  // Widget buildDiscussion(String title, String asd) => Padding(
-  //       padding: const EdgeInsets.all(10),
-  //       child: Card(
-  //         clipBehavior: Clip.antiAlias,
-  //         child: ExpandablePanel(
-  //           header: Text(
-  //             title,
-  //             style: const TextStyle(
-  //               fontSize: 24,
-  //               fontWeight: FontWeight.bold,
-  //             ),
-  //           ),
-  //           collapsed: Text(
-  //             asd,
-  //             style: const TextStyle(
-  //               fontSize: 18,
-  //             ),
-  //             softWrap: true,
-  //             maxLines: 3,
-  //             overflow: TextOverflow.ellipsis,
-  //           ),
-  //           expanded: Text(
-  //             asd,
-  //             style: const TextStyle(
-  //               fontSize: 18,
-  //             ),
-  //           ),
-  //         ),
-  //       ),
-  //     );
 }

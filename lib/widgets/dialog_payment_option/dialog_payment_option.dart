@@ -115,7 +115,7 @@ class DialogPaymentOption {
   }
 
   /// Checkout API Call
-  void checkOutApiCall(int userId) async {
+  void checkOutApiCall(String userId) async {
     final response =
         await post(Uri.parse('${baseUrl}shopuser/checkout$userId'));
 

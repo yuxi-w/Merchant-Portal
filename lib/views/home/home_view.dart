@@ -79,8 +79,8 @@ class _HomeViewState extends State<HomeView> {
       }
     } catch (e) {
       print("here");
-      if (baseUrl == "http://ec2-100-26-134-56.compute-1.amazonaws.com/") {
-        baseUrl = "https://merchant-api.azurewebsites.net/";
+      if (baseUrl == "http://ec2-54-89-165-163.compute-1.amazonaws.com/") {
+        baseUrl = "https://merapi.azurewebsites.net/";
         final newresponse = await get(Uri.parse('${baseUrl}shopitem'));
         if (newresponse.statusCode == 200) {
           // If the server did return a 200 OK response,

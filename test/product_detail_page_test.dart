@@ -7,7 +7,7 @@ import 'package:merchant_app/views/productdetail/product_detail_view.dart';
 void main() {
   testWidgets('Product detail page test', (WidgetTester tester) async {
     final ShoppingItem tempshoppingitem = ShoppingItem(
-        1,
+        "1",
         "name",
         "short description",
         "description description description description description description description description",

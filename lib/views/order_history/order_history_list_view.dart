@@ -39,14 +39,6 @@ class _OrderHistoryListViewState extends State<OrderHistoryListView> {
                   ShoppingItem.fromListJson(userInfo.orderHistory![i]);
               orderHistoryList.add(userOrderHistory);
             }
-
-            // return ListView.builder(
-            //   shrinkWrap: true,
-            //   itemCount: orderHistoryList.length,
-            //   itemBuilder: (BuildContext context, int index) {
-            //     return ShopCartListItem((orderHistoryList)[index]);
-            //   },
-            // );
             return ListView.builder(
               shrinkWrap: true,
               itemCount: orderHistoryList.length,

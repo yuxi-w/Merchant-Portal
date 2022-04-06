@@ -1,16 +1,12 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:merchant_app/datamodel/userInfo/UserInfo.dart';
 import 'package:merchant_app/locator.dart';
 import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/services/navigation_service.dart';
 import 'package:merchant_app/constants/methods/validation_methods.dart';
 import 'package:merchant_app/constants/constants/AppConst.dart';
-
 import 'package:merchant_app/constants/constants/globals.dart' as globals;
-import 'package:merchant_app/datamodel/userInfo/UserInfo.dart';
 
 import 'package:cool_alert/cool_alert.dart';
 
@@ -28,29 +24,31 @@ class _LoginLeftViewState extends State<LoginLeftView> {
   bool success = false;
   String errmsg = "temp";
 
-  Future<void> getUserInfo(int id) async {
+  Future<void> getUserInfo(String id) async {
     try {
       Response response = await get(Uri.parse('${baseUrl}shopuser/$id'));
       if (response.statusCode == 200) {
         // If the server did return a 200 OK response,
         // then parse the JSON.
         var parsedjson = (jsonDecode(response.body));
-        globals.name = parsedjson[0]['name'];
-        globals.profilePicture = parsedjson[0]['profilePicture'];
-        globals.phoneNumber = parsedjson[0]['phoneNumber'];
-        globals.email = parsedjson[0]['email'];
-        globals.address = parsedjson[0]['address'];
-        globals.zipcode = parsedjson[0]['zipcode'];
-        globals.password = parsedjson[0]['password'];
-        globals.isBuyer = parsedjson[0]['isBuyer'];
-        globals.shoppingBag = parsedjson[0]['shoppingBag'];
-        globals.orderHistory = parsedjson[0]['orderHistory'];
+        globals.name = parsedjson['name'];
+        globals.profilePicture = parsedjson['profilePicture'];
+        globals.phoneNumber = parsedjson['phoneNumber'];
+        globals.email = parsedjson['email'];
+        globals.address = parsedjson['address'];
+        globals.zipcode = parsedjson['zipcode'];
+        globals.password = parsedjson['password'];
+        globals.isBuyer = parsedjson['isBuyer'];
+        globals.shoppingBag = parsedjson['shoppingBag'];
+        globals.orderHistory = parsedjson['orderHistory'];
       } else {
         // If the server did not return a 200 OK response,
         // then throw an exception.
         print('Failed to load user list');
       }
     } catch (e) {
+      print('${baseUrl}shopuser/$id');
+      print("here");
       print(e.toString());
     }
   }
@@ -65,7 +63,7 @@ class _LoginLeftViewState extends State<LoginLeftView> {
       );
       if (response.statusCode == 200) {
         var data = (response.body.toString());
-        globals.id = int.parse(data);
+        globals.id = data;
         globals.isLoggedIn = true;
         setState(() {
           success = true;
@@ -96,10 +94,6 @@ class _LoginLeftViewState extends State<LoginLeftView> {
             child: Form(
               key: loginformkey,
               child: ListView(
-                // mainAxisSize: MainAxisSize.max,
-                // mainAxisAlignment: MainAxisAlignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.start,
-
                 children: [
                   const Text(
                     "Login",
@@ -121,7 +115,7 @@ class _LoginLeftViewState extends State<LoginLeftView> {
                       hintText: "abc@xyz.com",
                     ),
                     controller: _email,
-                    //validator: EmailFieldValidator.validate,
+                    validator: EmailFieldValidator.validate,
                   ),
 
                   /// Password Text Field
@@ -149,9 +143,6 @@ class _LoginLeftViewState extends State<LoginLeftView> {
                             context: context,
                             type: CoolAlertType.success,
                             text: "Login Successful\nWelcome " + globals.name,
-                            // onConfirmBtnTap: () {
-                            //   Navigator.pop(context);
-                            // },
                           );
                           goToHome();
                         } else {

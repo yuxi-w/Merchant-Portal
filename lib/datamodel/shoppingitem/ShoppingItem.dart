@@ -1,5 +1,5 @@
 class ShoppingItem {
-  int? id;
+  String? id;
   String? name;
   String? shortDescription;
   String? description;

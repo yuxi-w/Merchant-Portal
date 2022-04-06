@@ -54,7 +54,6 @@ class _CategoryViewState extends State<CategoryView> {
             if (snapshot.hasData) {
               ///Getting All Items
               var allShoppingItems = snapshot.data as List<ShoppingItem>;
-              print("CategoryItems ${allShoppingItems.toString()}");
               if (allShoppingItems.isNotEmpty) {
                 ///Getting Category Names
                 Set<String> categoryNames = {};

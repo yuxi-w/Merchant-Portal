@@ -40,7 +40,7 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
   String errmsg = "temp";
 
   Future<void> editinfo(
-      String name, email, pass, address, phone, zipcode, int id) async {
+      String name, email, pass, address, phone, zipcode, id) async {
     try {
       Map mybody = {};
       mybody['name'] = name;
@@ -55,7 +55,6 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
       mybody['shoppingBag'] = globals.shoppingBag;
       mybody['orderHistory'] = globals.orderHistory;
       String str = jsonEncode(mybody);
-      print(str);
       Response response = await put(
         Uri.parse('${baseUrl}shopuser/$id'),
         body: str,

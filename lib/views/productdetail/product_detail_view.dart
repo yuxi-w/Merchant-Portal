@@ -138,79 +138,6 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                                 ],
                               )),
                         ),
-                        // Align(
-                        //   alignment: Alignment.centerLeft,
-                        //   child: Container(
-                        //       padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                        //       child: Row(
-                        //         children: [
-                        //           /// Product color section
-                        //           Text(
-                        //             'Product color:',
-                        //             style: TextStyle(
-                        //                 fontSize: 18.0,
-                        //                 fontWeight: FontWeight.bold,
-                        //                 color: infoPageTextColor),
-                        //           ),
-                        //           const Padding(
-                        //             padding: EdgeInsets.all(8.0),
-                        //
-                        //             /// Product color status section
-                        //             child: Text("Black",
-                        //                 style: TextStyle(
-                        //                     fontWeight: FontWeight.w400,
-                        //                     fontSize: 18),
-                        //                 key: Key("productDetailColor")),
-                        //           )
-                        //         ],
-                        //       )),
-                        // ),
-                        // Align(
-                        //   alignment: Alignment.centerLeft,
-                        //   child: Container(
-                        //       padding: const EdgeInsets.fromLTRB(20, 0, 0, 20),
-                        //       constraints: const BoxConstraints(
-                        //           minWidth: 400, maxWidth: 700),
-                        //       child: Row(
-                        //         children: [
-                        //           Text(
-                        //             'Quantity:',
-                        //             style: TextStyle(
-                        //                 fontSize: 18.0,
-                        //                 fontWeight: FontWeight.bold,
-                        //                 color: infoPageTextColor),
-                        //           ),
-                        //           const SizedBox(width: 8),
-                        //           const Text(
-                        //             "1",
-                        //             style: TextStyle(
-                        //                 fontWeight: FontWeight.w400,
-                        //                 fontSize: 18),
-                        //             key: Key("productDetailQuantityText"),
-                        //           ),
-                        //           const SizedBox(width: 25),
-                        //           Card(
-                        //             child: IconButton(
-                        //               iconSize: 25,
-                        //               onPressed: () {},
-                        //               icon:
-                        //                   const Icon(Icons.add_circle_outline),
-                        //               key: const Key("productDetailAddButton"),
-                        //             ),
-                        //           ),
-                        //           Card(
-                        //             child: IconButton(
-                        //               iconSize: 25,
-                        //               onPressed: () {},
-                        //               icon: const Icon(
-                        //                   Icons.remove_circle_outline),
-                        //               key: const Key(
-                        //                   "productDetailRemoveButton"),
-                        //             ),
-                        //           ),
-                        //         ],
-                        //       )),
-                        // ),
 
                         /// Add to cart button
                         Container(
@@ -286,7 +213,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
   }
 
   /// Adding to cart API
-  void addToCart(int userId, int itemId) async {
+  void addToCart(String userId, itemId) async {
     final response =
         await post(Uri.parse('${baseUrl}shopuser/Add$userId?itemId=$itemId'));
 

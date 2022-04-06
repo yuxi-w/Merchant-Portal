@@ -1,4 +1,3 @@
-import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:merchant_app/views/merchantportal/merchant_content_desktop.dart';
 import 'package:merchant_app/views/merchantportal/merchant_content_mobile.dart';
