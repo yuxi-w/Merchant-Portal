@@ -1,5 +1,5 @@
 class MessageList {
-  int? id;
+  String? id;
   String? name;
   String? content;
   String? date;

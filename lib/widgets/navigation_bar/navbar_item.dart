@@ -15,7 +15,7 @@ class NavBarItem extends StatelessWidget {
   const NavBarItem(this.title, this.navigationPath, {Key? key})
       : super(key: key);
 
-  Future<void> logout(int id) async {
+  Future<void> logout(String id) async {
     try {
       Response response = await post(
         Uri.parse('${baseUrl}shopuser/logout$id'),

@@ -127,40 +127,6 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                             const SizedBox(height: 24),
                             const SizedBox(height: 24),
 
-                            // const Center(
-                            //   child: Text("Signup as: "),
-                            // ),
-
-                            // //Dropdown button
-                            // Center(
-                            //   child: SizedBox(
-                            //     width: 100,
-                            //     height: 40,
-                            //     child: DropdownButton(
-                            //       key: const Key("signupTypeSelection"),
-                            //       isExpanded: true,
-                            //       value: dropdownValue,
-                            //       items: <String>['Client', 'Merchant']
-                            //           .map<DropdownMenuItem<String>>(
-                            //               (String value) {
-                            //         return DropdownMenuItem<String>(
-                            //           value: value,
-                            //           child: Text(value),
-                            //         );
-                            //       }).toList(),
-                            //       onChanged: (String? newValue) {
-                            //         setState(
-                            //           () {
-                            //             dropdownValue = newValue!;
-                            //           },
-                            //         );
-                            //       },
-                            //     ),
-                            //   ),
-                            // ),
-
-                            // const SizedBox(height: 24),
-
                             /// Full Name Text Field
                             TextFormField(
                               decoration: const InputDecoration(
@@ -265,9 +231,6 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                                       type: CoolAlertType.success,
                                       text:
                                           "Signup Successful! \nPlease login to continue",
-                                      // onConfirmBtnTap: () {
-                                      //   Navigator.pop(context);
-                                      // },
                                     );
                                     goToSignInPage();
                                   } else {

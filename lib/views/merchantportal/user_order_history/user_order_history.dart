@@ -67,6 +67,7 @@ class _UserOrderHistoryViewState extends State<UserOrderHistoryView> {
                 }
               },
             )),
+        const SizedBox(height: 200),
 
         /// Home Page Footer
         const HomePageFooter(),

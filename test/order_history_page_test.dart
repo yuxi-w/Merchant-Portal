@@ -10,7 +10,7 @@ void main() {
       (WidgetTester tester) async {
     setupLocator();
     final ShoppingItem sitem = ShoppingItem(
-        1,
+        "1",
         "item",
         "shortDescriptionshortDescriptionshortDescriptionshortDescriptionshortDescription",
         "descriptionshortDescriptionshortDescriptionshortDescriptionshortDescriptionshortDescription",

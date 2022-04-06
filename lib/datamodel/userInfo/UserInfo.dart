@@ -11,7 +11,7 @@
 /// shoppingBag : []
 
 class UserInfo {
-  int? id;
+  String? id;
   String? name;
   String? profilePicture;
   String? phoneNumber;

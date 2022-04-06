@@ -10,8 +10,8 @@ void main() {
   testWidgets('Invoice page test', (WidgetTester tester) async {
     setupLocator();
     List<ShoppingItem> userShoppingBag = [
-      ShoppingItem(1, "item", "shortDescription", "description", "picture", "1",
-          "option", "category", "quantity")
+      ShoppingItem("1", "item", "shortDescription", "description", "picture",
+          "1", "option", "category", "quantity")
     ];
 
     await tester.pumpWidget(
@@ -37,8 +37,8 @@ void main() {
 
   testWidgets('Invoice Content test', (WidgetTester tester) async {
     List<ShoppingItem> userShoppingBag = [
-      ShoppingItem(1, "item", "shortDescription", "description", "picture", "1",
-          "option", "category", "quantity")
+      ShoppingItem("1", "item", "shortDescription", "description", "picture",
+          "1", "option", "category", "quantity")
     ];
     await tester.pumpWidget(
         MaterialApp(home: InvoiceContent(userShoppingBag: userShoppingBag)));

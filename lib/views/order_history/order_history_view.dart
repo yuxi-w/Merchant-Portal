@@ -1,17 +1,12 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:merchant_app/constants/constants/AppConst.dart';
 import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/datamodel/userInfo/UserInfo.dart';
 import 'package:merchant_app/views/order_history/order_history_list_view.dart';
-import 'package:merchant_app/widgets/dialog_message/dialog_message.dart';
-import 'package:merchant_app/widgets/dialog_payment_option/dialog_payment_option.dart';
 import 'package:merchant_app/widgets/home_page_footer/home_page_footer.dart';
 import 'package:merchant_app/widgets/navigation_bar/navigation_bar.dart';
-import 'package:merchant_app/widgets/shopping_cart_list_view/shopping_cart_list_view.dart';
-
 import 'package:merchant_app/constants/constants/globals.dart' as globals;
 
 class OrderHistoryView extends StatefulWidget {
@@ -29,14 +24,16 @@ class _OrderHistoryViewState extends State<OrderHistoryView> {
   List<ShoppingItem> userShoppingBag = [];
   bool isUserExist = false;
 
-  Future<List<UserInfo>> getUserInfo(int userId) async {
+  Future<List<UserInfo>> getUserInfo(String userId) async {
     final response = await get(Uri.parse('${baseUrl}shopuser/$userId'));
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
       print("getting user successful");
-      return UserInfo.fromListJson(jsonDecode(response.body));
+      List<dynamic> r = [];
+      r.add(jsonDecode(response.body));
+      return UserInfo.fromListJson(r);
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.

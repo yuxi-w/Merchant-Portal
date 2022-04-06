@@ -106,7 +106,7 @@ class _ShopCartListItemState extends State<ShopCartListItem> {
   }
 
   /// Remove Item From Cart API
-  void removeFromCart(int userId, int itemId) async {
+  void removeFromCart(String userId, itemId) async {
     final response = await post(
         Uri.parse('${baseUrl}shopuser/remove$userId?itemId=$itemId'));
 

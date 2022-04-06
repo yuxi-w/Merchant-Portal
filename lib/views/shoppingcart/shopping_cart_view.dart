@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:http/http.dart';
 import 'package:merchant_app/constants/constants/AppConst.dart';
 import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
@@ -141,14 +139,16 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
   }
 
   /// Getting User Information From API
-  Future<List<UserInfo>> getUserInfo(int userId) async {
+  Future<List<UserInfo>> getUserInfo(String userId) async {
     final response = await get(Uri.parse('${baseUrl}shopuser/$userId'));
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
       print("getting user successful");
-      return UserInfo.fromListJson(jsonDecode(response.body));
+      List<dynamic> r = [];
+      r.add(jsonDecode(response.body));
+      return UserInfo.fromListJson(r);
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.

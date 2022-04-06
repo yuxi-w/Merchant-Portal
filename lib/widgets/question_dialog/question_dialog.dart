@@ -8,7 +8,7 @@ import '../../locator.dart';
 
 class QuestionDialog {
   final String itemName;
-  final int itemId;
+  final String itemId;
   final BuildContext buildContext;
 
   QuestionDialog(this.itemName, this.buildContext, this.itemId);

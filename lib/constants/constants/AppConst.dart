@@ -1,2 +1,2 @@
-//const String baseUrl = "https://merchant-api.azurewebsites.net/";
-String baseUrl = "http://ec2-100-26-134-56.compute-1.amazonaws.com/";
+//const String baseUrl = "https://merapi.azurewebsites.net/";
+String baseUrl = "http://ec2-54-89-165-163.compute-1.amazonaws.com/";
