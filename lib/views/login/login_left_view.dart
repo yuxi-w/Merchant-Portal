@@ -57,7 +57,7 @@ class _LoginLeftViewState extends State<LoginLeftView> {
     try {
       Response response = await post(
         Uri.parse('${baseUrl}shopuser/login').replace(queryParameters: {
-          'email': email.toLowerCase(),
+          'email': email.toLowerCase().trim(),
           'password': pass,
         }),
       );
