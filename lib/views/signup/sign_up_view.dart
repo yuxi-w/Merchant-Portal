@@ -219,7 +219,7 @@ class _SignUpPageViewState extends State<SignUpPageView> {
                                   }
                                   await signup(
                                       _name.text.toString(),
-                                      _email.text.toString().toLowerCase(),
+                                      _email.text.toString().toLowerCase().trim(),
                                       _pass.text.toString(),
                                       _address.text.toString(),
                                       _phone.text.toString(),

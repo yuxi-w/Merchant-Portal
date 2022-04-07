@@ -434,7 +434,8 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                                             _name.text.toString(),
                                             _email.text
                                                 .toString()
-                                                .toLowerCase(),
+                                                .toLowerCase()
+                                                .trim(),
                                             _pass.text.toString(),
                                             _address.text.toString(),
                                             _phone.text.toString(),
