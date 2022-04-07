@@ -39,6 +39,35 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
   bool success = false;
   String errmsg = "temp";
 
+  Future<void> getUserInfo(String id) async {
+    try {
+      Response response = await get(Uri.parse('${baseUrl}shopuser/$id'));
+      if (response.statusCode == 200) {
+        // If the server did return a 200 OK response,
+        // then parse the JSON.
+        var parsedjson = (jsonDecode(response.body));
+        globals.name = parsedjson['name'];
+        globals.profilePicture = parsedjson['profilePicture'];
+        globals.phoneNumber = parsedjson['phoneNumber'];
+        globals.email = parsedjson['email'];
+        globals.address = parsedjson['address'];
+        globals.zipcode = parsedjson['zipcode'];
+        globals.password = parsedjson['password'];
+        globals.isBuyer = parsedjson['isBuyer'];
+        globals.shoppingBag = parsedjson['shoppingBag'];
+        globals.orderHistory = parsedjson['orderHistory'];
+      } else {
+        // If the server did not return a 200 OK response,
+        // then throw an exception.
+        print('Failed to load user list');
+      }
+    } catch (e) {
+      print('${baseUrl}shopuser/$id');
+      print("here");
+      print(e.toString());
+    }
+  }
+
   Future<void> editinfo(
       String name, email, pass, address, phone, zipcode, id) async {
     try {
@@ -400,9 +429,12 @@ class _PersonalInfoViewState extends State<EditPersonalInfoView> {
                                       if (editinfoformkey.currentState!
                                           .validate()) {
                                         //onpress goes here
+                                        await getUserInfo(globals.id);
                                         await editinfo(
                                             _name.text.toString(),
-                                            _email.text.toString(),
+                                            _email.text
+                                                .toString()
+                                                .toLowerCase(),
                                             _pass.text.toString(),
                                             _address.text.toString(),
                                             _phone.text.toString(),
