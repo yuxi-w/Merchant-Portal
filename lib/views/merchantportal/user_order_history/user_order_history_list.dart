@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:merchant_app/datamodel/shoppingitem/ShoppingItem.dart';
 import 'package:merchant_app/datamodel/userInfo/UserInfo.dart';
 import 'package:merchant_app/views/order_history/order_history_list_item.dart';
-import 'package:merchant_app/widgets/shopping_cart_list_view/shopping_cart_list_item.dart';
 
 /// Shopping cart item list
 class UserOrderHistoryListView extends StatefulWidget {
@@ -41,9 +40,18 @@ class _UserOrderHistoryListViewState extends State<UserOrderHistoryListView> {
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       if (tempUserInfo[index].isBuyer!) ...[
+                        /// Divider!
+                        const SizedBox(
+                          width: 1350,
+                          height: 50,
+                          child: Divider(
+                            color: Color.fromARGB(255, 90, 38, 31),
+                          ),
+                        ),
                         Text(
                           "User Name: " + tempUserInfo[index].name!,
                           style: const TextStyle(
+                            color: Colors.blue,
                             fontWeight: FontWeight.bold,
                             fontSize: 26,
                           ),
@@ -136,7 +144,7 @@ class _UserOrderHistoryListViewState extends State<UserOrderHistoryListView> {
       price += int.parse(element.price!);
     });
     return Text(
-      "Order Total: " + price.toString(),
+      "Order Total Price: \$${price.toString()}",
       textAlign: TextAlign.right,
       style: const TextStyle(
         fontWeight: FontWeight.bold,

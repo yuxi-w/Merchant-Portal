@@ -124,32 +124,6 @@ class _AddItemViewState extends State<AddItemView> {
 
                           const SizedBox(height: 50),
 
-                          ///Upload Picture
-                          Container(
-                            padding: const EdgeInsets.fromLTRB(25, 2, 25, 2),
-                            child: MaterialButton(
-                              key: const Key("upload_pic_button_merchant"),
-                              onPressed: () {
-                                if (addItemFormKey!.currentState!.validate()) {
-
-
-                                }
-                              },
-                              child: const Text(
-                                "Upload Picture",
-                                style: TextStyle(fontSize: 18),
-                              ),
-                              minWidth: double.infinity,
-                              height: 52,
-                              elevation: 24,
-                              color: Colors.red,
-                              textColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(32)),
-                            ),
-                          ),
-                          const SizedBox(height: 50),
-
                           /// Add Item Button
                           Container(
                             padding: const EdgeInsets.fromLTRB(25, 2, 25, 2),
