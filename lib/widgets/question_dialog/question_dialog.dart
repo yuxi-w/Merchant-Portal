@@ -27,18 +27,18 @@ class QuestionDialog {
           children: <Widget>[
             ///Title Text
             Container(
-              alignment: Alignment.centerLeft,
-              margin: const EdgeInsets.all(16),
+              alignment: Alignment.center,
+              margin: const EdgeInsets.fromLTRB(0,32,0,0),
               child: const Text(
                 "This item will be removed",
-                style: TextStyle(fontSize: 18, color: Colors.deepOrange),
+                style: TextStyle(fontSize: 18, color: Colors.deepOrange,fontWeight: FontWeight.bold),
               ),
             ),
 
             ///Body Text
             Container(
-              alignment: Alignment.centerLeft,
-              margin: const EdgeInsets.fromLTRB(20, 0, 16, 16),
+              alignment: Alignment.center,
+              margin: const EdgeInsets.fromLTRB(0,16,0,0),
               child: Text(
                 itemName,
                 style: const TextStyle(fontSize: 16, color: Colors.black),

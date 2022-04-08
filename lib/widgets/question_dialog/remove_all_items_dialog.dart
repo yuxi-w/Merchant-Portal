@@ -6,14 +6,10 @@ import 'package:merchant_app/services/navigation_service.dart';
 
 import '../../locator.dart';
 
-class CategoryQuestionDialog {
-  final String categoryName;
+class RemoveAllItemsDialog {
   final BuildContext buildContext;
 
-  CategoryQuestionDialog(
-    this.categoryName,
-    this.buildContext,
-  );
+  RemoveAllItemsDialog(this.buildContext);
 
   Dialog createDialog() {
     return Dialog(
@@ -32,21 +28,11 @@ class CategoryQuestionDialog {
               alignment: Alignment.center,
               margin: const EdgeInsets.fromLTRB(0, 32, 0, 0),
               child: const Text(
-                "This category will be removed",
+                "All uncategorized items will be removed",
                 style: TextStyle(
                     fontSize: 18,
                     color: Colors.deepOrange,
                     fontWeight: FontWeight.bold),
-              ),
-            ),
-
-            ///Body Text
-            Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-              child: Text(
-                categoryName,
-                style: const TextStyle(fontSize: 16, color: Colors.black),
               ),
             ),
 
@@ -90,8 +76,8 @@ class CategoryQuestionDialog {
                 /// Yes Button
                 MaterialButton(
                   onPressed: () {
-                    /// Removing Item
-                    removeCategoryAPICall();
+                    ///Remove All Items API call
+                    removeAllItemsAPICall();
                     Navigator.pop(buildContext);
                   },
                   child: const Text("Yes"),
@@ -111,18 +97,16 @@ class CategoryQuestionDialog {
     );
   }
 
-  /// Remove The Category API Call
-  void removeCategoryAPICall() async {
+  ///Remove All Items API call
+  void removeAllItemsAPICall() async {
     try {
-      final response = await post(Uri.parse('${baseUrl}shopitem/deletecategory')
-          .replace(queryParameters: {
-        'Cat': categoryName,
-      }));
+      final response =
+          await post(Uri.parse('${baseUrl}shopitem/DeleteUncategorized'));
       if (response.statusCode == 200) {
-        print("Category Removed Successfully");
-        locator<NavigationService>().navigateTo(RemoveEditCategoryRoute, null);
+        print("Removed Successful");
+        locator<NavigationService>().navigateTo(MerchantPortalRoute, null);
       } else {
-        print("Category Remove failed");
+        print("Removed failed");
       }
     } catch (e) {
       print(e.toString());
