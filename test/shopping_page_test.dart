@@ -72,12 +72,5 @@ void main() {
     if (kDebugMode) {
       print('Cancel button works fine');
     }
-
-    final productinfoButton =
-        find.byKey(const ValueKey("shoppingItemProductInfoButton"));
-    expect(productinfoButton, findsOneWidget);
-    if (kDebugMode) {
-      print('Product info button works fine');
-    }
   });
 }

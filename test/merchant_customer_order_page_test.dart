@@ -32,11 +32,5 @@ void main() {
     if (kDebugMode) {
       print('Order description test completed');
     }
-
-    final moreinfo = find.byKey(const ValueKey("OrderHistoryMoreInfoButton"));
-    expect(moreinfo, findsOneWidget);
-    if (kDebugMode) {
-      print('Item More info button test completed');
-    }
   });
 }
