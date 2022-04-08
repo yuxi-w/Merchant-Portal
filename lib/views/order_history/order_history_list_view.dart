@@ -46,6 +46,14 @@ class _OrderHistoryListViewState extends State<OrderHistoryListView> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    /// Divider!
+                    const SizedBox(
+                      width: 1350,
+                      height: 50,
+                      child: Divider(
+                        color: Color.fromARGB(255, 90, 38, 31),
+                      ),
+                    ),
                     Text(
                       "Order Number: " + (index + 1).toString(),
                       style: const TextStyle(
@@ -99,9 +107,10 @@ class _OrderHistoryListViewState extends State<OrderHistoryListView> {
       price += int.parse(element.price!);
     });
     return Text(
-      "Order Total: " + price.toString(),
+      "Order Total: \$${price.toString()}",
       textAlign: TextAlign.right,
       style: const TextStyle(
+        color: Colors.red,
         fontWeight: FontWeight.bold,
         fontSize: 24,
       ),
