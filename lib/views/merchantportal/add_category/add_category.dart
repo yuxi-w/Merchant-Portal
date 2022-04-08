@@ -160,7 +160,8 @@ class _AddCategoryViewState extends State<AddCategoryView> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(32)),
                             ),
-                          )
+                          ),
+                          const SizedBox(height: 50),
                         ]),
                       ))
                 ],

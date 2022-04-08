@@ -147,7 +147,8 @@ class _AddItemViewState extends State<AddItemView> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(32)),
                             ),
-                          )
+                          ),
+                          const SizedBox(height: 50),
                         ]),
                       ))
                 ],

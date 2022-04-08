@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:merchant_app/routing/route_names.dart';
 import 'package:merchant_app/services/navigation_service.dart';
+import 'package:merchant_app/widgets/question_dialog/remove_all_items_dialog.dart';
 
 import '../../locator.dart';
 
@@ -101,6 +102,18 @@ class _MerchantItemState extends State<MerchantItem> {
       case "Edit & Remove Category":
         locator<NavigationService>().navigateTo(RemoveEditCategoryRoute, null);
         break;
+
+      case "Remove All Uncategorized Items":
+        removeAllUncategorizedItems();
+        break;
     }
+  }
+
+  void removeAllUncategorizedItems() {
+    ///Show Confirm Dialog
+    showDialog(
+        context: context,
+        builder: (BuildContext context) =>
+            RemoveAllItemsDialog(context).createDialog());
   }
 }
