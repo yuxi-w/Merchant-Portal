@@ -147,6 +147,7 @@ class _UserOrderHistoryListViewState extends State<UserOrderHistoryListView> {
       "Order Total Price: \$${price.toString()}",
       textAlign: TextAlign.right,
       style: const TextStyle(
+        color: Colors.red,
         fontWeight: FontWeight.bold,
         fontSize: 24,
       ),

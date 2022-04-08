@@ -213,7 +213,7 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
               child: Text(
                 "Subtotal: \$${totalPrice.toString()}",
                 key: const Key("totalAmountText"),
-                style: const TextStyle(color: Colors.black, fontSize: 30),
+                style: const TextStyle(color: Colors.red, fontSize: 30),
                 textAlign: TextAlign.right,
               ),
             );

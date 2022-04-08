@@ -80,24 +80,25 @@ class _ShopCartListItemState extends State<ShopCartListItem> {
                   key: const Key("shoppingItemCancelButton"),
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.fromLTRB(0, 40, 0, 20),
-                child: MaterialButton(
-                  onPressed: () {
-                    locator<NavigationService>().navigateTo(
-                        ProductDetailRoute, widget.userShoppingItem);
-                  },
-                  child: const Text("Product Info"),
-                  minWidth: 152,
-                  height: 52,
-                  elevation: 24,
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32)),
-                  key: const Key("shoppingItemProductInfoButton"),
-                ),
-              ),
+              /// More Info Button
+              // Container(
+              //   margin: const EdgeInsets.fromLTRB(0, 40, 0, 20),
+              //   child: MaterialButton(
+              //     onPressed: () {
+              //       locator<NavigationService>().navigateTo(
+              //           ProductDetailRoute, widget.userShoppingItem);
+              //     },
+              //     child: const Text("Product Info"),
+              //     minWidth: 152,
+              //     height: 52,
+              //     elevation: 24,
+              //     color: Colors.blue,
+              //     textColor: Colors.white,
+              //     shape: RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(32)),
+              //     key: const Key("shoppingItemProductInfoButton"),
+              //   ),
+              // ),
             ],
           ),
         ),

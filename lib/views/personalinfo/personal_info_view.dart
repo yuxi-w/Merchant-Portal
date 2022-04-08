@@ -249,6 +249,8 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 70, 70, 70)),
                           ),
+
+                          /// View Order History Button
                           Container(
                             padding: const EdgeInsets.fromLTRB(25, 2, 25, 2),
                             child: MaterialButton(
@@ -271,6 +273,7 @@ class _PersonalInfoViewState extends State<PersonalInfoView> {
                               /// Button to editing page
                             ),
                           ),
+                          const SizedBox(height: 50),
                         ]))
                   ],
                 ),

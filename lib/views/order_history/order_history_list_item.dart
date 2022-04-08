@@ -44,14 +44,14 @@ class _OrderHistoryListItemState extends State<OrderHistoryListItem> {
         ),
         buttonBar: GFButtonBar(
           children: <Widget>[
-            TextButton(
-                onPressed: () {
-                  goToProductDetailPage();
-                },
-                child: const Text(
-                  "More Info >",
-                  key: Key("OrderHistoryMoreInfoButton"),
-                )),
+            // TextButton(
+            //     onPressed: () {
+            //       goToProductDetailPage();
+            //     },
+            //     child: const Text(
+            //       "More Info >",
+            //       key: Key("OrderHistoryMoreInfoButton"),
+            //     )),
           ],
         ),
       ),
